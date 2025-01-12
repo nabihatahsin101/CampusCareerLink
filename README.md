@@ -10,7 +10,7 @@ Simplify Events, Amplify Experiences with Zenvite.
 | Khairun Nahar Shila | 20220104020   | kamrunhasan12@gmail.com                 | Front-end Developer              |
 
 ## Project Overview
-The Event Management Platform is a comprehensive solution for managing event ticket booking. It provides tools for attendee registration, schedule management, and ticket booking ensuring a seamless event experience for organizers and participants.
+CampusCareerLink is a streamlined job-seeking platform designed to simplify university-based employment opportunities. It connects faculty members, administrative staff, students, and professionals with university-centric roles, ensuring a seamless experience for all stakeholders.
 
 ## Title
 Zenvite
