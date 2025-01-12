@@ -13,20 +13,29 @@ Simplify Events, Amplify Experiences with Zenvite.
 CampusCareerLink is a streamlined job-seeking platform designed to simplify university-based employment opportunities. It connects faculty members, administrative staff, students, and professionals with university-centric roles, ensuring a seamless experience for all stakeholders.
 
 ## Title
-Zenvite
+CampusCareerLink
 
 ## Short Description
-ZENVITE is a platform to manage events with an admin panel for organizing and overseeing events, attendee registration, and ticketing. It also provides real-time updates to keep everyone informed.
+CampusCareerLink is an innovative job-seeking platform designed to make job searching easier for university students and other job seekers. The platform allows users to browse job listings, apply for jobs, and receive real-time updates on application statuses.
+
 
 ## Key Features
-- **Attendee Registration:**
-  - Easy sign-up and registration process.
-  - Automated email confirmations.
-
-- **Schedule Management:**
-  - Create and manage event schedules.
-  - Provide real-time ticket updates to attendees.
-
+- **Job Listings:**
+  - View a variety of job openings within the university or local area.
+  - Search by job category, company, and location.
+  - 
+- **Application Process:**
+  - Simple application process for job seekers.
+  - Track the status of applications in real time.
+  - 
+- **Employer Dashboard:**
+  - Employers can post job listings and review applications.
+  - Manage job listings and candidate profiles.
+    
+ - **Notifications:**
+  - Real-time alerts for job seekers when new job listings are posted.
+  - Notifications about application status updates.
+  - 
 ## Target Audience
 ZENVITE is designed for:
 
