@@ -34,7 +34,7 @@
                 <tr>
                     <td>202201040116</td>
                     <td>Sumaiya Aftab Prova</td>
-                    <td><a href=""></a></td>
+                    <td><a href="">sumaiyaprova116@gmail.com</a></td>
                     <td>Frontend &amp; Backend</td>
                 </tr>
                 <tr>
