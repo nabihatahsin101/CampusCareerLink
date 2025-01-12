@@ -91,14 +91,14 @@ Easy-to-use registration and login pages for both job seekers and employers.
 Initial Setup and Basic Features
  - Set up Laravel backend and React frontend.
  - Implement Google Single Sign-On (SSO) for user login.
- -Create basic user roles (Student, Instructor, Admin).
+ -Create basic user roles (Student, Job seekers, Admin).
 ## Milestone 2: ##
 Advanced Features and Interactions
- -Implement session creation and student attendance submission.
- -Develop CRUD functionality for managing users. 
- -Establish relationships between users, sessions, and attendance.
+ - Implement job listing creation and application functionality.
+ - Develop CRUD functionality for managing job listings and user profiles.
+ - Establish relationships between users and job listings.
 ## Milestone 3: ##
 Final Touches and Deployment
- -Improve UI design and responsiveness.
- -Conduct unit, integration, and end-to-end testing.
- -Fix bugs and deploy to a hosting platform.
+ - Improve UI design and responsiveness.
+ - Conduct unit, integration, and end-to-end testing.
+ - Fix bugs and deploy to a hosting platform.
