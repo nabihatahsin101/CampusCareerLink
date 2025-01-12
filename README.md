@@ -23,7 +23,7 @@
                 <tr>
                     <td>20220104111</td>
                     <td> Srabani Mitra</td>
-                    <td><a href="""></a></td>
+                    <td><a href=""">srabanimitra2222@gmail.com</a></td>
                     <td>Lead &amp; Frontend</td>
                 </tr>
                 <tr>
