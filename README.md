@@ -48,17 +48,11 @@ CampusCareerLink is designed for:
 - **Home Page:**
 Displays available job listings with a search function for users to filter by category, company, or location.
 
-
-![Desktop - 1](https://www.figma.com/proto/Zpd3rCY16wEXk0Jmewa4UH/campuscareerlink-(Copy)?node-id=15-57&t=paCT0S8t3CMhYUf2-1d)
-
 - **Job Listing Page:**
 Each job listing includes detailed information, such as job description, qualifications, and application instructions.
-![Job listing]([https://github.com/user-attachments/assets/3817c497-3435-413c-aef5-15f51c537868](https://www.figma.com/design/Zpd3rCY16wEXk0Jmewa4UH/campuscareerlink-(Copy)?node-id=61-256&t=paCT0S8t3CMhYUf2-1))
 
 - **User Registration & Login:**
 Easy-to-use registration and login pages for both job seekers and employers.
-
-![Register](https://www.figma.com/proto/Zpd3rCY16wEXk0Jmewa4UH/campuscareerlink-(Copy)?node-id=41-198&t=paCT0S8t3CMhYUf2-1)
 
 ## Checkpoints
 
@@ -84,21 +78,3 @@ Easy-to-use registration and login pages for both job seekers and employers.
    - Browse job listings (job seekers).
    - Post and manage job listings (employers).
    -Track application status (job seekers).
-
-## Milestones
-
-## Milestone 1: ##  
-Initial Setup and Basic Features
- - Set up Laravel backend and React frontend.
- - Implement Google Single Sign-On (SSO) for user login.
- - Create basic user roles (Student, Job seekers, Admin).
-## Milestone 2: ##
-Advanced Features and Interactions
- - Implement job listing creation and application functionality.
- - Develop CRUD functionality for managing job listings and user profiles.
- - Establish relationships between users and job listings.
-## Milestone 3: ##
-Final Touches and Deployment
- - Improve UI design and responsiveness.
- - Conduct unit, integration, and end-to-end testing.
- - Fix bugs and deploy to a hosting platform.
