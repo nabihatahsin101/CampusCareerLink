@@ -29,16 +29,16 @@
                     <td>20220104113</td>
                     <td>Nusrat Jahan Adiba</td>
                     <td><a href="mailto:">nusratadiba06@gmail.com</a></td>
-                    <td>Backend</td>
+                    <td>Frontend &amp; Backend</td>
                 </tr>
                 <tr>
-                    <td>202201040116</td>
+                    <td>20220104116</td>
                     <td>Sumaiya Aftab Prova</td>
                     <td><a href="">sumaiyaprova116@gmail.com</a></td>
                     <td>Frontend &amp; Backend</td>
                 </tr>
                 <tr>
-                    <td>202201040119</td>
+                    <td>20220104119</td>
                     <td>Nabiha Tahsin Khan</td>
                     <td><a href="">nabihatahsin36@gmail.com</a></td>
                     <td>Frontend &amp; Backend</td>
