@@ -39,14 +39,14 @@ CampusCareerLink is an innovative job-seeking platform designed to make job sear
 ## Target Audience
 CampusCareerLink is designed for:
 
-- **University Students:** Students seeking internships, part-time, or full-time jobs within the university or nearby areas.
-- **Job Seekers:** Individuals looking for opportunities in the local area or university-based jobs
-- **Employers:** Companies and organizations posting job openings within the university or local community.
+- **University Students:** Students seeking internships, part-time, or full-time jobs within the university.
+- **Job Seekers:** Individuals looking for opportunities in the university-based jobs
+- **Employers:** Can post job openings within the university.
 
 ## User Interface
 # [Figma Link](https://www.figma.com/design/Zpd3rCY16wEXk0Jmewa4UH/campuscareerlink-(Copy)?node-id=0-1&t=ibwHVq19kCswj4LV-1)
 - **Home Page:**
-Displays available job listings with a search function for users to filter by category, company, or location.
+Displays available job listings with a search function for users to filter by category, location.
 
 - **Job Listing Page:**
 Each job listing includes detailed information, such as job description, qualifications, and application instructions.
