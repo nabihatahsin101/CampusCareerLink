@@ -23,7 +23,7 @@ CampusCareerLink is an innovative job-seeking platform designed to make job sear
 - **Job Listings:**
   - View a variety of job openings within the university or local area.
   - Search by job category, company, and location.
-  - 
+    
 - **Application Process:**
   - Simple application process for job seekers.
   - Track the status of applications in real time.
@@ -35,26 +35,24 @@ CampusCareerLink is an innovative job-seeking platform designed to make job sear
  - **Notifications:**
   - Real-time alerts for job seekers when new job listings are posted.
   - Notifications about application status updates.
-  - 
+   
 ## Target Audience
-ZENVITE is designed for:
+CampusCareerLink is designed for:
 
-- **Event Organizers:** Individuals or teams responsible for planning, managing, and executing events who need a streamlined tool to handle registrations, schedules, and ticketing.
-- **Businesses and Organizations:** Companies hosting conferences, workshops, or other events requiring efficient event management/booking facilities.
-- **Attendees:** Participants looking for an easy-to-use platform to discover, register for, and stay updated about events.
-- **Event Planners and Agencies:** Professionals seeking a scalable solution to manage multiple events simultaneously.
+- **University Students:** Students seeking internships, part-time, or full-time jobs within the university or nearby areas.
+- **Job Seekers:** Individuals looking for opportunities in the local area or university-based jobs
+- **Employers:** Companies and organizations posting job openings within the university or local community.
 
 ## User Interface
-# [Figma Link](https://www.figma.com/proto/4cvwCfQtVXDBs8UPXfjA7k/Zenvite?node-id=51-663&p=f&t=793CIkKft9fh1rq4-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
+# [Figma Link](https://www.figma.com/design/Zpd3rCY16wEXk0Jmewa4UH/campuscareerlink-(Copy)?node-id=61-158&t=paCT0S8t3CMhYUf2-1)
 - **Home Page:**
-The home page displays upcoming events with an integrated search option. Users can search by event name and location. 
+Displays available job listings with a search function for users to filter by category, company, or location.
 
 
 ![Desktop - 1](https://github.com/user-attachments/assets/971e6305-7a4c-4e64-be6b-ea510c70a7fd)
 
-- **Event Page:**
-Users can view additional event details, search for specific events, and book tickets.
-
+- **Job Listing Page:**
+Each job listing includes detailed information, such as job description, qualifications, and application instructions.
 ![events](https://github.com/user-attachments/assets/3817c497-3435-413c-aef5-15f51c537868)
 
 - **Login and Register Page:**
