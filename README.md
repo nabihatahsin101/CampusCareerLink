@@ -1,156 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>CampusCareerLink</title>
-</head>
-<body>
-    <div class="table-container">
-        <h2>Team Members</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>20220104111</td>
-                    <td> Srabani Mitra</td>
-                    <td><a href="mailto:srabanimitra2222@gmail.com">srabanimitra2222@gmail.com</a></td>
-                    <td>Lead &amp; Frontend</td>
-                </tr>
-                <tr>
-                    <td>20220104113</td>
-                    <td>Nusrat Jahan Adiba</td>
-                    <td><a href="mailto:nusratadiba06@gmail.com">nusratadiba06@gmail.com</a></td>
-                    <td>Frontend &amp; Backend</td>
-                </tr>
-                <tr>
-                    <td>20220104116</td>
-                    <td>Sumaiya Aftab Prova</td>
-                    <td><a href="mailto:sumaiyaprova116@gmail.com">sumaiyaprova116@gmail.com</a></td>
-                    <td>Frontend &amp; Backend</td>
-                </tr>
-                <tr>
-                    <td>20220104119</td>
-                    <td>Nabiha Tahsin Khan</td>
-                    <td><a href="mailto:nabihatahsin36@gmail.com">nabihatahsin36@gmail.com</a></td>
-                    <td>Frontend &amp; Backend</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+# Zenvite
+Simplify Events, Amplify Experiences with Zenvite.
 
-    <div class="project-overview">
-        <h2>Project Overview</h2>
-        <p>CampusCareerLink is a centralized job-seeking platform designed to simplify university-based employment opportunities. It connects faculty members, administrative staff, students, and professionals with university-centric roles, creating a seamless experience for all stakeholders.</p>
+## Team Members
+| Name                | Roll Number   | Email                                   | Role                             |
+|---------------------|---------------|-----------------------------------------|----------------------------------|
+| Nabila Rahman       | 20220104001   | rahman.nabilamedha@gmail.com            | Lead                             |
+| Pranto Biswas       | 20220104018   | pb749964@gmail.com                      | Backend, Frontend                |
+| Hridoy Nandi        | 20220104019   |  hrkisdead01221@gmail.com               | Backend, Frontend                |
+| Khairun Nahar Shila | 20220104020   | kamrunhasan12@gmail.com                 | Front-end Developer              |
 
-        <h2>Objective</h2>
-        <ul>
-            <li><strong>User-friendly navigation</strong></li>
-            <li><strong>Efficient job management</strong></li>
-            <li><strong>Convenient employer-employee connection</strong></li>
-        </ul>
+## Project Overview
+The Event Management Platform is a comprehensive solution for managing event ticket booking. It provides tools for attendee registration, schedule management, and ticket booking ensuring a seamless event experience for organizers and participants.
 
-        <h2>Target Audience</h2>
-        <ul>
-            <li><strong>University Personas:</strong> Faculty members and staff seeking part-time or cross-department roles.</li>
-            <li><strong>Students:</strong> Opportunities for internships, assistantships, or part-time jobs.</li>
-            <li><strong>External Job Seekers:</strong> Professionals interested in academic roles.</li>
-            <li><strong>University Administrators:</strong> Tools for managing job postings and applications.</li>
-        </ul>
+## Title
+Zenvite
 
-        <h2>Tech Stack</h2>
-        <ul>
-            <li><strong>Backend:</strong> Node.js with Express</li>
-            <li><strong>Frontend:</strong> React</li>
-            <li><strong>Rendering Method:</strong> Client-Side Rendering (CSR)</li>
-            <li><strong>UI Design Tool:</strong> Figma</li>
-        </ul>
+## Short Description
+ZENVITE is a platform to manage events with an admin panel for organizing and overseeing events, attendee registration, and ticketing. It also provides real-time updates to keep everyone informed.
 
-        <h2>Project Features</h2>
-        <h3>Authentication</h3>
-        <ul>
-            <li><strong>Google Single Sign-On (SSO):</strong> Secure login and role-based dashboard redirection.</li>
-        </ul>
+## Key Features
+- **Attendee Registration:**
+  - Easy sign-up and registration process.
+  - Automated email confirmations.
 
-        <h3>Job Seeker Portal</h3>
-        <ul>
-            <li><strong>Browse Jobs:</strong> Advanced filters (department, type, eligibility).</li>
-            <li><strong>Apply for Jobs:</strong> Easy application with attachments.</li>
-            <li><strong>Track Applications:</strong> Monitor application status.</li>
-        </ul>
+- **Schedule Management:**
+  - Create and manage event schedules.
+  - Provide real-time ticket updates to attendees.
 
-        <h3>Employer Portal</h3>
-        <ul>
-            <li><strong>Post Job Openings:</strong> Create detailed postings.</li>
-            <li><strong>Manage Applications:</strong> Review, shortlist, and communicate.</li>
-            <li><strong>Analytics:</strong> View job engagement statistics.</li>
-        </ul>
+## Target Audience
+ZENVITE is designed for:
 
-        <h3>Admin Portal</h3>
-        <ul>
-            <li><strong>User Management:</strong> Assign roles and permissions.</li>
-            <li><strong>Job Oversight:</strong> Monitor postings and applications.</li>
-            <li><strong>Reports:</strong> Export activity insights.</li>
-        </ul>
+- **Event Organizers:** Individuals or teams responsible for planning, managing, and executing events who need a streamlined tool to handle registrations, schedules, and ticketing.
+- **Businesses and Organizations:** Companies hosting conferences, workshops, or other events requiring efficient event management/booking facilities.
+- **Attendees:** Participants looking for an easy-to-use platform to discover, register for, and stay updated about events.
+- **Event Planners and Agencies:** Professionals seeking a scalable solution to manage multiple events simultaneously.
 
-        <h2>API Endpoints</h2>
-        <h3>Authentication</h3>
-        <ul>
-            <li><strong>POST /auth/login:</strong> Login using Google SSO.</li>
-            <li><strong>GET /auth/user:</strong> Fetch current user details.</li>
-        </ul>
+## User Interface
+# [Figma Link](https://www.figma.com/proto/4cvwCfQtVXDBs8UPXfjA7k/Zenvite?node-id=51-663&p=f&t=793CIkKft9fh1rq4-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
+- **Home Page:**
+The home page displays upcoming events with an integrated search option. Users can search by event name and location. 
 
-        <h3>Job Seeker Portal</h3>
-        <ul>
-            <li><strong>GET /jobs:</strong> Fetch job listings.</li>
-            <li><strong>POST /applications:</strong> Submit applications.</li>
-            <li><strong>GET /applications:</strong> View application history.</li>
-        </ul>
 
-        <h3>Employer Portal</h3>
-        <ul>
-            <li><strong>POST /jobs:</strong> Create job postings.</li>
-            <li><strong>GET /jobs:</strong> View posted jobs.</li>
-            <li><strong>GET /applications/:id:</strong> View job-specific applications.</li>
-        </ul>
+![Desktop - 1](https://github.com/user-attachments/assets/971e6305-7a4c-4e64-be6b-ea510c70a7fd)
 
-        <h3>Admin Portal</h3>
-        <ul>
-            <li><strong>POST /admin/users:</strong> Add users.</li>
-            <li><strong>GET /admin/users:</strong> Fetch users.</li>
-            <li><strong>PUT /admin/users/:id:</strong> Update user details.</li>
-            <li><strong>DELETE /admin/users/:id:</strong> Remove users.</li>
-        </ul>
+- **Event Page:**
+Users can view additional event details, search for specific events, and book tickets.
 
-        <h2>Milestones</h2>
-        <h3>Milestone 1: Initial Setup</h3>
-        <ul>
-            <li>Backend: Node.js setup.</li>
-            <li>Frontend: React with Google SSO integration.</li>
-            <li>Role structure: Job Seeker, Employer, Admin.</li>
-        </ul>
+![events](https://github.com/user-attachments/assets/3817c497-3435-413c-aef5-15f51c537868)
 
-        <h3>Milestone 2: Advanced Features</h3>
-        <ul>
-            <li>Job posting and browsing.</li>
-            <li>Application submission and tracking.</li>
-            <li>CRUD operations for users, jobs, and applications.</li>
-        </ul>
+- **Login and Register Page:**
+With a simple user-friendly login and registration interface, users can easily create an account and enjoy its full benefit.
 
-        <h3>Milestone 3: Final Touches</h3>
-        <ul>
-            <li>UI/UX refinement and responsiveness.</li>
-            <li>Comprehensive testing.</li>
-            <li>Deployment.</li>
-        </ul>
-    </div>
-</body>
-</html>
+![Register](https://github.com/user-attachments/assets/4dccd353-d4eb-42a3-b351-436d33145cdf)
+
+## Checkpoints
+
+### Checkpoint 1
+- Design mock UI for landing pages and dashboard using Figma.
+- Implement home page frontend.
+- Implement events page frontend.
+
+### Checkpoint 2
+- Implement user authentication (registration & login) frontend and backend.
+- Implement about us page frontend.
+
+### Checkpoint 3
+- Implement booking features backend.
+- Finalize UI/UX with responsive design.
+- Merge backend and frontend.
+- Deploy the web application.
+
+## Usage
+1. Access the platform through your browser at the specified address (e.g., `yet to be added`).
+2. Navigate through the platform to:
+   - Register attendees (users)
+   - Book tickets (users)
+   - Create and modify event schedules (admins)
