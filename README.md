@@ -32,7 +32,7 @@ CampusCareerLink is an innovative job-seeking platform designed to make job sear
   - Employers can post job listings and review applications.
   - Manage job listings and candidate profiles.
     
- - **Notifications:**
+- **Notifications:**
   - Real-time alerts for job seekers when new job listings are posted.
   - Notifications about application status updates.
    
