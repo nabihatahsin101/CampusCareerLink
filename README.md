@@ -20,20 +20,30 @@ CampusCareerLink is an innovative job-seeking platform designed to make job sear
 
 
 ## Key Features
+- **User Management:**
+  - Role-based access. Admin, Staff, and Student roles.
+  - Secure authentication (login/register).
+  - Restrict registration using university email domains (e.g., @uni.edu).
+   
 - **Job Listings:**
   - View a variety of job openings within the university.
   - Search by job category and location.
+  - Job catagory such as party-time,full-time,internship.
     
-- **Application Process:**
-  - Simple application process for job seekers.
-  - Track the status of applications in real time.
+ - **Profile Management:**
+  - Students can upload resume, skills, and portfolio.
+  - Staffs can add department, designation, and contact details.
+    
+- **Application Management:**
+  - Students can apply to jobs.
+  - Staff/Admin can review applications and shortlist candidates.
    
 - **Employer Dashboard:**
   - Employers can post job listings and review applications.
   - Manage job listings and candidate profiles.
     
 - **Notifications:**
-  - Real-time alerts for job seekers when new job listings are posted.
+  - Email alerts for job postings and applications.
   - Notifications about application status updates.
    
 ## Target Audience
