@@ -4,10 +4,10 @@ Simplify Events, Amplify Experiences with Zenvite.
 ## Team Members
 | Name                | Roll Number   | Email                                   | Role                             |
 |---------------------|---------------|-----------------------------------------|----------------------------------|
-| Nabila Rahman       | 20220104001   | rahman.nabilamedha@gmail.com            | Lead                             |
-| Pranto Biswas       | 20220104018   | pb749964@gmail.com                      | Backend, Frontend                |
-| Hridoy Nandi        | 20220104019   |  hrkisdead01221@gmail.com               | Backend, Frontend                |
-| Khairun Nahar Shila | 20220104020   | kamrunhasan12@gmail.com                 | Front-end Developer              |
+| Sraabani Mitra       | 20220104111   |srabanimitra2222@gmail.com            | Lead                             |
+| Nusrat Adiba       | 20220104113   | nusratadiba06@gmail.com                      | Backend, Frontend                |
+| Sumaiya Aftab Prova        | 20220104116   |  sumaiyaprova116@gmail.com               | Backend, Frontend                |
+| Nabiha Tahsin Khan | 20220104119  | nabihatahsin36@gmail.com                 | Front-end,Back-end             |
 
 ## Project Overview
 CampusCareerLink is a streamlined job-seeking platform designed to simplify university-based employment opportunities. It connects faculty members, administrative staff, students, and professionals with university-centric roles, ensuring a seamless experience for all stakeholders.
@@ -64,15 +64,16 @@ Easy-to-use registration and login pages for both job seekers and employers.
 
 ### Checkpoint 1
 - Design mock UI for landing pages and dashboard using Figma.
-- Implement home page frontend.
-- Implement events page frontend.
+- Implement homepage frontend with job listings and search functionality.
+- Implement employer job posting functionality.
 
 ### Checkpoint 2
-- Implement user authentication (registration & login) frontend and backend.
-- Implement about us page frontend.
+- Implement user authentication (registration & login) for both job seekers and employers.
+- Implement job application feature frontend.
+- Develop the employer dashboard for managing job postings.
 
 ### Checkpoint 3
-- Implement booking features backend.
+- Implement backend for job application management and notifications.
 - Finalize UI/UX with responsive design.
 - Merge backend and frontend.
 - Deploy the web application.
@@ -80,6 +81,6 @@ Easy-to-use registration and login pages for both job seekers and employers.
 ## Usage
 1. Access the platform through your browser at the specified address (e.g., `yet to be added`).
 2. Navigate through the platform to:
-   - Register attendees (users)
-   - Book tickets (users)
-   - Create and modify event schedules (admins)
+   - Browse job listings (job seekers).
+   - Post and manage job listings (employers).
+   -Track application status (job seekers).
