@@ -44,21 +44,21 @@ CampusCareerLink is designed for:
 - **Employers:** Companies and organizations posting job openings within the university or local community.
 
 ## User Interface
-# [Figma Link](https://www.figma.com/design/Zpd3rCY16wEXk0Jmewa4UH/campuscareerlink-(Copy)?node-id=61-158&t=paCT0S8t3CMhYUf2-1)
+# [Figma Link](https://www.figma.com/design/Zpd3rCY16wEXk0Jmewa4UH/campuscareerlink-(Copy)?node-id=0-1&t=ibwHVq19kCswj4LV-1)
 - **Home Page:**
 Displays available job listings with a search function for users to filter by category, company, or location.
 
 
-![Desktop - 1](https://github.com/user-attachments/assets/971e6305-7a4c-4e64-be6b-ea510c70a7fd)
+![Desktop - 1](https://www.figma.com/proto/Zpd3rCY16wEXk0Jmewa4UH/campuscareerlink-(Copy)?node-id=15-57&t=paCT0S8t3CMhYUf2-1d)
 
 - **Job Listing Page:**
 Each job listing includes detailed information, such as job description, qualifications, and application instructions.
-![events](https://github.com/user-attachments/assets/3817c497-3435-413c-aef5-15f51c537868)
+![Job listing]([https://github.com/user-attachments/assets/3817c497-3435-413c-aef5-15f51c537868](https://www.figma.com/design/Zpd3rCY16wEXk0Jmewa4UH/campuscareerlink-(Copy)?node-id=61-256&t=paCT0S8t3CMhYUf2-1))
 
-- **Login and Register Page:**
-With a simple user-friendly login and registration interface, users can easily create an account and enjoy its full benefit.
+- **User Registration & Login:**
+Easy-to-use registration and login pages for both job seekers and employers.
 
-![Register](https://github.com/user-attachments/assets/4dccd353-d4eb-42a3-b351-436d33145cdf)
+![Register](https://www.figma.com/proto/Zpd3rCY16wEXk0Jmewa4UH/campuscareerlink-(Copy)?node-id=41-198&t=paCT0S8t3CMhYUf2-1)
 
 ## Checkpoints
 
