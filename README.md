@@ -4,7 +4,7 @@ Simplifying Job Search for University Students and Job Seekers.
 ## Team Members
 | Name                | Roll Number   | Email                                   | Role                             |
 |---------------------|---------------|-----------------------------------------|----------------------------------|
-| Sraabani Mitra     | 20220104111   |srabanimitra2222@gmail.com              | Lead,Backend          |
+| Srabani Mitra      | 20220104111   |srabanimitra2222@gmail.com              | Lead,Backend          |
 | Nusrat Adiba       | 20220104113   | nusratadiba06@gmail.com                | Backend, Frontend     |
 | Sumaiya Aftab Prova| 20220104116   |  sumaiyaprova116@gmail.com             | Backend, Frontend     |
 | Nabiha Tahsin Khan | 20220104119   | nabihatahsin36@gmail.com               | Front-end,Back-end    |
