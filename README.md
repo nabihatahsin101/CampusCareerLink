@@ -16,7 +16,7 @@ CampusCareerLink is a streamlined job-seeking platform designed to simplify univ
 CampusCareerLink
 
 ## Short Description
-CampusCareerLink is an innovative job-seeking platform designed to make job searching easier for university students and other job seekers. The platform allows users to browse job listings, apply for jobs, and receive real-time updates on application statuses.
+CampusCareerLink is an innovative job-seeking platform designed to make job searching easier for university students. The platform allows users to browse job listings, apply for jobs, and receive real-time updates on application statuses.
 
 
 ## Key Features
@@ -50,7 +50,6 @@ CampusCareerLink is an innovative job-seeking platform designed to make job sear
 CampusCareerLink is designed for:
 
 - **University Students:** Students seeking internships, part-time, or full-time jobs within the university.
-- **Job Seekers:** Individuals looking for opportunities in the university-based jobs
 - **Employers:** Can post job openings within the university.
 
 ## User Interface
