@@ -21,8 +21,8 @@ CampusCareerLink is an innovative job-seeking platform designed to make job sear
 
 ## Key Features
 - **Job Listings:**
-  - View a variety of job openings within the university or local area.
-  - Search by job category, company, and location.
+  - View a variety of job openings within the university.
+  - Search by job category and location.
     
 - **Application Process:**
   - Simple application process for job seekers.
