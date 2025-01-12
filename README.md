@@ -31,8 +31,8 @@ CampusCareerLink is an innovative job-seeking platform designed to make job sear
   - Job catagory such as party-time,full-time,internship.
     
  - **Profile Management:**
-  - Students can upload resume, skills, and portfolio.
-  - Staffs can add department, designation, and contact details.
+   - Students can upload resume, skills, and portfolio.
+   - Staffs can add department, designation, and contact details.
     
 - **Application Management:**
   - Students can apply to jobs.
