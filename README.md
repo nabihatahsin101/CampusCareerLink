@@ -4,10 +4,10 @@ Simplifying Job Search for University Students and Job Seekers.
 ## Team Members
 | Name                | Roll Number   | Email                                   | Role                             |
 |---------------------|---------------|-----------------------------------------|----------------------------------|
-| Sraabani Mitra       | 20220104111   |srabanimitra2222@gmail.com            | Lead,Backend                             |
-| Nusrat Adiba       | 20220104113   | nusratadiba06@gmail.com                      | Backend, Frontend                |
-| Sumaiya Aftab Prova        | 20220104116   |  sumaiyaprova116@gmail.com               | Backend, Frontend                |
-| Nabiha Tahsin Khan | 20220104119  | nabihatahsin36@gmail.com                 | Front-end,Back-end             |
+| Sraabani Mitra     | 20220104111   |srabanimitra2222@gmail.com              | Lead,Backend          |
+| Nusrat Adiba       | 20220104113   | nusratadiba06@gmail.com                | Backend, Frontend     |
+| Sumaiya Aftab Prova| 20220104116   |  sumaiyaprova116@gmail.com             | Backend, Frontend     |
+| Nabiha Tahsin Khan | 20220104119   | nabihatahsin36@gmail.com               | Front-end,Back-end    |
 
 ## Project Overview
 CampusCareerLink is a streamlined job-seeking platform designed to simplify university-based employment opportunities. It connects faculty members, administrative staff, students, and professionals with university-centric roles, ensuring a seamless experience for all stakeholders.
@@ -27,7 +27,7 @@ CampusCareerLink is an innovative job-seeking platform designed to make job sear
 - **Application Process:**
   - Simple application process for job seekers.
   - Track the status of applications in real time.
-  - 
+   
 - **Employer Dashboard:**
   - Employers can post job listings and review applications.
   - Manage job listings and candidate profiles.
