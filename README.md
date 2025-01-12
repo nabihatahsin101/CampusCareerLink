@@ -29,7 +29,7 @@
                 <tr>
                     <td>20220104113</td>
                     <td>Nusrat Jahan Adiba</td>
-                    <td><a href="mailto:">/<a></td>
+                    <td><a href="mailto:">nusratadiba06@gmail.com</a></td>
                     <td>Backend</td>
                 </tr>
                 <tr>
@@ -41,7 +41,7 @@
                 <tr>
                     <td>202201040119</td>
                     <td>Nabiha Tahsin Khan</td>
-                    <td><a href=""></a></td>
+                    <td><a href="">nabihatahsin36@gmail.com</a></td>
                     <td>Frontend &amp; Backend</td>
                 </tr>
             </tbody>
