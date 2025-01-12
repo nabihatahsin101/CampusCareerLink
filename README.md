@@ -39,8 +39,8 @@
                     <td>Frontend &amp; Backend</td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td>Sayek Al Sami</td>
+                    <td>202201040119</td>
+                    <td>Nabiha Tahsin Khan</td>
                     <td><a href=""></a></td>
                     <td>Frontend &amp; Backend</td>
                 </tr>
