@@ -4,7 +4,7 @@ Simplifying Job Search for University Students and Job Seekers.
 ## Team Members
 | Name                | Roll Number   | Email                                   | Role                             |
 |---------------------|---------------|-----------------------------------------|----------------------------------|
-| Sraabani Mitra       | 20220104111   |srabanimitra2222@gmail.com            | Lead                             |
+| Sraabani Mitra       | 20220104111   |srabanimitra2222@gmail.com            | Lead,Backend                             |
 | Nusrat Adiba       | 20220104113   | nusratadiba06@gmail.com                      | Backend, Frontend                |
 | Sumaiya Aftab Prova        | 20220104116   |  sumaiyaprova116@gmail.com               | Backend, Frontend                |
 | Nabiha Tahsin Khan | 20220104119  | nabihatahsin36@gmail.com                 | Front-end,Back-end             |
@@ -84,3 +84,21 @@ Easy-to-use registration and login pages for both job seekers and employers.
    - Browse job listings (job seekers).
    - Post and manage job listings (employers).
    -Track application status (job seekers).
+
+## Milestones
+
+## Milestone 1: ##  
+Initial Setup and Basic Features
+ - Set up Laravel backend and React frontend.
+ - Implement Google Single Sign-On (SSO) for user login.
+ -Create basic user roles (Student, Instructor, Admin).
+## Milestone 2: ##
+Advanced Features and Interactions
+ -Implement session creation and student attendance submission.
+ -Develop CRUD functionality for managing users. 
+ -Establish relationships between users, sessions, and attendance.
+## Milestone 3: ##
+Final Touches and Deployment
+ -Improve UI design and responsiveness.
+ -Conduct unit, integration, and end-to-end testing.
+ -Fix bugs and deploy to a hosting platform.
