@@ -1,5 +1,5 @@
-# Zenvite
-Simplify Events, Amplify Experiences with Zenvite.
+# CampusCareerLink
+Simplifying Job Search for University Students and Job Seekers.
 
 ## Team Members
 | Name                | Roll Number   | Email                                   | Role                             |
