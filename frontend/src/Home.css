@@ -1,0 +1,129 @@
+/* banner.css */
+html, body {
+    height: 100%; /* Full height */
+    width: 100%;  /* Full width */
+    margin: 0;    /* Remove default margin */
+    padding: 0;   /* Remove default padding */
+    overflow-x: hidden; /* Ensure html and body take full width */
+}
+
+.banner {
+    position: centre;
+    background-image: url('./assets/images/aust.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Full screen height */
+    width: 100vw;  /* Full screen width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-align: center;
+    overflow: hidden;
+    justify-content: flex-end;
+}
+
+.banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    backdrop-filter: blur(6px); /* Modern browser blur for background */
+    z-index: 0;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 1;
+    
+    padding: 0px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.banner h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding-right: 160px;
+}
+
+.job-portal-text {
+    font-size: 2rem;
+    margin: 1rem 0;
+    font-weight: 600;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    align-content: center;
+    padding-right: 160px;
+}
+
+.university-address {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    padding-right: 160px;
+}
+
+.explore-button {
+    font-size: 1.1rem;
+    background-color: #218838;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 30px;  /* Adjust left and right padding equally */
+    margin-top: 20px;    /* Add space above the button */
+    margin-left: 210px;   /* Adjust this value to move the button to the left */
+    margin-right: auto;
+    display: block;      /* Make it a block element */
+}
+.explore-button:hover {
+    background-color: #1e7e34;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .banner h1 {
+        font-size: 2.5rem; /* Slightly smaller for medium screens */
+    }
+
+    .job-portal-text {
+        font-size: 1.7rem;
+    }
+
+    .university-address {
+        font-size: 1rem;
+    }
+
+    .explore-button {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner h1 {
+        font-size: 1.8rem; /* Smaller font size for mobile */
+    }
+
+    .job-portal-text {
+        font-size: 1.3rem;
+    }
+
+    .explore-button {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+}
