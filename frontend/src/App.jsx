@@ -7,6 +7,7 @@ import ContactUs from "./ContactUs";
 import Login from "./Login";
 import Signup from "./Signup";
 import Circular from "./Circular"; 
+import AdminLogin from "./AdminLogin";
 import "./App.css";
 
 const App = () => {
@@ -18,7 +19,8 @@ const App = () => {
         <Route path="/circular" element={<Circular />} /> 
         <Route path="/contact" element={<ContactUs />} />  
         <Route path="/login" element={<Login />} />  
-        <Route path="/signup" element={<Signup />} />  
+        <Route path="/signup" element={<Signup />} /> 
+        <Route path="/admin" element={<AdminLogin />} />
       </Routes>
       <Footer />
     </Router>

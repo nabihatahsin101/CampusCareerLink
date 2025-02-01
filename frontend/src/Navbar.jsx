@@ -42,7 +42,7 @@ const Navbar = () => {
           <Link to="/circular" onClick={handleMenuItemClick}>Circular</Link>
         </li>
         <li>
-          <Link to="/" onClick={handleMenuItemClick}>Admin Login</Link>
+          <Link to="/admin" onClick={handleMenuItemClick}>Admin Login</Link>
         </li>
         
         <li className={`dropdown ${dropdownOpen ? "open" : ""}`}>
