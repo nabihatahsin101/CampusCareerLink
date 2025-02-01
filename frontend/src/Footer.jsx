@@ -1,52 +1,40 @@
 import React from 'react';
 import './Footer.css';
 import austLogo from './assets/images/aust.png';
+import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        {/* Logo Section */}
-        <div className="footer-logo">
-          <img src={austLogo} alt="AUST Logo" />
+        {/* Contact Information - Left Side */}
+        <div className="footer-contact">
+          <p>Ahsanullah University of Science & Technology</p>
+          <p>141 & 142, Love Road, Tejgaon Industrial Area, Dhaka-1208</p>
+          <p>
+            Tel: <a href="tel:+88028870422">+8802-8870422</a>
+          </p>
+          <p>
+            Email: <a href="mailto:info@aust.edu">info@aust.edu</a>
+          </p>
         </div>
 
-        {/* Links Section */}
-        <div className="footer-links">
-          {/* Current Students Section */}
-          <div className="footer-column">
-            <h3>For Current Students</h3>
-            <ul>
-              <li><a href="https://www.aust.edu/dsw">DSW</a></li>
-              <li><a href="https://www.aust.edu/student_organization">Student Organization</a></li>
-              <li><a href="https://www.aust.edu/student_notice">Student Notice</a></li>
-              <li><a href="https://www.aust.edu/library">Library</a></li>
-              <li><a href="https://www.aust.edu/student_panel">Student Panel</a></li>
-            </ul>
-          </div>
+        {/* Research, Advocacy, Innovation - Center */}
+        <div className="footer-middle">
+          <a href="https://www.aust.edu/research" className="footer-button">Research</a>
+          <a href="https://www.aust.edu/advocacy" className="footer-button">Advocacy</a>
+          <a href="https://www.aust.edu/innovation" className="footer-button">Innovation</a>
+        </div>
 
-          {/* Faculty & Staff Section */}
-          <div className="footer-column">
-            <h3>For Faculty & Staff</h3>
-            <ul>
-              <li><a href="https://www.aust.edu/notices">All Notices</a></li>
-              <li><a href="https://www.aust.edu/research_highlights">Research Highlights</a></li>
-              <li><a href="https://www.aust.edu/university_journals">University Journals</a></li>
-              <li><a href="https://www.aust.edu/conferences">Conferences</a></li>
-              <li><a href="https://www.aust.edu/faculty_directories">Faculty Directories</a></li>
-            </ul>
-          </div>
-
-          {/* Job Applicants Section */}
-          <div className="footer-column">
-            <h3>For Job Applicants</h3>
-            <ul>
-              <li><a href="https://www.bangladesh.gov.bd/site/view/job_category/s">সরকারি নিয়োগ বিজ্ঞপ্তি</a></li>
-              <li><a href="https://www.bangladesh.gov.bd/site/view/job_category/">বাংলাদেশ জাতীয় তথ্য বাতায়ন</a></li>
-              <li><a href="https://www.teletalk.com.bd">Teletalk Jobs</a></li>
-              <li><a href="https://www.bdjobs.com">BD Jobs</a></li>
-              <li><a href="https://www.prothomalo.com">Govt. Jobs (Prothom Alo)</a></li>
-            </ul>
+        {/* Social Media Links - Right Side */}
+        <div className="footer-social">
+          <h4>FOLLOW US AT</h4>
+          <div className="social-icons">
+            <a href="https://www.facebook.com/AUST.Official" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
+            <a href="https://twitter.com/AUST_Official" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
+            <a href="https://www.linkedin.com/school/ahsanullah-university-of-science-and-technology/" target="_blank" rel="noopener noreferrer"><FaLinkedinIn /></a>
+            <a href="https://www.instagram.com/aust.official/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
           </div>
         </div>
       </div>
