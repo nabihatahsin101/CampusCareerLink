@@ -1,11 +1,13 @@
+
 import React, { useState } from "react";
+import { Link } from "react-router-dom";  // Import Link from react-router-dom
 import "./Navbar.css";
 import "./logo.css";
 import logo from "./assets/images/logo.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false); // Track dropdown state
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -16,57 +18,52 @@ const Navbar = () => {
   };
 
   const toggleDropdown = (e) => {
-    e.preventDefault(); // Prevent default anchor behavior
-    setDropdownOpen(!dropdownOpen); // Toggle dropdown visibility
+    e.preventDefault();
+    setDropdownOpen(!dropdownOpen);
   };
 
   return (
     <nav className="navbar">
-      {/* Logo Section */}
       <div className="logo-section">
         <img src={logo} alt="AUST Logo" className="logo" />
         <h2>AUST JOB PORTAL</h2>
       </div>
 
-      {/* Menu Icon for Mobile */}
       <div className="menu-icon" onClick={toggleMenu}>
         <span></span>
         <span></span>
         <span></span>
       </div>
 
-      {/* Navigation Links */}
       <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
         <li>
-          <a href="/" onClick={handleMenuItemClick}>Home</a>
+          <Link to="/" onClick={handleMenuItemClick}>Home</Link>  {/* Use Link here */}
         </li>
         <li>
-          <a href="/" onClick={handleMenuItemClick}>Circular</a>
+          <Link to="/" onClick={handleMenuItemClick}>Circular</Link>
         </li>
         <li>
-          <a href="/" onClick={handleMenuItemClick}>Admin Login</a>
+          <Link to="/" onClick={handleMenuItemClick}>Admin Login</Link>
         </li>
         
-        {/* Dropdown for "Guideline" */}
         <li className={`dropdown ${dropdownOpen ? "open" : ""}`}>
-          <a href="/" className="dropdown-toggle" onClick={toggleDropdown}>
+          <Link to="/" className="dropdown-toggle" onClick={toggleDropdown}>
             Guideline
-          </a>
+          </Link>
           {dropdownOpen && (
             <ul className="dropdown-menu">
-              <li><a href="/">Sub-item 1</a></li>
-              <li><a href="/">Sub-item 2</a></li>
-              <li><a href="/">Sub-item 3</a></li>
+              <li><Link to="/">Sub-item 1</Link></li>
+              <li><Link to="/">Sub-item 2</Link></li>
+              <li><Link to="/">Sub-item 3</Link></li>
             </ul>
           )}
         </li>
 
         <li>
-          <a href="/" onClick={handleMenuItemClick}>Contact</a>
+          <Link to="/contact" onClick={handleMenuItemClick}>Contact</Link>  {/* Correct the contact link */}
         </li>
       </ul>
 
-      {/* Authentication Buttons */}
       <div className="auth-buttons">
         <button className="login">Login</button>
         <button className="signup">Sign Up</button>
