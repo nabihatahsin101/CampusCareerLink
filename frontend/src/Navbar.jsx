@@ -39,7 +39,7 @@ const Navbar = () => {
           <Link to="/" onClick={handleMenuItemClick}>Home</Link>
         </li>
         <li>
-          <Link to="/" onClick={handleMenuItemClick}>Circular</Link>
+          <Link to="/circular" onClick={handleMenuItemClick}>Circular</Link>
         </li>
         <li>
           <Link to="/" onClick={handleMenuItemClick}>Admin Login</Link>
