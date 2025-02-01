@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";  // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 import "./logo.css";
 import logo from "./assets/images/logo.png";
@@ -36,7 +36,7 @@ const Navbar = () => {
 
       <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
         <li>
-          <Link to="/" onClick={handleMenuItemClick}>Home</Link>  {/* Use Link here */}
+          <Link to="/" onClick={handleMenuItemClick}>Home</Link>
         </li>
         <li>
           <Link to="/" onClick={handleMenuItemClick}>Circular</Link>
@@ -59,16 +59,19 @@ const Navbar = () => {
         </li>
 
         <li>
-          <Link to="/contact" onClick={handleMenuItemClick}>Contact</Link>  {/* Correct the contact link */}
+          <Link to="/contact" onClick={handleMenuItemClick}>Contact</Link>
         </li>
       </ul>
 
       <div className="auth-buttons">
-        <Link to="/Login">
-          <button className="login">Login</button> {/* Use Link to navigate to Login page */}
-        </Link>
-        <button className="signup">Sign Up</button>
-      </div>
+       <Link to="/login">
+        <button className="login">Login</button>
+       </Link>
+        <Link to="/signup"> {/* Add this line */}
+       <button className="signup">Sign Up</button> {/* Update this button */}
+      </Link>
+    </div>
+
     </nav>
   );
 };
