@@ -1,0 +1,102 @@
+.circular-container {
+    padding: 40px;
+    background: #004225;
+    color: white;
+    text-align: center;
+    position: relative;
+  }
+  
+  .circular-container h2 {
+    font-size: 4rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    color: white; /* Headline color is white */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Added text shadow for visibility */
+    z-index: 2; /* Ensures it's on top of other elements */
+    position: relative;
+  }
+  
+  .circular-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .circular-card {
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .circular-card h3 {
+    color: #004225;
+    margin-bottom: 10px;
+  }
+  
+  .circular-card p {
+    font-size: 0.9rem;
+    margin: 5px 0;
+  }
+  
+  .circular-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .view-details {
+    background: #008f39;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  .view-details:hover {
+    background: #00662b;
+    transform: translateY(-2px);
+  }
+  
+  .view-toggle {
+    background: #218838;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  .view-toggle:hover {
+    background: #1e7e34;
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .circular-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .circular-container h2 {
+      font-size: 1.8rem;
+    }
+    .view-details {
+      font-size: 0.9rem;
+    }
+    .view-toggle {
+      font-size: 1rem;
+    }
+  }
+  
