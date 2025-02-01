@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";  // Import Link from react-router-dom
 import "./Navbar.css";
@@ -65,7 +64,9 @@ const Navbar = () => {
       </ul>
 
       <div className="auth-buttons">
-        <button className="login">Login</button>
+        <Link to="/Login">
+          <button className="login">Login</button> {/* Use Link to navigate to Login page */}
+        </Link>
         <button className="signup">Sign Up</button>
       </div>
     </nav>
