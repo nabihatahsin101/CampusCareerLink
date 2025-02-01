@@ -1,0 +1,30 @@
+.contact-us-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .contact-info p {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .map-container {
+    margin-top: 30px;
+  }
+  
+  .follow-us ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .follow-us ul li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  .follow-us ul li a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  

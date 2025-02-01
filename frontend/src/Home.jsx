@@ -1,7 +1,7 @@
 import React from 'react';
 import './home.css'; // Make sure to import the correct styles
 import "./aust.css";
-import aust from './assets/images/aust.png'; // Update with your image path
+import austLogo from './assets/images/aust.png'; // Update with your image path
 
 const Home = () => {
   return (
