@@ -1,19 +1,25 @@
+/* Footer */
 .footer {
   background-color: #013220; /* Dark Green */
   color: white;
-  padding: 40px 0;
+  padding: 40px 1rem; /* Match navbar padding */
   text-align: center;
-  width: 100%; /* Ensures the footer spans the full width */
-  position: relative;
+  width: 100%; /* Full width like navbar */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better separation */
 }
 
+/* Ensuring footer spans entire width and height properly */
 .footer-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%; /* Full width */
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 1rem; /* Match navbar padding */
   flex-wrap: wrap;
 }
 
@@ -45,10 +51,11 @@
 
 .footer-middle a {
   color: white;
-  font-size: 16px;
+  font-size: 20px; /* Increased size */
   margin: 0 15px;
   text-decoration: none;
   font-weight: bold;
+  text-transform: uppercase; /* Optional: Makes text uppercase */
 }
 
 .footer-middle a:hover {
@@ -86,12 +93,12 @@
 /* Copyright Section */
 .footer-bottom {
   text-align: center;
-  padding: 15px 0;
+  padding: 15px 1rem; /* Match navbar padding */
   background-color: #002411; /* Darker Green */
-  margin-top: 20px;
   width: 100%; /* Full width */
   position: absolute;
   bottom: 0;
+  left: 0;
 }
 
 @media (max-width: 768px) {
@@ -101,8 +108,15 @@
     text-align: center;
   }
 
-  .footer-contact, .footer-middle, .footer-social {
+  .footer-contact,
+  .footer-middle,
+  .footer-social {
     max-width: 100%;
     margin: 10px 0;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
   }
 }

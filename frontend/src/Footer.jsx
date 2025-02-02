@@ -1,6 +1,5 @@
 import React from 'react';
 import './Footer.css';
-import austLogo from './assets/images/aust.png';
 import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
@@ -15,7 +14,7 @@ const Footer = () => {
             Tel: <a href="tel:+88028870422">+8802-8870422</a>
           </p>
           <p>
-            Email: <a href="mailto:info@aust.edu">info@aust.edu</a>
+            Email: <a href="mailto:info@aust.edu" className="email-link">info@aust.edu</a>
           </p>
         </div>
 
