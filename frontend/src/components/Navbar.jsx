@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Navbar.css";
-import "./logo.css";
-import logo from "./assets/images/logo.png";
+import './Navbar.css';
+import "../logo.css";
+
+import logo from "../assets/images/logo.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -42,6 +43,9 @@ const Navbar = () => {
           <Link to="/circular" onClick={handleMenuItemClick}>Circular</Link>
         </li>
         <li>
+          <Link to="/profile" onClick={handleMenuItemClick}>Profile</Link>
+        </li>
+        <li>
           <Link to="/admin" onClick={handleMenuItemClick}>Admin Login</Link>
         </li>
         
@@ -49,13 +53,7 @@ const Navbar = () => {
           <Link to="/" className="dropdown-toggle" onClick={toggleDropdown}>
             Guideline
           </Link>
-          {dropdownOpen && (
-            <ul className="dropdown-menu">
-              <li><Link to="/">Sub-item 1</Link></li>
-              <li><Link to="/">Sub-item 2</Link></li>
-              <li><Link to="/">Sub-item 3</Link></li>
-            </ul>
-          )}
+          
         </li>
 
         <li>
