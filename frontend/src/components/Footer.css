@@ -4,7 +4,7 @@
   padding: 40px 1rem; /* Match navbar padding */
   text-align: center;
   width: 100%; /* Full width like navbar */
-  position: fixed;
+  position: auto;
   bottom: 0;
   left: 0;
   z-index: 1000;

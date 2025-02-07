@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check if email contains '@aust.edu'
     if (!email.includes('@aust.edu')) {
       setError('⚠️ Please use a valid @aust.edu email!');
       return;
@@ -20,7 +21,6 @@ const Login = () => {
       return;
     }
 
-    // If email and password are valid
     console.log('Logged in with:', email, password);
     setError('');
   };
@@ -58,6 +58,9 @@ const Login = () => {
         <div className="signup-link">
           <p>Don't have an account? <a href="/signup">Sign Up</a></p>
         </div>
+        <button className="welcome-btn" onClick={() => navigate('/welcome')}>
+         Login With Google
+        </button>
       </div>
     </div>
   );
