@@ -10,22 +10,29 @@ import Circular from "./views/Circular";
 import AdminLogin from "./views/AdminLogin";
 import Profile from "./views/Profile";
 import "./App.css";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import Welcome from "./views/Welcome";
+
+const clientId = "854801450505-s8587henb9cl084he14ap11pubok812o.apps.googleusercontent.com";
 
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/circular" element={<Circular />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/admin" element={<AdminLogin />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <GoogleOAuthProvider clientId={clientId}>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/circular" element={<Circular />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/welcome" element={<Welcome />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </GoogleOAuthProvider>
   );
 };
 
