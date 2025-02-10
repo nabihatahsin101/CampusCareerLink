@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Signup.css";
+import axiosInstance from "./utils/axiosInstance";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
