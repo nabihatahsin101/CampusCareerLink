@@ -26,7 +26,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="logo-section">
         <img src={logo} alt="AUST Logo" className="logo" />
-        <h2>AUST JOB PORTAL</h2>
+        <h2>CampusCareerLink</h2>
       </div>
 
       <div className="menu-icon" onClick={toggleMenu}>
