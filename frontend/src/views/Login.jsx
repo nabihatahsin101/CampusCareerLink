@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc'; // Import Google Icon
 import './Login.css';
 
 const Login = () => {
@@ -58,9 +59,15 @@ const Login = () => {
         <div className="signup-link">
           <p>Don't have an account? <a href="/signup">Sign Up</a></p>
         </div>
-        <button className="welcome-btn" onClick={() => navigate('/welcome')}>
-         Login With Google
-        </button>
+        
+        {/* Google Login Icon */}
+        <div className="google-login">
+          <FcGoogle
+            size={36} // Icon Size
+            className="cursor-pointer hover:scale-110 transition-transform"
+            onClick={() => navigate('/welcome')}
+          />
+        </div>
       </div>
     </div>
   );
