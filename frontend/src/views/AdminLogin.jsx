@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import "./adminLogin.css";
 
 const AdminLogin = () => {
   const [registerId, setRegisterId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -26,6 +28,7 @@ const AdminLogin = () => {
       const data = await response.json();
       if (response.ok) {
         console.log("Login successful:", data);
+        navigate('/circular');
       } else {
         setError(data.message || "Invalid credentials");
       }
