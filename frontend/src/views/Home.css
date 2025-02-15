@@ -1,34 +1,28 @@
 /* Ensure full-page layout */
 html, body {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow: auto;
+    overflow: hidden; /* Prevent unnecessary scrolling */
     display: flex;
     flex-direction: column;
 }
 
-/* App container */
-#root, .app-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* Main content fills available space */
-.main-content {
-    flex: 1;
+/* Root container setup */
+#root, .app-container, .main-content {
+    height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
 /* Banner styles */
 .banner {
-    background-image: url('./assets/images/aust.png'); /* Ensure this image exists */
+    background-image: url('../assets/images/aust.png'); /* Ensure the path is correct */
     background-size: cover;
-    background-position: full;
-    height: 100vh; /* Full height */
+    background-position: center;
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -39,7 +33,7 @@ html, body {
     color: #ffffff;
 }
 
-/* Dark overlay for readability */
+/* Dark overlay for better readability */
 .banner::before {
     content: '';
     position: absolute;
@@ -66,6 +60,7 @@ html, body {
     font-size: 3rem;
     font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #32ca53;
 }
 
 .job-portal-text {
@@ -80,6 +75,7 @@ html, body {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     font-weight: 400;
+    color:#ffffff
 }
 
 /* Explore button */

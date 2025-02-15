@@ -1,7 +1,7 @@
 import React from "react";
 import "./Home.css"; // Assuming Home.css is in the same folder as Home.jsx
 import "../aust.css"; // Update path if aust.css is in the assets folder
-import austLogo from "../assets/images/aust.png"; 
+import aust from '../assets/images/aust.png'; 
 const Home = () => {
   return (
     <div className="home">
