@@ -15,31 +15,54 @@ const Signup = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const { fullName, email, password, confirmPassword } = formData;
-
+  
     if (!fullName || !email || !password || !confirmPassword) {
       setError("⚠️ Please fill in all fields!");
       return;
     }
-
-    if (!email.includes("@aust.edu")) {
-      setError("⚠️ Please use a valid @aust.edu email!");
+  
+    if (!email.includes("@gmail.com")) {
+      setError("⚠️ Please use a valid email!");
       return;
     }
-
+  
     if (password !== confirmPassword) {
       setError("⚠️ Passwords do not match!");
       return;
     }
-
-    // If all checks pass, proceed with signup logic
-    console.log("Signed up with:", formData);
-    setError("");
+  
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullname: fullName,
+          email,
+          password,
+          password_confirmation: confirmPassword, // Required for Laravel's 'confirmed' rule
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        alert("Signup successful! Please log in.");
+        setFormData({ fullName: "", email: "", password: "", confirmPassword: "" });
+        setError("");
+      } else {
+        setError(data.error ? Object.values(data.error).join("\n") : "Signup failed");
+      }
+    } catch (error) {
+      setError("⚠️ Network error, please try again!");
+    }
   };
+  
 
   return (
     <div className="signup-container">
