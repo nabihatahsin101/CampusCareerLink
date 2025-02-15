@@ -1,23 +1,42 @@
 import React, { useState } from "react";
-import "./adminLogin.css"; // Ensure this file is imported
+import { useNavigate } from 'react-router-dom';
+import "./adminLogin.css";
 
 const AdminLogin = () => {
   const [registerId, setRegisterId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setError("");
+  
     if (!registerId || !password) {
       setError("⚠️ Please fill in all fields!");
       return;
     }
-
-    console.log("Admin Logged in with:", registerId, password);
-    setError(""); // Clear error on success
+  
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ RegisterId: registerId, Password: password }),
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Login successful:", data);
+        navigate('/circular');
+      } else {
+        setError(data.message || "Invalid credentials");
+      }
+    } catch (error) {
+      setError("⚠️ Failed to connect to the server.");
+    }
   };
-
+  
   return (
     <div className="login-container">
       <div className="login-form">
