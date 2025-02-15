@@ -53,5 +53,5 @@ class AuthController extends Controller
         return response()->json(['message' => 'User registered successfully!'], 201);
     }
     
-
+  
 }
