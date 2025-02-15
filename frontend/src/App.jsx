@@ -9,9 +9,10 @@ import Signup from "./views/Signup";
 import Circular from "./views/Circular";
 import AdminLogin from "./views/AdminLogin";
 import Profile from "./views/Profile";
-import "./App.css";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import Welcome from "./views/Welcome";
+import Guideline from "./views/Guideline"; // Import the Guideline component
+
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const clientId = "854801450505-s8587henb9cl084he14ap11pubok812o.apps.googleusercontent.com";
 
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/guideline" element={<Guideline />} /> {/* Guideline route */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/welcome" element={<Welcome />} />
         </Routes>
