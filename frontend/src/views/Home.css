@@ -4,7 +4,7 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow: auto;
     display: flex;
     flex-direction: column;
 }
@@ -27,7 +27,7 @@ html, body {
 .banner {
     background-image: url('./assets/images/aust.png'); /* Ensure this image exists */
     background-size: cover;
-    background-position: center;
+    background-position: full;
     height: 100vh; /* Full height */
     width: 100%;
     display: flex;
