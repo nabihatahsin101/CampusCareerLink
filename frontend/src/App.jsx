@@ -11,6 +11,9 @@ import AdminLogin from "./views/AdminLogin";
 import Profile from "./views/Profile";
 import Welcome from "./views/Welcome";
 import Guideline from "./views/Guideline";
+import AdminHome from "./views/AdminHome"; // Import AdminHome
+import Sidebar from "./components/Sidebar"; // Import Sidebar
+import Header from "./components/Header"; 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const clientId = "854801450505-s8587henb9cl084he14ap11pubok812o.apps.googleusercontent.com";
@@ -32,6 +35,8 @@ const App = () => {
               <Route path="/guideline" element={<Guideline />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/welcome" element={<Welcome />} />
+              <Route path="/adminHome" element={<AdminHome />} />
+              <Route path="/sidebar" element={<Sidebar/>} />
             </Routes>
           </div>
           <Footer />
