@@ -1,53 +1,94 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;  /* Full height */
+    width: 100%;   /* Full width */
+    margin: 0;
+    padding: 0;
+    background-color: #E0BBE4;  /* Light Purple background */
+    overflow-x: hidden; /* Ensure html and body take full width */
+}
+
 /* Container for the entire contact section */
 .contact-us-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    height: 100vh; /* Full screen height */
+    width: 100vw;  /* Full screen width */
+    text-align: center;
     padding: 40px;
-    background: linear-gradient(to right, #e0e7ff, #c7d2fe); /* Soft gradient */
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    margin-top: 40px; /* Adding margin-top for better spacing */
+    background: #c8fdf4; /* Light green background for content */
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    position: absolute;  /* Use absolute positioning for perfect centering */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Perfectly center the container */
+}
+
+/* Title for the contact page */
+.contact-title {
+    font-size: 42px;
+    font-weight: 600;
+    color: #6A4C9C;  /* Darker light purple for title */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #6A4C9C; /* Matching border color */
+    width: fit-content;
 }
 
 /* Flexbox layout for map and contact info */
 .contact-layout {
     display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    flex-wrap: wrap; /* Ensures responsive layout on smaller screens */
+    justify-content: center; /* Align both sections to the center */
+    gap: 40px;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 /* Styling for the map container */
 .map-container {
-    flex: 2; /* Makes the map take more space */
-    height: 500px; /* Set map's height */
+    flex: 1;
+    max-width: 700px; /* Limiting map width */
+    height: 500px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border: 2px solid #d1e7fd; /* Light border for map */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    border: 2px solid #D1C4E9; /* Light purple border */
 }
 
 /* Styling for the contact details section */
 .contact-details {
     flex: 1;
-    background-color: #ffffff;
-    padding: 25px;
+    background-color: #F3E5F5;  /* Light purple background for contact details */
+    padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border: 2px solid #d1e7fd;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border: 2px solid #D1C4E9; /* Light purple border */
+    max-width: 450px; /* Limiting width for neatness */
 }
 
 /* Contact Details Heading */
 .contact-details h3 {
-    color: #4d4d4d;
-    font-size: 26px;
+    color: #6A4C9C;  /* Darker light purple for headings */
+    font-size: 28px;
     margin-bottom: 20px;
-    font-weight: bold;
+    font-weight: 600;
     text-transform: uppercase;
-    color: #3f7ecf;
+    letter-spacing: 1px;
 }
 
 /* Contact details text */
 .contact-details p {
     font-size: 18px;
-    color: #555;
+    color: #6A4C9C;  /* Light purple color for text */
     margin: 18px 0;
     line-height: 1.6;
 }
@@ -55,21 +96,21 @@
 /* Links and Hover effect */
 .contact-details a {
     text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
+    color: #9C27B0;  /* A more vibrant purple for links */
+    font-weight: 600;
     transition: color 0.3s ease, transform 0.2s ease-in-out;
 }
 
 .contact-details a:hover {
-    color: #ff6200;
-    transform: scale(1.05); /* Slight zoom effect on hover */
+    color: #FF4081;  /* Light pink hover effect */
+    transform: scale(1.05);
 }
 
 /* Follow Us Section */
 .follow-us h4 {
-    margin-top: 25px;
+    margin-top: 30px;
     font-size: 20px;
-    color: #333;
+    color: #6A4C9C;  /* Matching light purple color */
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -78,8 +119,8 @@
     list-style-type: none;
     padding-left: 0;
     display: flex;
-    gap: 20px;
-    justify-content: flex-start;
+    gap: 25px;
+    justify-content: center; /* Centering the icons horizontally */
 }
 
 .follow-us li {
@@ -87,45 +128,50 @@
 }
 
 .follow-us a {
-    color: #007bff;
+    color: #6A4C9C;  /* Light purple for social icons */
     text-decoration: none;
     font-size: 1.6rem;
     transition: color 0.3s, transform 0.2s;
 }
 
 .follow-us a:hover {
-    color: #ff6200;
-    transform: scale(1.1); /* Slight zoom effect on hover */
-}
-
-/* Title for the contact page */
-.contact-title {
-    text-align: center;
-    font-size: 36px;
-    margin-bottom: 30px;
-    color: #4d4d4d;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px; /* Adds spacing between letters */
-    padding-bottom: 20px; /* Adds more space below the title */
+    color: #FF4081;  /* Pink hover effect */
+    transform: scale(1.1);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .contact-layout {
         flex-direction: column;
-        gap: 20px;
+        gap: 30px;
+        align-items: center;
     }
 
     .map-container {
-        height: 300px;
+        height: 350px;
     }
 
     .contact-details {
         padding: 20px;
+        max-width: 100%;
     }
 
     .contact-title {
-        font-size: 30px;
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-title {
+        font-size: 1.8rem; /* Smaller font size for mobile */
+    }
+
+    .job-portal-text {
+        font-size: 1.3rem;
+    }
+
+    .explore-button {
+        padding: 8px 20px;
+        font-size: 0.9rem;
     }
 }

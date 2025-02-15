@@ -1,6 +1,6 @@
 import React from 'react';
-import './ContactUs.css'; // Your styles for the contact page
-import { FaFacebook, FaLinkedin } from 'react-icons/fa'; // Import Facebook and LinkedIn icons
+import './ContactUs.css'; // Import the styles
+import { FaFacebook, FaLinkedin } from 'react-icons/fa'; // Import the icons
 
 const ContactUs = () => {
   return (
@@ -9,6 +9,7 @@ const ContactUs = () => {
 
       {/* Contact Layout */}
       <div className="contact-layout">
+        
         {/* Map */}
         <div className="map-container">
           {/* Google Maps Embed */}
