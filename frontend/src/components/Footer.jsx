@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Footer.css';
 import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
+  useEffect(() => {
+    // Ensure the footer appears at the bottom after content has loaded
+    setTimeout(() => {
+      document.querySelector('.footer').classList.add('show');
+    }, 100); // Delay to let content load first
+  }, []);
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -36,11 +43,6 @@ const Footer = () => {
             <a href="https://www.instagram.com/aust.official/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
           </div>
         </div>
-      </div>
-
-      {/* Copyright Section */}
-      <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} AUST Job Portal. All rights reserved.</p>
       </div>
     </footer>
   );
