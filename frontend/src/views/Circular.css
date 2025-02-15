@@ -7,8 +7,9 @@
 }
 
 .circular-container h2 {
+  padding:6px 0px;
   font-size: 4rem;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   text-transform: uppercase;
   color: #004225; /* Green headline color */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Added text shadow for visibility */

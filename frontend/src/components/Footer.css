@@ -1,143 +1,57 @@
-/* General Footer Styles */
+/* Ensure full height layout */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Wrapper for the entire page */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
+}
+
+/* Ensures content takes up space and pushes footer down */
+.main-content {
+  flex: 1;
+}
+
+/* Footer Styling */
 .footer {
   background-color: #013220; /* Dark Green */
   color: white;
-  padding: 6px 1rem; /* Reduced padding for a thinner footer */
+  padding: 10px 1rem;
   text-align: center;
-  width: 100%; /* Full width like navbar */
-  position: fixed; /* Fix it at the bottom */
-  bottom: 0; /* Stick it to the bottom */
+  width: 100%;
+  position: relative; /* No fixed position */
+  bottom: 0;
   left: 0;
-  z-index: 1000;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better separation */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Footer Content Styling */
+/* Footer container */
 .footer-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%; /* Full width */
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 3px 1rem; /* Reduced padding to make the footer thinner */
+  padding: 10px 1rem;
   flex-wrap: wrap;
 }
 
-/* Left Section - Contact */
-.footer-contact {
-  text-align: left;
-  max-width: 300px;
-  margin-right: 15px; /* Reduced margin for tighter layout */
-}
-
-.footer-contact p {
-  margin: 2px 0; /* Reduced margin for a tighter fit */
-}
-
-.footer-contact a {
-  color: white;
-  text-decoration: none;
-}
-
-.footer-contact a:hover {
-  text-decoration: underline;
-}
-
-/* Center Section - Research, Advocacy, Innovation */
-.footer-middle {
-  flex-grow: 1;
-  text-align: center;
-}
-
-.footer-middle a {
-  color: white;
-  font-size: 16px; /* Reduced font size for a more compact footer */
-  margin: 0 8px; /* Reduced margin */
-  text-decoration: none;
-  font-weight: bold;
-  text-transform: uppercase; /* Optional: Makes text uppercase */
-}
-
-.footer-middle a:hover {
-  text-decoration: underline;
-  color: #ffcc00; /* Slight Yellow Highlight */
-}
-
-/* Right Section - Social Media */
-.footer-social {
-  text-align: right;
-  margin-left: 15px; /* Reduced margin */
-}
-
-.footer-social h4 {
-  margin-bottom: 5px; /* Reduced margin */
-}
-
-.social-icons {
-  display: flex;
-  gap: 8px; /* Reduced gap between icons */
-  justify-content: flex-end;
-}
-
-.social-icons a {
-  color: white;
-  font-size: 18px; /* Adjusted icon size */
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-  color: #ffcc00; /* Yellow on Hover */
-}
-
-/* Copyright Section */
-.footer-bottom {
-  text-align: center;
-  padding: 3px 1rem; /* Reduced padding */
-  background-color: #002411; /* Darker Green */
-  width: 100%; /* Full width */
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  font-size: 0.75rem; /* Smaller font size for a thinner footer */
-}
-
-/* Responsive Styles */
+/* Responsive Fix */
 @media (max-width: 768px) {
   .footer-container {
-    flex-direction: column;
-    text-align: center;
+      flex-direction: column;
+      text-align: center;
   }
-
-  .footer-contact,
-  .footer-middle,
-  .footer-social {
-    max-width: 100%;
-    margin: 5px 0;
-    text-align: center;
+  .footer-contact, .footer-middle, .footer-social {
+      margin: 5px 0;
+      text-align: center;
   }
-
-  .social-icons {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer {
-    padding: 4px 1rem; /* Thinner padding on very small screens */
-  }
-
-  .footer-container {
-    padding: 0;
-  }
-
-  .footer-middle a {
-    font-size: 14px; /* Further reduction in font size */
-  }
-  .footer-contact p,
-  .footer-middle a,
-  .footer-social h4 {
-    font-size: 0.8rem; /* Smaller text for mobile */
-  }
-  
 }

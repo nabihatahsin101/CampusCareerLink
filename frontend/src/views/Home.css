@@ -1,20 +1,23 @@
 /* Ensure full-page layout */
 html, body {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent unnecessary scrolling */
-    display: flex;
+    flex-grow: 1;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 /* Root container setup */
 #root, .app-container, .main-content {
-    height: 100vh;
+    
     width: 100%;
     display: flex;
     flex-direction: column;
+    flex: 1;
+    min-height:100vh;
+    overflow-y: auto;
 }
 
 /* Banner styles */
@@ -102,6 +105,7 @@ html, body {
 
 /* Footer */
 .footer {
+    margin-top: auto;
     background-color: #0a192f;
     color: #ffffff;
     padding: 20px 0;
