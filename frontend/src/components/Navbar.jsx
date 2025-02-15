@@ -1,10 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Navbar.css";
+import './Navbar.css';
+import "../logo.css";
+
 import logo from "../assets/images/logo.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleMenuItemClick = () => {
+    setMenuOpen(false);
+  };
+
+  const toggleDropdown = (e) => {
+    e.preventDefault();
+    setDropdownOpen(!dropdownOpen);
+  };
 
   return (
     <nav className="navbar">
@@ -13,23 +29,46 @@ const Navbar = () => {
         <h2>CampusCareerLink</h2>
       </div>
 
-      <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
-        <span></span><span></span><span></span>
+      <div className="menu-icon" onClick={toggleMenu}>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
 
       <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-        {["Home", "Circular", "Profile", "Admin Login", "Guideline", "Contact"].map((item, index) => (
-          <li key={index}><Link to={`/${item.toLowerCase().replace(" ", "")}`} onClick={() => setMenuOpen(false)}>{item}</Link></li>
-        ))}
+        <li>
+          <Link to="/" onClick={handleMenuItemClick}>Home</Link>
+        </li>
+        <li>
+          <Link to="/circular" onClick={handleMenuItemClick}>Circular</Link>
+        </li>
+        <li>
+          <Link to="/profile" onClick={handleMenuItemClick}>Profile</Link>
+        </li>
+        <li>
+          <Link to="/admin" onClick={handleMenuItemClick}>Admin Login</Link>
+        </li>
+        
+        <li>
+          <Link to="/guideline" onClick={handleMenuItemClick}>Guideline</Link>
+        </li>
+
+        <li>
+          <Link to="/contact" onClick={handleMenuItemClick}>Contact</Link>
+        </li>
       </ul>
 
       <div className="auth-buttons">
-        <Link to="/login"><button className="login">Login</button></Link>
-        <Link to="/signup"><button className="signup">Sign Up</button></Link>
-      </div>
+       <Link to="/login">
+        <button className="login">Login</button>
+       </Link>
+        <Link to="/signup"> {/* Add this line */}
+       <button className="signup">Sign Up</button> {/* Update this button */}
+      </Link>
+    </div>
+
     </nav>
   );
 };
 
 export default Navbar;
-

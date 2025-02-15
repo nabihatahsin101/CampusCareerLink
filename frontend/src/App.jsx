@@ -32,8 +32,9 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/welcome" element={<Welcome />} />
         </Routes>
-        <Footer />
+        
       </Router>
+      <Footer />
     </GoogleOAuthProvider>
   );
 };
