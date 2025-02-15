@@ -1,35 +1,44 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FcGoogle } from 'react-icons/fc'; // Import Google Icon
-import './Login.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { FcGoogle } from "react-icons/fc";
+import "./Login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email.includes('@aust.edu')) {
-      setError('⚠️ Please use a valid @aust.edu email!');
+    if (!email.includes("@gmail.com")) {
+      setError("⚠️ Please use a valid Gmail account!");
       return;
     }
 
-    if (!email || !password) {
-      setError('⚠️ Please fill in all fields!');
-      return;
-    }
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/login", {
+        email,
+        password,
+      });
 
-    console.log('Logged in with:', email, password);
-    setError('');
+      if (response.status === 200) {
+        console.log("Login successful:", response.data);
+        localStorage.setItem("user", JSON.stringify(response.data.user)); // Store user data
+        setError("");
+        navigate("/"); // Redirect to home page
+      }
+    } catch (error) {
+      setError("⚠️ Invalid email or password!");
+    }
   };
 
   return (
     <div className="login-container">
       <div className="login-form">
-        <h2>Welcome Back</h2>
+        <h2>Login to Your Account</h2>
         {error && <p className="error">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="input-group">
@@ -39,7 +48,7 @@ const Login = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder="Enter your Gmail"
               required
             />
           </div>
@@ -56,17 +65,16 @@ const Login = () => {
           </div>
           <button type="submit" className="login-btn">Login</button>
         </form>
+
         <div className="signup-link">
           <p>Don't have an account? <a href="/signup">Sign Up</a></p>
         </div>
-        
-        {/* Google Login Icon */}
+
+        {/* Google Login Button */}
         <div className="google-login">
-          <FcGoogle
-            size={36} // Icon Size
-            className="cursor-pointer hover:scale-110 transition-transform"
-            onClick={() => navigate('/welcome')}
-          />
+          <button className="google-btn" onClick={() => navigate("/")}>
+            <FcGoogle size={20} /> Login with Google
+          </button>
         </div>
       </div>
     </div>
