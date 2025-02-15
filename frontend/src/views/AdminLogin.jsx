@@ -30,7 +30,7 @@ const AdminLogin = () => {
         console.log("Login successful:", data);
         navigate('/circular');
       } else {
-        setError(data.message || "Invalid credentials");
+        setError(data.message || "Invalid credentials...");
       }
     } catch (error) {
       setError("⚠️ Failed to connect to the server.");

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+
 import "./Signup.css";
 
 const Signup = () => {
@@ -11,6 +13,7 @@ const Signup = () => {
   });
 
   const [error, setError] = useState("");
+   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -53,8 +56,11 @@ const Signup = () => {
   
       if (response.ok) {
         alert("Signup successful! Please log in.");
+
         setFormData({ fullName: "", email: "", password: "", confirmPassword: "" });
+
         setError("");
+        navigate('/');
       } else {
         setError(data.error ? Object.values(data.error).join("\n") : "Signup failed");
       }
