@@ -1,6 +1,7 @@
 /* Ensure full page layout */
 html, body {
   height: auto;
+  width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -12,13 +13,16 @@ html, body {
 #root, .app-container {
   min-height: 100vh;
   display: flex;
+  width: 100%;
   flex-direction: column;
 }
 
 /* Ensures content grows and pushes the footer down */
 .main-content {
   flex-grow: 1;
-  padding-bottom: 20px; /* Adds space for footer */
+  padding-bottom: 20px;
+  width: 100%;
+  display: flex; /* Adds space for footer */
 }
 
 /* Footer stays at the bottom */
@@ -47,6 +51,18 @@ html, body {
   position: relative;
   color: #ffffff;
 }
+.sidebar {
+  width: 250px; /* Adjust width as needed */
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #1d2634;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 
 /* Responsive Fixes */
 @media (max-width: 768px) {
