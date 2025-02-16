@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   BsFillArchiveFill,
@@ -36,35 +35,35 @@ function AdminHome() {
     <div className="admin-home-container">
       <Sidebar />
 
-      <div className="main-content">
-        <div className="main-title">
+      <div className="admin-home-wrapper">
+        <div className="admin-home-title">
           <h3>Admin Dashboard</h3>
         </div>
 
-        <div className="main-cards">
-          <div className="card">
+        <div className="admin-home-cards">
+          <div className="admin-home-card">
             <h3>Total Users</h3>
-            <BsFillArchiveFill className="card_icon" />
+            <BsFillArchiveFill className="admin-home-card-icon" />
             <h1>300</h1>
           </div>
-          <div className="card">
+          <div className="admin-home-card">
             <h3>Total Jobs</h3>
-            <BsFillGrid3X3GapFill className="card_icon" />
+            <BsFillGrid3X3GapFill className="admin-home-card-icon" />
             <h1>12</h1>
           </div>
-          <div className="card">
+          <div className="admin-home-card">
             <h3>Total JobSeekers</h3>
-            <BsPeopleFill className="card_icon" />
+            <BsPeopleFill className="admin-home-card-icon" />
             <h1>33</h1>
           </div>
-          <div className="card">
+          <div className="admin-home-card">
             <h3>Total Alerts</h3>
-            <BsFillBellFill className="card_icon" />
+            <BsFillBellFill className="admin-home-card-icon" />
             <h1>42</h1>
           </div>
         </div>
 
-        <div className="charts">
+        <div className="admin-home-charts">
           <ResponsiveContainer width="48%" height={400}>
             <BarChart
               data={data}
