@@ -6,7 +6,8 @@ html, body {
     display: flex;
     flex-direction: column;
     position: relative;
-    
+    background-color: white; /* Ensures a white background */
+    color: black; /* Makes all text black */
 }
 
 /* Wrapper to control layout */
@@ -26,10 +27,68 @@ html, body {
 
 /* Footer should be at the bottom, but not fixed */
 .footer {
-    background-color: #013220;
-    color: white;
+    background-color: #013220; /* Dark Green */
+    color: black; /* Footer text changed to black */
     text-align: center;
     padding: 10px;
     width: 100%;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure all text in the guideline page is black */
+.guideline {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: black; /* Ensures text is black */
+    background-color: white; /* Ensures background remains white */
+}
+
+/* Titles */
+.guideline-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+}
+
+/* Sections */
+.guideline-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f8f8f8; /* Light gray background for readability */
+}
+
+/* Section headings */
+.guideline-section h2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+}
+
+/* Paragraphs */
+.guideline-section p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: black;
+}
+
+/* Lists */
+.guideline-section ul {
+    padding-left: 20px;
+}
+
+.guideline-section ul li {
+    font-size: 16px;
+    color: black;
+}
+
+/* Links */
+.guideline-section a {
+    color: black;
+    text-decoration: underline;
+}
+
+.guideline-section a:hover {
+    color: darkblue;
 }

@@ -9,7 +9,6 @@ const Footer = () => {
       document.querySelector('.footer').classList.add('show');
     }, 100); // Delay to let content load first
   }, []);
-
   return (
     <footer className="footer">
       <div className="footer-container">
