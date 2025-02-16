@@ -31,33 +31,42 @@ const Profile = () => {
     setIsEditing(false);
   };
 
+  // Logout and redirect to login page
+  const handleLogout = () => {
+    localStorage.removeItem("user"); // Clear user data
+    navigate("/login"); // Redirect to login
+  };
+
   if (!user) {
-    return null;
+    return null; // Prevent rendering if user is not logged in
   }
 
   return (
     <div className="profile-container">
       <div className="profile-card">
-        <h1 className="profile-name">{isEditing ? (
-          <input 
-            type="text" 
-            name="fullname" 
-            value={editedUser.fullname} 
-            onChange={handleChange} 
-            className="profile-input" 
-          />
-        ) : (
-          user.fullname
-        )}</h1>
+        <h1 className="profile-name">
+          {isEditing ? (
+            <input
+              type="text"
+              name="fullname"
+              value={editedUser.fullname}
+              onChange={handleChange}
+              className="profile-input"
+            />
+          ) : (
+            user.fullname
+          )}
+        </h1>
 
         <div className="profile-details">
           <p className="profile-info">
-            <strong>Email:</strong> {isEditing ? (
-              <input 
-                type="email" 
-                name="email" 
-                value={editedUser.email} 
-                onChange={handleChange} 
+            <strong>Email:</strong>{" "}
+            {isEditing ? (
+              <input
+                type="email"
+                name="email"
+                value={editedUser.email}
+                onChange={handleChange}
                 className="profile-input"
               />
             ) : (
@@ -66,12 +75,13 @@ const Profile = () => {
           </p>
 
           <p className="profile-info">
-            <strong>Location:</strong> {isEditing ? (
-              <input 
-                type="text" 
-                name="location" 
-                value={editedUser.location || ""} 
-                onChange={handleChange} 
+            <strong>Location:</strong>{" "}
+            {isEditing ? (
+              <input
+                type="text"
+                name="location"
+                value={editedUser.location || ""}
+                onChange={handleChange}
                 className="profile-input"
               />
             ) : (
@@ -80,17 +90,35 @@ const Profile = () => {
           </p>
 
           <p className="profile-info">
-            <strong>Member since:</strong> {user.created_at?.split("T")[0] || "Unknown"}
+            <strong>Member since:</strong>{" "}
+            {user.created_at?.split("T")[0] || "Unknown"}
           </p>
         </div>
 
         {isEditing ? (
           <div className="profile-buttons">
-            <button className="save-btn" onClick={handleSave}>Save</button>
-            <button className="cancel-btn" onClick={() => setIsEditing(false)}>Cancel</button>
+            <button className="save-btn" onClick={handleSave}>
+              Save
+            </button>
+            <button
+              className="cancel-btn"
+              onClick={() => setIsEditing(false)}
+            >
+              Cancel
+            </button>
           </div>
         ) : (
-          <button className="edit-profile-btn" onClick={() => setIsEditing(true)}>Edit Profile</button>
+          <>
+            <button
+              className="edit-profile-btn"
+              onClick={() => setIsEditing(true)}
+            >
+              Edit Profile
+            </button>
+            <button className="logout-btn" onClick={handleLogout}>
+              Logout
+            </button>
+          </>
         )}
       </div>
     </div>
