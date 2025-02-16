@@ -15,7 +15,6 @@ const Guideline = () => {
         <h2>2. How to Register/Login</h2>
         <p>To access the features of the portal, students and recruiters need to first register. You can sign up by clicking on the <strong>"Sign Up"</strong> button located in the top-right corner of the homepage.</p>
       </section>
-
       <section className="guideline-section">
         <h2>3. How to Apply for Jobs</h2>
         <p>Once you have logged in, follow these steps to apply for a job:</p>

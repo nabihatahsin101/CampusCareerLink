@@ -17,9 +17,10 @@ const Footer = () => {
           <p>Ahsanullah University of Science & Technology</p>
           <p>141 & 142, Love Road, Tejgaon Industrial Area, Dhaka-1208</p>
           <p>
-            
+
             Tel: <a href="tel:+88028870422">+8802-8870422</a>
           </p>
+          
           <p>
             Email: <a href="mailto:info@aust.edu" className="email-link">info@aust.edu</a>
           </p>

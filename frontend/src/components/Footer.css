@@ -51,6 +51,7 @@ html, body {
       flex-direction: column;
       text-align: center;
   }
+  
   .footer-contact, .footer-middle, .footer-social {
       margin: 5px 0;
       text-align: center;
