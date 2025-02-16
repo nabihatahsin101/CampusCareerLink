@@ -72,7 +72,7 @@ const Login = () => {
 
         {/* Google Login Button */}
         <div className="google-login">
-          <button className="google-btn" onClick={() => navigate("/")}>
+          <button className="google-btn" onClick={() => navigate('/welcome')}>
             <FcGoogle size={20} /> Login with Google
           </button>
         </div>

@@ -60,7 +60,8 @@ const Signup = () => {
         setFormData({ fullName: "", email: "", password: "", confirmPassword: "" });
 
         setError("");
-        navigate('/');
+        //navigate('/');
+        navigate('/login');
       } else {
         setError(data.error ? Object.values(data.error).join("\n") : "Signup failed");
       }
