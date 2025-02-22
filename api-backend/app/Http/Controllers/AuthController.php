@@ -58,6 +58,13 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'User registered successfully!'], 201);
     }
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    
+  
+=======
+>>>>>>> Stashed changes
 
     /**
      * User Login (From signups table)
@@ -91,4 +98,8 @@ class AuthController extends Controller
             'token' => $token,
         ], 200);
     }
+<<<<<<< Updated upstream
+=======
+>>>>>>> 8e28f87aa4ec4c24e4157b3a1c94e858d83e686c
+>>>>>>> Stashed changes
 }
