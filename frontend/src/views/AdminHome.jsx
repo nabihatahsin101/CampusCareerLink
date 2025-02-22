@@ -19,7 +19,7 @@ import {
 } from 'recharts';
 import Sidebar from '../components/Sidebar';
 import './AdminHome.css';
-
+import AdminNavbar from '../components/AdminNavbar'; 
 function AdminHome() {
   const data = [
     { name: 'January', uv: 4000, pv: 2400, amt: 2400 },
@@ -33,6 +33,7 @@ function AdminHome() {
 
   return (
     <div className="admin-home-container">
+      <AdminNavbar /> 
       <Sidebar />
 
       <div className="admin-home-wrapper">
@@ -105,4 +106,3 @@ function AdminHome() {
 }
 
 export default AdminHome;
-a
