@@ -49,11 +49,8 @@ const Navbar = () => {
           <Link to="/admin" onClick={handleMenuItemClick}>Admin Login</Link>
         </li>
         
-        <li className={`dropdown ${dropdownOpen ? "open" : ""}`}>
-          <Link to="/" className="dropdown-toggle" onClick={toggleDropdown}>
-            Guideline
-          </Link>
-          
+        <li>
+          <Link to="/guideline" onClick={handleMenuItemClick}>Guideline</Link>
         </li>
 
         <li>

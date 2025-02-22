@@ -1,29 +1,21 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-    background-color: #f4f6f9; /* Neutral background color */
-    height: 100vh;
+/* Wrap everything inside `.admin-login-wrapper` so it doesn't affect body */
+.admin-login-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #aab9c1, #3f4c6b);
     padding: 20px;
 }
 
 /* Admin Login container */
 .admin-login-container {
     width: 100%;
-    height: 100vh;
+    max-width: 450px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #aab9c1, #3f4c6b); /* Subtle professional gradient */
-    padding-top: 80px; /* Pushes the content down below the navbar */
 }
 
 /* Admin Login Form */
