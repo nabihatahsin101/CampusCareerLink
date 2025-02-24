@@ -241,7 +241,6 @@ const Profile = () => {
             <button className="save-btn">Change Password</button>
           </div>
         )}
-
         {selectedSection === 'logout' && (
           <div className="section">
             <h3>Logout</h3>
