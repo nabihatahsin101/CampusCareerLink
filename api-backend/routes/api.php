@@ -4,9 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
-Route::post('/login', [AuthController::class, 'login']);
-
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/admin/login', [AuthController::class, 'adminLogin']); // Admin login
+Route::post('/user/register', [AuthController::class, 'register']); // User signup
+Route::post('/user/login', [AuthController::class, 'userLogin']); // User login
 
 
 /*
