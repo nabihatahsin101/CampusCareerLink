@@ -57,7 +57,7 @@ class AuthController extends Controller
         ]);
 
         return response()->json(['message' => 'User registered successfully!'], 201);
-    }
+
 
     /**
      * User Login (From signups table)
@@ -91,4 +91,5 @@ class AuthController extends Controller
             'token' => $token,
         ], 200);
     }
+
 }
