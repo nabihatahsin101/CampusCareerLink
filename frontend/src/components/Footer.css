@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* General Footer Styles */
 .footer {
   background-color: #013220; /* Dark Green */
@@ -7,18 +8,55 @@
   width: 100%; /* Full width like navbar */
   position: fixed; /* Fix it at the bottom */
   bottom: 0; /* Stick it to the bottom */
-  left: 0;
-  z-index: 1000;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better separation */
+=======
+/* Ensure full height layout */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Wrapper for the entire page */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
+}
+
+/* Ensures content takes up space and pushes footer down */
+.main-content {
+  flex: 1;
+}
+
+/* Footer Styling */
+.footer {
+  background-color: #013220; /* Dark Green */
+  color: white;
+  padding: 10px 1rem;
+  text-align: center;
+  width: 100%;
+  position: relative; /* No fixed position */
+  bottom: 0;
+>>>>>>> f3d9e7a66e6e9cdb8e51fd618c5950e753b1c93a
+  left: 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+<<<<<<< HEAD
 /* Footer Content Styling */
+=======
+/* Footer container */
+>>>>>>> f3d9e7a66e6e9cdb8e51fd618c5950e753b1c93a
 .footer-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%; /* Full width */
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
+<<<<<<< HEAD
   padding: 3px 1rem; /* Reduced padding to make the footer thinner */
   flex-wrap: wrap;
 }
@@ -103,11 +141,19 @@
 }
 
 /* Responsive Styles */
+=======
+  padding: 10px 1rem;
+  flex-wrap: wrap;
+}
+
+/* Responsive Fix */
+>>>>>>> f3d9e7a66e6e9cdb8e51fd618c5950e753b1c93a
 @media (max-width: 768px) {
   .footer-container {
-    flex-direction: column;
-    text-align: center;
+      flex-direction: column;
+      text-align: center;
   }
+<<<<<<< HEAD
 
   .footer-contact,
   .footer-middle,
@@ -139,4 +185,10 @@
   .footer-social h4 {
     font-size: 0.8rem; /* Smaller text for mobile */
   }
+=======
+  .footer-contact, .footer-middle, .footer-social {
+      margin: 5px 0;
+      text-align: center;
+  }
+>>>>>>> f3d9e7a66e6e9cdb8e51fd618c5950e753b1c93a
 }

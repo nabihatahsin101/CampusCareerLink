@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+
 import "./Signup.css";
 
 const Signup = () => {
@@ -11,6 +13,7 @@ const Signup = () => {
   });
 
   const [error, setError] = useState("");
+   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,7 +39,7 @@ const Signup = () => {
     }
   
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/register", {
+      const response = await fetch("http://127.0.0.1:8000/api/user/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,8 +56,12 @@ const Signup = () => {
   
       if (response.ok) {
         alert("Signup successful! Please log in.");
+
         setFormData({ fullName: "", email: "", password: "", confirmPassword: "" });
+
         setError("");
+        //navigate('/');
+        navigate('/login');
       } else {
         setError(data.error ? Object.values(data.error).join("\n") : "Signup failed");
       }
