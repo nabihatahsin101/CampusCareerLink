@@ -1,58 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Circular.css";
 
-const circulars = [
-  {
-    title: "Assistant Programmer, ICT",
-    department: "Information and Communication Technology",
-    grade: "Grade 12",
-    postedOn: "2025-02-01",
-    deadline: "2025-02-28",
-    applicationMode: "Online",
-  },
-  {
-    title: "Software Engineer",
-    department: "Computer Science & Engineering",
-    grade: "Grade 10",
-    postedOn: "2025-01-15",
-    deadline: "2025-02-20",
-    applicationMode: "Online",
-  },
-  {
-    title: "System Analyst",
-    department: "ICT Division",
-    grade: "Grade 9",
-    postedOn: "2025-01-10",
-    deadline: "2025-02-15",
-    applicationMode: "Online",
-  },
-  {
-    title: "Web Developer",
-    department: "Web Development Team",
-    grade: "Grade 8",
-    postedOn: "2025-01-20",
-    deadline: "2025-03-01",
-    applicationMode: "Online",
-  },
-  {
-    title: "Database Administrator",
-    department: "Database Management",
-    grade: "Grade 11",
-    postedOn: "2025-02-10",
-    deadline: "2025-03-05",
-    applicationMode: "Online",
-  },
-];
-
 const Circular = () => {
-  const [visibleCirculars, setVisibleCirculars] = useState(4); // Set to 4 by default
+  const [circulars, setCirculars] = useState([]);
+  const [visibleCirculars, setVisibleCirculars] = useState(4); 
   const [viewMore, setViewMore] = useState(true);
+
+  useEffect(() => {
+    // Fetch job circulars from API
+    const fetchCirculars = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/api/posts");
+        const data = await response.json();
+        setCirculars(data); // Set fetched data
+      } catch (error) {
+        console.error("Error fetching circulars:", error);
+      }
+    };
+
+    fetchCirculars();
+  }, []); // Empty dependency array means this runs once when the component mounts
 
   const handleViewToggle = () => {
     if (viewMore) {
-      setVisibleCirculars(circulars.length); // Show all circulars
+      setVisibleCirculars(circulars.length);
     } else {
-      setVisibleCirculars(4); // Show initial 4 circulars
+      setVisibleCirculars(4);
     }
     setViewMore(!viewMore);
   };
@@ -66,9 +39,9 @@ const Circular = () => {
             <h3>{job.title}</h3>
             <p><strong>Department:</strong> {job.department}</p>
             <p><strong>Officer Grade:</strong> {job.grade}</p>
-            <p><strong>Posted On:</strong> {job.postedOn}</p>
+            <p><strong>Posted On:</strong> {job.posted_on}</p>
             <p><strong>Deadline:</strong> {job.deadline}</p>
-            <p><strong>Application Mode:</strong> {job.applicationMode}</p>
+            <p><strong>Application Mode:</strong> {job.application_mode}</p>
             <button className="view-details">View Details</button>
           </div>
         ))}

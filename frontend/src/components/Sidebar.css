@@ -4,7 +4,7 @@
     background-color: #1d2634;  /* Darker background color */
     height: 100vh;
     position: fixed;            /* Fix the sidebar on the left */
-    top: 0;
+    top: 33px;
     left: 0;
     padding: 20px;
     box-sizing: border-box;
@@ -62,6 +62,7 @@
   .sidebar-list-item:hover {
     background-color: rgba(255, 255, 255, 0.2);
     cursor: pointer;
+  
   }
   .sidebar-list-item > a {
     text-decoration: none;
