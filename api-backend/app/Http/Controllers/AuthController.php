@@ -10,11 +10,33 @@ use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
     /**
-     * User Registration
+     * Admin Login (From login table)
+     */
+    public function adminLogin(Request $request)
+    {
+        $request->validate([
+            'RegisterId' => 'required',
+            'Password' => 'required'
+        ]);
+
+        // Find admin in 'login' table
+        $admin = DB::table('login')
+            ->where('RegisterId', $request->RegisterId)
+            ->first();
+
+        if ($admin && Hash::check($request->Password, $admin->Password)) {
+            return response()->json(['message' => 'Admin login successful'], 200);
+        } else {
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+    }
+
+    /**
+     * User Registration (Insert into signups table)
      */
     public function register(Request $request)
     {
-        // Validate input
+        // Validate user input
         $validator = Validator::make($request->all(), [
             'fullname' => 'required|string|max:255',
             'email' => 'required|email|unique:signups,email',
@@ -29,7 +51,7 @@ class AuthController extends Controller
         DB::table('signups')->insert([
             'fullname' => $request->fullname,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Hash password for security
+            'password' => Hash::make($request->password), // Hash password
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -37,10 +59,10 @@ class AuthController extends Controller
         return response()->json(['message' => 'User registered successfully!'], 201);
     }
 
-        /**
+    /**
      * User Login (From signups table)
      */
-    public function login(Request $request)
+    public function userLogin(Request $request)
     {
         // Validate request
         $validator = Validator::make($request->all(), [
@@ -64,7 +86,7 @@ class AuthController extends Controller
         $token = bin2hex(random_bytes(32));
 
         return response()->json([
-            'message' => 'Login successful',
+            'message' => 'User login successful',
             'user' => $user,
             'token' => $token,
         ], 200);

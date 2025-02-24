@@ -28,8 +28,8 @@ const Footer = () => {
 
         {/* Research, Advocacy, Innovation - Center */}
         <div className="footer-middle">
-          <a href="https://www.aust.edu/research" className="footer-button">Research</a>
-          <a href="https://www.aust.edu/advocacy" className="footer-button">Advocacy</a>
+        <a href="/research" className="footer-button">Research</a>
+        <a href="https://www.aust.edu/advocacy" className="footer-button">Advocacy</a>
           <a href="https://www.aust.edu/innovation" className="footer-button">Innovation</a>
         </div>
 
