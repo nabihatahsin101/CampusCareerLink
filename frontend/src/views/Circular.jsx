@@ -3,38 +3,76 @@ import "./Circular.css";
 
 const Circular = () => {
   const [circulars, setCirculars] = useState([]);
-  const [visibleCirculars, setVisibleCirculars] = useState(4); 
+  const [visibleCirculars, setVisibleCirculars] = useState(4);
   const [viewMore, setViewMore] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [departmentFilter, setDepartmentFilter] = useState("");
+  const [applicationModeFilter, setApplicationModeFilter] = useState("");
 
   useEffect(() => {
-    // Fetch job circulars from API
     const fetchCirculars = async () => {
       try {
         const response = await fetch("http://127.0.0.1:8000/api/posts");
         const data = await response.json();
-        setCirculars(data); // Set fetched data
+        setCirculars(data);
       } catch (error) {
         console.error("Error fetching circulars:", error);
       }
     };
 
     fetchCirculars();
-  }, []); // Empty dependency array means this runs once when the component mounts
+  }, []);
 
   const handleViewToggle = () => {
     if (viewMore) {
-      setVisibleCirculars(circulars.length);
+      setVisibleCirculars(filteredCirculars.length);
     } else {
       setVisibleCirculars(4);
     }
     setViewMore(!viewMore);
   };
 
+  // Filtered job circulars based on search & filter options
+  const filteredCirculars = circulars.filter((job) => {
+    return (
+      job.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (departmentFilter === "" || job.department === departmentFilter) &&
+      (applicationModeFilter === "" || job.application_mode === applicationModeFilter)
+    );
+  });
+
   return (
     <div className="circular-container">
       <h2>Job Circulars</h2>
+
+      {/* Search and Filter Section */}
+      <div className="filter-container">
+        <input
+          type="text"
+          placeholder="Search by Job Title..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+
+        <select value={departmentFilter} onChange={(e) => setDepartmentFilter(e.target.value)} className="filter-select">
+          <option value="">All Departments</option>
+          {[...new Set(circulars.map((job) => job.department))].map((dept, index) => (
+            <option key={index} value={dept}>{dept}</option>
+          ))}
+        </select>
+
+        <select value={applicationModeFilter} onChange={(e) => setApplicationModeFilter(e.target.value)} className="filter-select">
+          <option value="">All Application Modes</option>
+          {[...new Set(circulars.map((job) => job.application_mode))].map((mode, index) => (
+            <option key={index} value={mode}>{mode}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Job Circulars Grid */}
       <div className="circular-grid">
-        {circulars.slice(0, visibleCirculars).map((job, index) => (
+        {filteredCirculars.slice(0, visibleCirculars).map((job, index) => (
           <div className="circular-card" key={index}>
             <h3>{job.title}</h3>
             <p><strong>Department:</strong> {job.department}</p>
@@ -46,9 +84,12 @@ const Circular = () => {
           </div>
         ))}
       </div>
-      <button className="view-toggle" onClick={handleViewToggle}>
-        {viewMore ? "View More Circulars" : "View Less Circulars"}
-      </button>
+
+      {filteredCirculars.length > 4 && (
+        <button className="view-toggle" onClick={handleViewToggle}>
+          {viewMore ? "View More Circulars" : "View Less Circulars"}
+        </button>
+      )}
     </div>
   );
 };
