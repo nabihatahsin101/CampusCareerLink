@@ -18,6 +18,7 @@ import Header from "./components/Header";
 import ManageCircular from "./views/ManageCircular"; // Import ManageCircular page
 import EditJobForm from "./views/EditJobForm"; // Import EditJobForm page
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import ViewDetails from "./views/Viewdetails";
 
 const clientId = "854801450505-s8587henb9cl084he14ap11pubok812o.apps.googleusercontent.com";
 
@@ -46,6 +47,7 @@ const AppLayout = () => {
           <Route path="/adminCirculars" element={<AdminCircular />} />
           <Route path="/manage-jobs" element={<ManageCircular />} />  
           <Route path="/edit-job/:id" element={<EditJobForm />} /> 
+          <Route path="/jobs/:id" element={<ViewDetails/>} />
         </Routes>
       </div>
 

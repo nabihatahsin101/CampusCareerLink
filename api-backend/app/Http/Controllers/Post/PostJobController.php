@@ -79,7 +79,8 @@ class PostJobController extends Controller
             return response()->json(['error' => 'Something went wrong', 'message' => $e->getMessage()], 500);
         }
     }
-
+   
+    
     /**
      * Update an existing job circular
      */
