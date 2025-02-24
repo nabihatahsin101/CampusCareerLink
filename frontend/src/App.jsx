@@ -15,6 +15,8 @@ import Guideline from "./views/Guideline";
 import AdminHome from "./views/AdminHome"; // Import AdminHome
 import Sidebar from "./components/Sidebar"; // Import Sidebar
 import Header from "./components/Header"; 
+import ManageCircular from "./views/ManageCircular"; // Import ManageCircular page
+import EditJobForm from "./views/EditJobForm"; // Import EditJobForm page
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const clientId = "854801450505-s8587henb9cl084he14ap11pubok812o.apps.googleusercontent.com";
@@ -23,7 +25,7 @@ const AppLayout = () => {
   const location = useLocation();
 
   // Define admin-related routes where the footer should not be displayed
-  const noFooterRoutes = ["/adminHome", "/sidebar"];
+  const noFooterRoutes = ["/adminHome", "/sidebar", "/manage-jobs", "/edit-job/:id"];
 
   return (
     <div className="app-container">
@@ -42,7 +44,8 @@ const AppLayout = () => {
           <Route path="/adminHome" element={<AdminHome />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/adminCirculars" element={<AdminCircular />} />
-
+          <Route path="/manage-jobs" element={<ManageCircular />} />  
+          <Route path="/edit-job/:id" element={<EditJobForm />} /> 
         </Routes>
       </div>
 
