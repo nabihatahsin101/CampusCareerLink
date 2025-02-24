@@ -62,3 +62,18 @@
 .submit-btn:hover {
     background: rgb(14, 199, 14);
 }
+.submit-btn2 {
+    width: 100%;
+    background: rgb(149, 1, 1);
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn2:hover {
+    background: rgb(231, 54, 54);
+}
