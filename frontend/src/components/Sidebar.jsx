@@ -39,7 +39,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
           </a>
         </li>
         <li className="sidebar-list-item">
-          <a href="">
+          <a href="adminCirculars">
             <BsFillGrid3X3GapFill className="icon" /> Circular
           </a>
         </li>
@@ -53,11 +53,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
             <BsListCheck className="icon" /> Applications Management
           </a>
         </li>
-        <li className="sidebar-list-item">
-          <a href="">
-            <BsMenuButtonWideFill className="icon" /> Notifications & Alerts
-          </a>
-        </li>
+        
         <li className="sidebar-list-item">
           <a href="">
             <BsFillGearFill className="icon" /> Setting
