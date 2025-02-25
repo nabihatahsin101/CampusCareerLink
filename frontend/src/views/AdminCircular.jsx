@@ -97,6 +97,16 @@ const AdminCircular = () => {
               required
             />
           </div>
+          <div className="form-group">
+            <input
+              type="text"
+              name="salary"
+              placeholder="Salary"
+              onChange={handleChange}
+              value={formData.salary}
+              required
+            />
+          </div>
           
           {/* Posted On (Disabled - Auto-filled) */}
           <div className="form-group">

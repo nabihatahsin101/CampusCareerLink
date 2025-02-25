@@ -41,6 +41,7 @@ class PostJobController extends Controller
                 'posted_on' => 'required|date',
                 'deadline' => 'required|date',
                 'application_mode' => 'required|string|max:255',
+                'salary' => 'nullable|numeric|min:0',
             ]);
 
             if ($validator->fails()) {
@@ -79,8 +80,7 @@ class PostJobController extends Controller
             return response()->json(['error' => 'Something went wrong', 'message' => $e->getMessage()], 500);
         }
     }
-   
-    
+
     /**
      * Update an existing job circular
      */
@@ -101,6 +101,7 @@ class PostJobController extends Controller
                 'posted_on' => 'sometimes|date',
                 'deadline' => 'sometimes|date',
                 'application_mode' => 'sometimes|string|max:255',
+                'salary' => 'nullable|numeric|min:0',
             ]);
 
             $job->update($validated);

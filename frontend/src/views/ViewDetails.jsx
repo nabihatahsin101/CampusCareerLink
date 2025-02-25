@@ -41,6 +41,8 @@ const ViewDetails = () => {
       <div className="details-container">
         <p><strong>Department:</strong> {job.department}</p>
         <p><strong>Officer Grade:</strong> {job.grade}</p>
+        <p><strong>Salary:</strong> ${job.salary ? job.salary.toFixed(2) : "Not specified"}</p>
+
         <p><strong>Posted On:</strong> {job.posted_on}</p>
         <p><strong>Deadline:</strong> {job.deadline}</p>
         <p><strong>Application Mode:</strong> {job.application_mode}</p>
