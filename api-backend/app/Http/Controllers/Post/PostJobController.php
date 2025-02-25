@@ -38,10 +38,11 @@ class PostJobController extends Controller
                 'title' => 'required|string|max:255',
                 'department' => 'required|string|max:255',
                 'grade' => 'required|string|max:255',
+                'salary' => (float) $job-> salary,
                 'posted_on' => 'required|date',
                 'deadline' => 'required|date',
                 'application_mode' => 'required|string|max:255',
-                'salary' => 'nullable|numeric|min:0',
+              
             ]);
 
             if ($validator->fails()) {
@@ -98,10 +99,11 @@ class PostJobController extends Controller
                 'title' => 'sometimes|string|max:255',
                 'department' => 'sometimes|string|max:255',
                 'grade' => 'sometimes|string|max:255',
+                'salary' => (float) $job->salary,
                 'posted_on' => 'sometimes|date',
                 'deadline' => 'sometimes|date',
                 'application_mode' => 'sometimes|string|max:255',
-                'salary' => 'nullable|numeric|min:0',
+               
             ]);
 
             $job->update($validated);

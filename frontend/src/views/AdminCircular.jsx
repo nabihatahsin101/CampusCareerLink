@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "./AdminCircular.css"; 
 import Api from '../components/Api';
 import AdminNavbar from '../components/AdminNavbar'; 
+import axios from "axios";
 
 const AdminCircular = () => {
-  const { http } = Api();  // Ensure Api.js properly sets up axios
+  const { http } = Api();  // Axios instance
   const navigate = useNavigate();
 
   // Get today's date in YYYY-MM-DD format
@@ -18,6 +19,7 @@ const AdminCircular = () => {
     title: "",
     department: "",
     grade: "",
+    salary: "", // Added salary field
     posted_on: getTodayDate(),
     deadline: "",
     application_mode: "",
@@ -26,29 +28,32 @@ const AdminCircular = () => {
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ 
+      ...formData, 
+      [name]: name === "salary" ? Number(value) : value // Convert salary to number
+    });
   };
 
   const submitForm = async (e) => {
-    e.preventDefault();  // Prevent page reload
+    e.preventDefault();
 
     try {
-      const response = await http.post("/createpost", formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      console.log("Sending Data:", formData);
+      const response = await http.post("/createpost", formData);
+
+      console.log("Server Response:", response.data);
 
       if (response.status === 200 || response.status === 201) {
         setMessage("✔️ Circular posted successfully!");
-        setTimeout(() => navigate("/createpost"), 2000);
+        setTimeout(() => navigate("/manage-jobs"), 2000);
       } else {
         setMessage("⚠️ Failed to post circular.");
       }
     } catch (error) {
-      console.error("Error posting circular:", error);
-      if (error.response && error.response.data) {
-        setMessage(`⚠️ ${error.response.data.message || "Server error. Try again later."}`);
+      console.error("Error posting circular:", error.response?.data || error);
+      if (error.response?.data?.messages) {
+        setMessage(`⚠️ ${JSON.stringify(error.response.data.messages)}`);
       } else {
         setMessage("⚠️ Server error. Try again later.");
       }
@@ -57,7 +62,6 @@ const AdminCircular = () => {
 
   return (
     <div className="admin-circular-page">
-      {/* Include the Admin Navbar */}
       <AdminNavbar />
 
       <div className="admin-circular-container">
@@ -97,9 +101,10 @@ const AdminCircular = () => {
               required
             />
           </div>
+
           <div className="form-group">
             <input
-              type="text"
+              type="number"
               name="salary"
               placeholder="Salary"
               onChange={handleChange}
@@ -107,8 +112,7 @@ const AdminCircular = () => {
               required
             />
           </div>
-          
-          {/* Posted On (Disabled - Auto-filled) */}
+
           <div className="form-group">
             <input
               type="date"
@@ -118,7 +122,6 @@ const AdminCircular = () => {
             />
           </div>
 
-          {/* Deadline */}
           <div className="form-group">
             <input
               type="date"
@@ -143,10 +146,11 @@ const AdminCircular = () => {
           <div className="form-group">
             <button type="submit" className="submit-btn">Post Circular</button>
           </div>
+          
           <button 
-              type="button"  // Change type to "button" to prevent form submission
+              type="button"
               className="submit-btn2" 
-              onClick={() => navigate("/manage-jobs")} // Replace with the correct route
+              onClick={() => navigate("/manage-jobs")}
             >
               Manage Circulars
           </button>
