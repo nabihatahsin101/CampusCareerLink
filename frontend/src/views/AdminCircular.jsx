@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./AdminCircular.css"; 
-import Api from '../components/Api';
-import AdminNavbar from '../components/AdminNavbar'; 
+import "./AdminCircular.css";
+import Api from "../components/Api";
+import AdminNavbar from "../components/AdminNavbar";
+import axios from "axios";
 
 const AdminCircular = () => {
-  const { http } = Api();  // Ensure Api.js properly sets up axios
+  const { http } = Api(); // Axios instance
   const navigate = useNavigate();
 
   // Get today's date in YYYY-MM-DD format
@@ -18,48 +19,69 @@ const AdminCircular = () => {
     title: "",
     department: "",
     grade: "",
+    salary: "", // Salary is initially a string to prevent unwanted NaN issues
     posted_on: getTodayDate(),
     deadline: "",
     application_mode: "",
+    attachments: null,
   });
 
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, files } = e.target;
+    if (type === "file") {
+      setFormData({ ...formData, attachments: files[0] });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: name === "salary" ? parseFloat(value) || "" : value,
+      });
+    }
   };
 
   const submitForm = async (e) => {
-    e.preventDefault();  // Prevent page reload
+    e.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
 
     try {
-      const response = await http.post("/createpost", formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const formDataToSend = new FormData();
+      Object.keys(formData).forEach((key) => {
+        if (formData[key]) {
+          formDataToSend.append(key, formData[key]);
+        }
       });
+
+      console.log("Sending Data:", Object.fromEntries(formDataToSend));
+      const response = await http.post("/createpost", formDataToSend, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      console.log("Server Response:", response.data);
 
       if (response.status === 200 || response.status === 201) {
         setMessage("✔️ Circular posted successfully!");
-        setTimeout(() => navigate("/createpost"), 2000);
+        setTimeout(() => navigate("/manage-jobs"), 2000);
       } else {
         setMessage("⚠️ Failed to post circular.");
       }
     } catch (error) {
-      console.error("Error posting circular:", error);
-      if (error.response && error.response.data) {
-        setMessage(`⚠️ ${error.response.data.message || "Server error. Try again later."}`);
-      } else {
-        setMessage("⚠️ Server error. Try again later.");
-      }
+      console.error("Error posting circular:", error.response?.data || error);
+      setMessage(
+        `⚠️ ${
+          error.response?.data?.message || "Server error. Try again later."
+        }`
+      );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
     <div className="admin-circular-page">
-      {/* Include the Admin Navbar */}
       <AdminNavbar />
-
       <div className="admin-circular-container">
         <h2 className="title">Post a Job Circular</h2>
         {message && <p className="message">{message}</p>}
@@ -97,18 +119,22 @@ const AdminCircular = () => {
               required
             />
           </div>
-          
-          {/* Posted On (Disabled - Auto-filled) */}
+
           <div className="form-group">
             <input
-              type="date"
-              name="posted_on"
-              value={formData.posted_on}
-              disabled
+              type="number"
+              name="salary"
+              placeholder="Salary"
+              onChange={handleChange}
+              value={formData.salary}
+              required
             />
           </div>
 
-          {/* Deadline */}
+          <div className="form-group">
+            <input type="date" name="posted_on" value={formData.posted_on} disabled />
+          </div>
+
           <div className="form-group">
             <input
               type="date"
@@ -131,14 +157,26 @@ const AdminCircular = () => {
           </div>
 
           <div className="form-group">
-            <button type="submit" className="submit-btn">Post Circular</button>
+            <input
+              type="file"
+              name="attachments"
+              accept="application/pdf"
+              onChange={handleChange}
+            />
           </div>
-          <button 
-              type="button"  // Change type to "button" to prevent form submission
-              className="submit-btn2" 
-              onClick={() => navigate("/manage-jobs")} // Replace with the correct route
-            >
-              Manage Circulars
+
+          <div className="form-group">
+            <button type="submit" className="submit-btn" disabled={isSubmitting}>
+              {isSubmitting ? "Posting..." : "Post Circular"}
+            </button>
+          </div>
+
+          <button
+            type="button"
+            className="submit-btn2"
+            onClick={() => navigate("/manage-jobs")}
+          >
+            Manage Circulars
           </button>
         </form>
       </div>

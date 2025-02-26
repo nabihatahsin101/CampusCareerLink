@@ -29,7 +29,7 @@ const AdminLogin = () => {
       const data = await response.json();
       if (response.ok) {
         console.log("Login successful:", data);
-        navigate('/circular');
+        navigate('/adminHome');
       } else {
         setError(data.message || "Invalid credentials...");
       }

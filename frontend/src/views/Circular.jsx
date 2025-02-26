@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Circular.css";
 
 const Circular = () => {
@@ -8,7 +9,7 @@ const Circular = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [departmentFilter, setDepartmentFilter] = useState("");
   const [applicationModeFilter, setApplicationModeFilter] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchCirculars = async () => {
       try {
@@ -80,7 +81,12 @@ const Circular = () => {
             <p><strong>Posted On:</strong> {job.posted_on}</p>
             <p><strong>Deadline:</strong> {job.deadline}</p>
             <p><strong>Application Mode:</strong> {job.application_mode}</p>
-            <button className="view-details">View Details</button>
+            <button
+        className="view-details bg-blue-600 text-white py-2 px-4 rounded"
+        onClick={() => navigate(`/jobs/${job.id}`)}
+      >
+        View Details
+      </button>
           </div>
         ))}
       </div>

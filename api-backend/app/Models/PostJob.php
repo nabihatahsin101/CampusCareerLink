@@ -13,8 +13,11 @@ class PostJob extends Model
         'title',
         'department',
         'grade',
+        'salary',
         'posted_on',
         'deadline',
         'application_mode',
+        'attachments',
+        
     ];
 }
