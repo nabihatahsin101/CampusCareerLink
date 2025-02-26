@@ -10,6 +10,7 @@ const Circular = () => {
   const [departmentFilter, setDepartmentFilter] = useState("");
   const [applicationModeFilter, setApplicationModeFilter] = useState("");
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchCirculars = async () => {
       try {
@@ -56,18 +57,34 @@ const Circular = () => {
           className="search-input"
         />
 
-        <select value={departmentFilter} onChange={(e) => setDepartmentFilter(e.target.value)} className="filter-select">
+        <select
+          value={departmentFilter}
+          onChange={(e) => setDepartmentFilter(e.target.value)}
+          className="filter-select"
+        >
           <option value="">All Departments</option>
-          {[...new Set(circulars.map((job) => job.department))].map((dept, index) => (
-            <option key={index} value={dept}>{dept}</option>
-          ))}
+          {[...new Set(circulars.map((job) => job.department))].map(
+            (dept, index) => (
+              <option key={index} value={dept}>
+                {dept}
+              </option>
+            )
+          )}
         </select>
 
-        <select value={applicationModeFilter} onChange={(e) => setApplicationModeFilter(e.target.value)} className="filter-select">
+        <select
+          value={applicationModeFilter}
+          onChange={(e) => setApplicationModeFilter(e.target.value)}
+          className="filter-select"
+        >
           <option value="">All Application Modes</option>
-          {[...new Set(circulars.map((job) => job.application_mode))].map((mode, index) => (
-            <option key={index} value={mode}>{mode}</option>
-          ))}
+          {[...new Set(circulars.map((job) => job.application_mode))].map(
+            (mode, index) => (
+              <option key={index} value={mode}>
+                {mode}
+              </option>
+            )
+          )}
         </select>
       </div>
 
@@ -81,12 +98,28 @@ const Circular = () => {
             <p><strong>Posted On:</strong> {job.posted_on}</p>
             <p><strong>Deadline:</strong> {job.deadline}</p>
             <p><strong>Application Mode:</strong> {job.application_mode}</p>
+
+            {/* Job Attachment Section */}
+            {job.attachments && (
+              <p>
+                <strong>Job Attachment:</strong>
+                <a
+                  href={`http://127.0.0.1:8000/storage/${job.attachments}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="attachment-link"
+                >
+                  Download Job PDF
+                </a>
+              </p>
+            )}
+
             <button
-        className="view-details bg-blue-600 text-white py-2 px-4 rounded"
-        onClick={() => navigate(`/jobs/${job.id}`)}
-      >
-        View Details
-      </button>
+              className="view-details bg-blue-600 text-white py-2 px-4 rounded"
+              onClick={() => navigate(`/jobs/${job.id}`)}
+            >
+              View Details
+            </button>
           </div>
         ))}
       </div>
