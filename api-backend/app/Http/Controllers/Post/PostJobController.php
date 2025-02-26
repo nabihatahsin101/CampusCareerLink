@@ -28,7 +28,7 @@ class PostJobController extends Controller
     }
 
     /**
-     * Create a new job post
+     * Create a new job post with file upload
      */
     public function create(Request $request)
     {
@@ -38,11 +38,11 @@ class PostJobController extends Controller
                 'title' => 'required|string|max:255',
                 'department' => 'required|string|max:255',
                 'grade' => 'required|string|max:255',
-                'salary' => (float) $job-> salary,
+                'salary' => 'nullable|numeric',
                 'posted_on' => 'required|date',
                 'deadline' => 'required|date',
                 'application_mode' => 'required|string|max:255',
-              
+                'attachments' => 'nullable|file|mimes:pdf|max:2048' // Only allow PDF files up to 2MB
             ]);
 
             if ($validator->fails()) {
@@ -51,8 +51,24 @@ class PostJobController extends Controller
                 ], 422);
             }
 
+            // Handle file upload
+            $filePath = null;
+            if ($request->hasFile('attachments')) {
+                $file = $request->file('attachments');
+                $filePath = $file->store('attachments', 'public'); // Store file in 'storage/app/public/attachments'
+            }
+
             // Save job post
-            $job = PostJob::create($request->all());
+            $job = PostJob::create([
+                'title' => $request->title,
+                'department' => $request->department,
+                'grade' => $request->grade,
+                'salary' => $request->salary,
+                'posted_on' => $request->posted_on,
+                'deadline' => $request->deadline,
+                'application_mode' => $request->application_mode,
+                'attachments' => $filePath // Save file path in DB
+            ]);
 
             return response()->json([
                 'message' => 'Post added successfully!',
@@ -94,19 +110,33 @@ class PostJobController extends Controller
                 return response()->json(['message' => 'Job not found'], 404);
             }
 
-            // Validate fields only if they are provided
-            $validated = $request->validate([
+            // Validate input
+            $validator = Validator::make($request->all(), [
                 'title' => 'sometimes|string|max:255',
                 'department' => 'sometimes|string|max:255',
                 'grade' => 'sometimes|string|max:255',
-                'salary' => (float) $job->salary,
+                'salary' => 'sometimes|numeric',
                 'posted_on' => 'sometimes|date',
                 'deadline' => 'sometimes|date',
                 'application_mode' => 'sometimes|string|max:255',
-               
+                'attachments' => 'sometimes|file|mimes:pdf|max:2048' // File validation for updates
             ]);
 
-            $job->update($validated);
+            if ($validator->fails()) {
+                return response()->json([
+                    'error' => $validator->errors()
+                ], 422);
+            }
+
+            // Handle file upload if provided
+            if ($request->hasFile('attachments')) {
+                $file = $request->file('attachments');
+                $filePath = $file->store('attachments', 'public'); 
+                $job->attachments = $filePath;
+            }
+
+            // Update job
+            $job->update($request->except('attachments'));
 
             return response()->json([
                 'message' => 'Job circular updated successfully!',
@@ -128,6 +158,11 @@ class PostJobController extends Controller
 
             if (!$job) {
                 return response()->json(['message' => 'Job not found'], 404);
+            }
+
+            // Delete the file if it exists
+            if ($job->attachments) {
+                \Storage::delete('public/' . $job->attachments);
             }
 
             $job->delete();

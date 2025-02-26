@@ -41,11 +41,24 @@ const ViewDetails = () => {
       <div className="details-container">
         <p><strong>Department:</strong> {job.department}</p>
         <p><strong>Officer Grade:</strong> {job.grade}</p>
-        <p><strong>Salary:</strong> {job.salary ? Number(job.salary).toFixed(2) : "Not Provided"}</p>
-
+        <p><strong>Salary:</strong> {job.salary ? parseFloat(job.salary).toFixed(2) : "Not Provided"}</p>
         <p><strong>Posted On:</strong> {job.posted_on}</p>
         <p><strong>Deadline:</strong> {job.deadline}</p>
         <p><strong>Application Mode:</strong> {job.application_mode}</p>
+
+        {/* Job Attachment Section */}
+        {job.attachments && (
+          <p><strong>Job Attachment:</strong> 
+            <a 
+              href={`http://127.0.0.1:8000/storage/${job.attachments}`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="attachment-link"
+            >
+              Download Job PDF
+            </a>
+          </p>
+        )}
 
         {/* Apply Button */}
         <button className="apply-button">Apply Now</button>

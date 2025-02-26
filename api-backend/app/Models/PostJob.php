@@ -17,6 +17,7 @@ class PostJob extends Model
         'posted_on',
         'deadline',
         'application_mode',
+        'attachments',
         
     ];
 }
