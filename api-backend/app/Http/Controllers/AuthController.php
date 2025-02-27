@@ -6,9 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Helpers\JWTAuth;
 
 class AuthController extends Controller
 {
+    private $jwtAuth;
+
+    public function __construct()
+    {
+        $this->jwtAuth = new JWTAuth();
+    }
+
     /**
      * Admin Login (From login table)
      */
@@ -19,13 +27,18 @@ class AuthController extends Controller
             'Password' => 'required'
         ]);
 
-        // Find admin in 'login' table
         $admin = DB::table('login')
             ->where('RegisterId', $request->RegisterId)
             ->first();
 
         if ($admin && Hash::check($request->Password, $admin->Password)) {
-            return response()->json(['message' => 'Admin login successful'], 200);
+            // Generate JWT token
+            $token = $this->jwtAuth->encode(['user_id' => $admin->RegisterId]);
+
+            return response()->json([
+                'message' => 'Admin login successful',
+                'token' => $token
+            ], 200);
         } else {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
@@ -36,7 +49,6 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        // Validate user input
         $validator = Validator::make($request->all(), [
             'fullname' => 'required|string|max:255',
             'email' => 'required|email|unique:signups,email',
@@ -47,11 +59,10 @@ class AuthController extends Controller
             return response()->json(['error' => $validator->errors()], 422);
         }
 
-        // Insert user into 'signups' table
         DB::table('signups')->insert([
             'fullname' => $request->fullname,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Hash password
+            'password' => Hash::make($request->password),
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -64,7 +75,6 @@ class AuthController extends Controller
      */
     public function userLogin(Request $request)
     {
-        // Validate request
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
@@ -74,16 +84,14 @@ class AuthController extends Controller
             return response()->json(['error' => $validator->errors()], 422);
         }
 
-        // Check if user exists in 'signups' table
         $user = DB::table('signups')->where('email', $request->email)->first();
 
-        // Verify password
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
-        // Generate a simple token (for better security use Sanctum or Passport)
-        $token = bin2hex(random_bytes(32));
+        // Generate JWT Token instead of random bytes
+        $token = $this->jwtAuth->encode(['user_id' => $user->id]);
 
         return response()->json([
             'message' => 'User login successful',
