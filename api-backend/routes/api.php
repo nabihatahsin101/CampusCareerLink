@@ -5,16 +5,26 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Post\PostJobController;
 
-Route::post('/createpost', [PostJobController::class, 'create']); // To create a circular
-Route::put('/posts/{id}', [PostJobController::class, 'update']); // Update a job
-Route::delete('/posts/{id}', [PostJobController::class, 'destroy']); // Delete a job
-Route::get('/posts', [PostJobController::class, 'index']); // Get all posts
-Route::get('/posts/{id}', [PostJobController::class, 'show']); // ✅ Get a single post
+Route::post('/createpost', [PostJobController::class, 'create']);
+Route::put('/posts/{id}', [PostJobController::class, 'update']);
+Route::delete('/posts/{id}', [PostJobController::class, 'destroy']);
+Route::get('/posts', [PostJobController::class, 'index']);
+Route::get('/posts/{id}', [PostJobController::class, 'show']);
 
-Route::post('/admin/login', [AuthController::class, 'adminLogin']); // Admin login
-Route::post('/user/register', [AuthController::class, 'register']); // User signup
-Route::post('/user/login', [AuthController::class, 'userLogin']); // User login
+Route::post('/admin/login', [AuthController::class, 'adminLogin']);
+Route::post('/user/register', [AuthController::class, 'register']);
+Route::post('/user/login', [AuthController::class, 'userLogin']);
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
+});
+
+// ✅ Secure profile route with JWT Middleware
+Route::middleware(['jwt.auth'])->group(function () {
+    Route::get('/profile', function (Request $request) {
+        return response()->json([
+            'message' => 'Protected content',
+            'user_id' => $request->get('user_id')
+        ]);
+    });
 });
