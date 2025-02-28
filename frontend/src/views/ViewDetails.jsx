@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./ViewDetails.css"; // Import the CSS file
 
 const ViewDetails = () => {
@@ -7,7 +8,7 @@ const ViewDetails = () => {
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+ const navigate = useNavigate();
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
@@ -61,7 +62,13 @@ const ViewDetails = () => {
         )}
 
         {/* Apply Button */}
-        <button className="apply-button">Apply Now</button>
+        <button
+  className="apply-button"
+  onClick={() => navigate(`/apply/${job.id}`)}
+>
+  Apply Now
+</button>
+
       </div>
     </div>
   );

@@ -21,6 +21,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import ViewDetails from "./views/Viewdetails";
 import Research from './views/Research';
+import Apply from "./views/Apply";
 
 const clientId = "854801450505-s8587henb9cl084he14ap11pubok812o.apps.googleusercontent.com";
 
@@ -53,7 +54,7 @@ const AppLayout = () => {
           <Route path="/jobs/:id" element={<ViewDetails/>} />
 
           <Route path="/research" element={<Research />} />
-
+          <Route path="/apply/:id" element={<Apply />} />
 
         </Routes>
       </div>
