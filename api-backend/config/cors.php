@@ -31,6 +31,10 @@ return [
     'max_age' => 0,
 
     'supports_credentials' => true,
+    'allowed_origins' => [
+    'http://127.0.0.1:3000', // Add your React app URL
+],
+
    
 
 

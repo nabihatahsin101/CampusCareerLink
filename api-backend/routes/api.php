@@ -28,3 +28,7 @@ Route::middleware(['jwt.auth'])->group(function () {
         ]);
     });
 });
+// routes/api.php
+use App\Http\Controllers\ResearchController;
+
+Route::get('/research', [ResearchController::class, 'index']);
