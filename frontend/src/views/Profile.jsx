@@ -15,13 +15,14 @@ const Profile = () => {
   const [educationalInfo, setEducationalInfo] = useState([]);
   const navigate = useNavigate();  // Initialize navigate hook
 
+
   const handleSectionChange = (section) => setSelectedSection(section);
 
   const handleCvChange = (e) => setCvFile(e.target.files[0]);
 
   const handleLogout = () => {
-    localStorage.removeItem('userToken');
-    navigate('/');  // Redirect to the home page directly after logout
+    localStorage.removeItem('userToken'); // Remove token on logout
+    navigate('/login');  // Redirect to login page after logout
   };
 
   const handleAddEducation = () => {
