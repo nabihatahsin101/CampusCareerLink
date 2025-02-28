@@ -21,8 +21,9 @@ const Profile = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('userToken');
-    navigate('/');  // Redirect to the home page directly after logout
+    navigate('/login');  // Redirect to the login page after logout
   };
+  
 
   const handleAddEducation = () => {
     setEducationalInfo([...educationalInfo, { examName: '', subjectName: '', instituteName: '', passingYear: '' }]);
