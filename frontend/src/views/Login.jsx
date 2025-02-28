@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
+import { GoogleLogin } from '@react-oauth/google';  // Import GoogleLogin from react-oauth/google
 import "./Login.css";
 
 const Login = () => {
@@ -28,11 +29,23 @@ const Login = () => {
         console.log("Login successful:", response.data);
         localStorage.setItem("user", JSON.stringify(response.data.user)); // Store user data
         setError("");
-        navigate("/"); // Redirect to home page
+        navigate("/profile"); // Redirect to profile page after login
       }
     } catch (error) {
       setError("⚠️ Invalid email or password!");
     }
+  };
+
+  const handleGoogleLoginSuccess = (response) => {
+    // Handle the response from Google login
+    console.log("Google Login Successful", response);
+    localStorage.setItem("userToken", response.credential); // Store the token or user data from Google
+    navigate("/profile"); // Redirect to profile page
+  };
+
+  const handleGoogleLoginFailure = (error) => {
+    console.error("Google Login Failed", error);
+    setError("⚠️ Google login failed!");
   };
 
   return (
@@ -72,9 +85,10 @@ const Login = () => {
 
         {/* Google Login Button */}
         <div className="google-login">
-          <button className="google-btn" onClick={() => navigate('/welcome')}>
-            <FcGoogle size={20} /> Login with Google
-          </button>
+          <GoogleLogin 
+            onSuccess={handleGoogleLoginSuccess}
+            onError={handleGoogleLoginFailure}
+          />
         </div>
       </div>
     </div>
