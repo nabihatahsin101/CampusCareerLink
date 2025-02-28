@@ -6,18 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
 {
-    Schema::create('job_applications', function (Blueprint $table) {
+    Schema::create('applications', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('job_id')->constrained('post_jobs')->onDelete('cascade');
+        $table->string('name');
         $table->string('email');
-        $table->string('cv');
+        $table->string('phone');
         $table->timestamps();
     });
 }
-
-
     /**
      * Reverse the migrations.
      *
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('job_applications');
+        Schema::dropIfExists('applications');
     }
 };

@@ -64,7 +64,7 @@ const ViewDetails = () => {
         {/* Apply Button */}
         <button
   className="apply-button"
-  onClick={() => navigate(`/apply/${job.id}`)}
+  onClick={() => navigate(`/apply`)}
 >
   Apply Now
 </button>
