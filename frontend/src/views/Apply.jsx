@@ -39,7 +39,7 @@ const Apply = () => {
 
   return (
     <div className="apply-container">
-      <h2>Apply for Job #{id}</h2>
+      <div>Apply for Job #{id}</div>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
         <label>Email:</label>
