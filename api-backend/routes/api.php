@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Post\PostJobController;
+use App\Http\Controllers\ApplicationController;
 Route::post('/createpost', [PostJobController::class, 'create']);
 Route::put('/posts/{id}', [PostJobController::class, 'update']);
 Route::delete('/posts/{id}', [PostJobController::class, 'destroy']);
@@ -13,7 +14,7 @@ Route::get('/posts/{id}', [PostJobController::class, 'show']);
 Route::post('/admin/login', [AuthController::class, 'adminLogin']);
 Route::post('/user/register', [AuthController::class, 'register']);
 Route::post('/user/login', [AuthController::class, 'userLogin']);
-
+Route::post('/apply', [ApplicationController::class, 'store']);
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
