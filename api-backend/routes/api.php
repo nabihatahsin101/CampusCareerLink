@@ -5,12 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Post\PostJobController;
 use App\Http\Controllers\Post\JobApplicationController;
+use App\Http\Controllers\UserController;
 Route::post('/createpost', [PostJobController::class, 'create']);
 Route::put('/posts/{id}', [PostJobController::class, 'update']);
 Route::delete('/posts/{id}', [PostJobController::class, 'destroy']);
 Route::get('/posts', [PostJobController::class, 'index']);
 Route::get('/posts/{id}', [PostJobController::class, 'show']);
-
+Route::get('/users', [UserController::class, 'index']);
+Route::delete('/users/{id}', [AuthController::class, 'deleteUser']);
 Route::post('/admin/login', [AuthController::class, 'adminLogin']);
 Route::post('/user/register', [AuthController::class, 'register']);
 Route::post('/user/login', [AuthController::class, 'userLogin']);

@@ -31,7 +31,9 @@ return [
 
     'exposed_headers' => [],
 
+
     'max_age' => 0, // How long the results of a preflight request can be cached
 
-    'supports_credentials' => true, // Allow credentials (cookies, authorization headers)
+    'supports_credentials' => true,
+
 ];
