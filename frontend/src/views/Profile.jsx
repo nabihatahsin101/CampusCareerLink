@@ -15,15 +15,15 @@ const Profile = () => {
   const [educationalInfo, setEducationalInfo] = useState([]);
   const navigate = useNavigate();  // Initialize navigate hook
 
+
   const handleSectionChange = (section) => setSelectedSection(section);
 
   const handleCvChange = (e) => setCvFile(e.target.files[0]);
 
   const handleLogout = () => {
-    localStorage.removeItem('userToken');
-    navigate('/login');  // Redirect to the login page after logout
+    localStorage.removeItem('userToken'); // Remove token on logout
+    navigate('/login');  // Redirect to login page after logout
   };
-  
 
   const handleAddEducation = () => {
     setEducationalInfo([...educationalInfo, { examName: '', subjectName: '', instituteName: '', passingYear: '' }]);
