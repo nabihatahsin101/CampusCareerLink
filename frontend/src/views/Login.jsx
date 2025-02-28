@@ -37,7 +37,6 @@ const Login = () => {
   };
 
   const handleGoogleLoginSuccess = (response) => {
-    // Handle the response from Google login
     console.log("Google Login Successful", response);
     localStorage.setItem("userToken", response.credential); // Store the token or user data from Google
     navigate("/profile"); // Redirect to profile page
