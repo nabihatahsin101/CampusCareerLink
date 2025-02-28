@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Helpers\JWTAuth;
+use App\Models\User; // Assuming you have a User model
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -27,21 +28,18 @@ class AuthController extends Controller
             'Password' => 'required'
         ]);
 
-        $admin = DB::table('login')
-            ->where('RegisterId', $request->RegisterId)
-            ->first();
+        $admin = DB::table('login')->where('RegisterId', $request->RegisterId)->first();
 
         if ($admin && Hash::check($request->Password, $admin->Password)) {
-            // Generate JWT token
             $token = $this->jwtAuth->encode(['user_id' => $admin->RegisterId]);
 
             return response()->json([
                 'message' => 'Admin login successful',
                 'token' => $token
             ], 200);
-        } else {
-            return response()->json(['message' => 'Invalid credentials'], 401);
         }
+
+        return response()->json(['message' => 'Invalid credentials'], 401);
     }
 
     /**
@@ -59,7 +57,7 @@ class AuthController extends Controller
             return response()->json(['error' => $validator->errors()], 422);
         }
 
-        DB::table('signups')->insert([
+        $user = DB::table('signups')->insertGetId([
             'fullname' => $request->fullname,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -67,7 +65,7 @@ class AuthController extends Controller
             'updated_at' => now()
         ]);
 
-        return response()->json(['message' => 'User registered successfully!'], 201);
+        return response()->json(['message' => 'User registered successfully!', 'user_id' => $user], 201);
     }
 
     /**
@@ -90,7 +88,6 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
-        // Generate JWT Token instead of random bytes
         $token = $this->jwtAuth->encode(['user_id' => $user->id]);
 
         return response()->json([
@@ -98,5 +95,34 @@ class AuthController extends Controller
             'user' => $user,
             'token' => $token,
         ], 200);
+    }
+
+    /**
+     * Get All Users (for user management)
+     */
+    public function getUsers()
+    {
+        $users = DB::table('signups')->select('id', 'fullname', 'email', 'created_at')->get();
+
+        return response()->json($users, 200);
+    }
+
+    /**
+     * Delete User
+     */
+    public function deleteUser($id)
+    {
+        $user = DB::table('signups')->where('id', $id)->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        try {
+            DB::table('signups')->where('id', $id)->delete();
+            return response()->json(['message' => 'User deleted successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to delete user', 'error' => $e->getMessage()], 500);
+        }
     }
 }
