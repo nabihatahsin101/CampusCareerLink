@@ -1,65 +1,117 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./Apply.css";
 
 const Apply = () => {
-  const { id } = useParams();
-  const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    phone: "",
+    name: "",
+  });
   const [cv, setCv] = useState(null);
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleFileChange = (e) => {
+    setCv(e.target.files[0]);  // Store the selected file
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email || !cv) {
-      setMessage("Please fill all fields and upload a PDF.");
+
+    if (!formData.email.includes("@gmail.com")) {
+      setError("⚠️ Please use a valid Gmail account!");
       return;
     }
 
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("cv", cv);
-    formData.append("job_id", id);
+    const formDataToSend = new FormData();
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("phone", formData.phone);
+    if (cv) {
+      formDataToSend.append("cv", cv);
+    }
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/apply", {
-        method: "POST",
-        body: formData,
+      const response = await axios.post("http://127.0.0.1:8000/api/apply", formDataToSend, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
 
-      const data = await response.json();
-      if (response.ok) {
-        setMessage("Application submitted! Check your email for verification.");
-      } else {
-        setMessage(data.error || "Failed to submit application.");
+      if (response.status === 200) {
+        alert("Application submitted successfully!");
+        navigate("/"); // Redirect to home page
       }
     } catch (error) {
-      setMessage("Error submitting application.");
+      setError("⚠️ Error submitting application.");
     }
   };
 
   return (
     <div className="apply-container">
-      <div>Apply for Job #{id}</div>
-      {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-
-        <label>Upload CV (PDF):</label>
-        <input
-          type="file"
-          accept="application/pdf"
-          onChange={(e) => setCv(e.target.files[0])}
-          required
-        />
-
-        <button type="submit">Submit Application</button>
-      </form>
+      <div className="apply-form">
+        <h2>Apply for Job</h2>
+        {error && <p className="error">{error}</p>}
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <div className="input-group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your Gmail"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="Enter your phone number"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="cv">Upload CV (PDF only)</label>
+            <input
+              type="file"
+              id="cv"
+              name="cv"
+              accept=".pdf"
+              onChange={handleFileChange}
+              required
+            />
+          </div>
+          <button type="submit" className="apply-btn">Submit Application</button>
+        </form>
+      </div>
     </div>
   );
 };
