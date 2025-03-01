@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import './Profile.css';
 
 const Profile = () => {
@@ -13,62 +13,40 @@ const Profile = () => {
   const [address, setAddress] = useState('');
   const [cvFile, setCvFile] = useState(null);
   const [educationalInfo, setEducationalInfo] = useState([]);
-  const [userEmail, setUserEmail] = useState(''); // Store logged-in user email
-  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
 
-  // Get user email from localStorage
-  useEffect(() => {
-    const storedEmail = localStorage.getItem('userEmail');
-    if (storedEmail) {
-      setUserEmail(storedEmail);
-    }
-  }, []);
+  const navigate = useNavigate();  // Initialize navigate hook
 
-  // Fetch profile data based on user's email when component mounts or userEmail changes
+  // Fetch the user email from localStorage when the component mounts
   useEffect(() => {
-    if (userEmail) {
-      const storedProfile = JSON.parse(localStorage.getItem(`userProfile_${userEmail}`));
-      if (storedProfile) {
-        setNameEnglish(storedProfile.nameEnglish || '');
-        setNameBangla(storedProfile.nameBangla || '');
-        setFatherName(storedProfile.fatherName || '');
-        setMotherName(storedProfile.motherName || '');
-        setMobileNumber(storedProfile.mobileNumber || '');
-        setDob(storedProfile.dob || '');
-        setAddress(storedProfile.address || '');
-        setEducationalInfo(storedProfile.educationalInfo || []);
-        setCvFile(storedProfile.cvFile || null);
-      } else {
-        // If no data exists for this email, reset the form
-        setNameEnglish('');
-        setNameBangla('');
-        setFatherName('');
-        setMotherName('');
-        setMobileNumber('');
-        setDob('');
-        setAddress('');
-        setEducationalInfo([]);
-        setCvFile(null);
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      setEmail(user.email);  // Set the email from the logged-in user data
+      // Load profile data from localStorage using the email
+      const userProfile = JSON.parse(localStorage.getItem(user.email));
+      if (userProfile) {
+        setNameEnglish(userProfile.nameEnglish);
+        setNameBangla(userProfile.nameBangla);
+        setFatherName(userProfile.fatherName);
+        setMotherName(userProfile.motherName);
+        setMobileNumber(userProfile.mobileNumber);
+        setDob(userProfile.dob);
+        setAddress(userProfile.address);
+        setEducationalInfo(userProfile.educationalInfo);
+        setCvFile(userProfile.cvFile);
       }
+    } else {
+      navigate('/login');  // If no user data, redirect to login page
     }
-  }, [userEmail]);
+  }, [navigate]);
 
   const handleSectionChange = (section) => setSelectedSection(section);
 
-  const handleCvChange = (e) => {
-    const file = e.target.files[0];
-    if (file && file.size > 5 * 1024 * 1024) { // 5MB limit
-      alert('File size must be less than 5MB');
-      return;
-    }
-    setCvFile(file);
-  };
+  const handleCvChange = (e) => setCvFile(e.target.files[0]);
 
   const handleLogout = () => {
-    localStorage.removeItem('userToken'); // Remove token on logout
-    localStorage.removeItem('userEmail'); // Clear user email on logout
-    setUserEmail(''); // Clear user email on logout
-    navigate('/login'); // Redirect to login page after logout
+    localStorage.removeItem('user'); // Remove user data on logout
+    navigate('/login');  // Redirect to login page after logout
   };
 
   const handleAddEducation = () => {
@@ -81,13 +59,9 @@ const Profile = () => {
     setEducationalInfo(updatedEducationalInfo);
   };
 
-  const handleSave = () => {
-    if (!userEmail) {
-      alert('Please login first!');
-      return;
-    }
-
-    const profileData = {
+  // Save the profile data to localStorage under the user's email when they click save
+  const handleSaveProfile = () => {
+    const userProfile = {
       nameEnglish,
       nameBangla,
       fatherName,
@@ -95,13 +69,12 @@ const Profile = () => {
       mobileNumber,
       dob,
       address,
-      cvFile,
       educationalInfo,
+      cvFile,
     };
 
-    // Save the data in localStorage with a unique key based on the user's email
-    localStorage.setItem(`userProfile_${userEmail}`, JSON.stringify(profileData));
-    alert('Profile data saved successfully!');
+    localStorage.setItem(email, JSON.stringify(userProfile)); // Save profile data using the email as the key
+    alert('Profile saved successfully!');
   };
 
   return (
@@ -136,10 +109,8 @@ const Profile = () => {
       </div>
 
       <div className="profile-content">
-        <div className="user-email">
-          <p>Logged in as: {userEmail || 'Not logged in'}</p> {/* Display dynamic email */}
-        </div>
-
+        <h2>Welcome, {email}</h2>  {/* Display the user's email */}
+        
         {selectedSection === 'appliedJobs' && (
           <div className="section">
             <h3>My Applications</h3>
@@ -293,7 +264,7 @@ const Profile = () => {
                 {cvFile && <p>{cvFile.name}</p>}
               </div>
             </div>
-            <button className="save-btn" onClick={handleSave}>Save</button>
+            <button className="save-btn" onClick={handleSaveProfile}>Save</button>
           </div>
         )}
 

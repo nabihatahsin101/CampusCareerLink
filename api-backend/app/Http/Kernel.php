@@ -38,7 +38,6 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // If using JWT authentication, remove Sanctum middleware
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
@@ -62,6 +61,8 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
-        'jwt.auth' => \App\Http\Middleware\JWTAuthMiddleware::class, // Ensure this exists
+
+        // JWT Middleware for protecting routes that require JWT authentication
+        'jwt.auth' => \App\Http\Middleware\JWTAuthMiddleware::class, // Ensure this is added
     ];
 }
