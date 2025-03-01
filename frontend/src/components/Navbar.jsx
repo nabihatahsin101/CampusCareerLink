@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import './Navbar.css';
 import "../logo.css";
 
@@ -7,7 +7,21 @@ import logo from "../assets/images/logo.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userName, setUserName] = useState(""); // Added state for username
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if the user is authenticated from localStorage
+    const authStatus = localStorage.getItem("isAuthenticated") === "true";
+    setIsAuthenticated(authStatus);
+
+    // Retrieve the user's name from localStorage
+    const storedUserName = localStorage.getItem("userName");
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -17,9 +31,17 @@ const Navbar = () => {
     setMenuOpen(false);
   };
 
-  const toggleDropdown = (e) => {
-    e.preventDefault();
-    setDropdownOpen(!dropdownOpen);
+  const handleLogout = () => {
+    // Remove user authentication details from localStorage
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("userName"); // Clear username on logout
+
+    // Reset state and redirect to home page
+    setIsAuthenticated(false);
+    setUserName(""); // Reset username state
+    navigate("/"); // Redirect to home page after logout
   };
 
   return (
@@ -48,25 +70,35 @@ const Navbar = () => {
         <li>
           <Link to="/admin" onClick={handleMenuItemClick}>Admin Login</Link>
         </li>
-        
         <li>
           <Link to="/guideline" onClick={handleMenuItemClick}>Guideline</Link>
         </li>
-
         <li>
           <Link to="/contact" onClick={handleMenuItemClick}>Contact</Link>
         </li>
       </ul>
 
-      <div className="auth-buttons">
-       <Link to="/login">
-        <button className="login">Login</button>
-       </Link>
-        <Link to="/signup"> {/* Add this line */}
-       <button className="signup">Sign Up</button> {/* Update this button */}
-      </Link>
-    </div>
-
+      <div className="nav-right">
+        {isAuthenticated ? (
+          <div className="profile-section">
+            <Link to="/profile" className="profile-icon">
+              👤 {userName} {/* Display username here */}
+            </Link>
+            <button onClick={handleLogout} className="logout-button">
+              Logout
+            </button>
+          </div>
+        ) : (
+          <div className="auth-buttons">
+            <Link to="/login">
+              <button className="login">Login</button>
+            </Link>
+            <Link to="/signup">
+              <button className="signup">Sign Up</button>
+            </Link>
+          </div>
+        )}
+      </div>
     </nav>
   );
 };
