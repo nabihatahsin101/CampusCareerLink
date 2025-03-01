@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Apply.css";  // Import the CSS for Apply form
+import "./Apply.css";
 
 const Apply = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,7 @@ const Apply = () => {
     phone: "",
     name: "",
   });
+  const [cv, setCv] = useState(null);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -19,6 +20,10 @@ const Apply = () => {
     });
   };
 
+  const handleFileChange = (e) => {
+    setCv(e.target.files[0]);  // Store the selected file
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,14 +32,24 @@ const Apply = () => {
       return;
     }
 
+    const formDataToSend = new FormData();
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("phone", formData.phone);
+    if (cv) {
+      formDataToSend.append("cv", cv);
+    }
+
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/apply", formData);
+      const response = await axios.post("http://127.0.0.1:8000/api/apply", formDataToSend, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       if (response.status === 200) {
-        console.log("Application submitted successfully:", response.data);
-        setError("");
         alert("Application submitted successfully!");
-        navigate("/"); // Redirect to home page or another route
+        navigate("/"); // Redirect to home page
       }
     } catch (error) {
       setError("⚠️ Error submitting application.");
@@ -46,7 +61,7 @@ const Apply = () => {
       <div className="apply-form">
         <h2>Apply for Job</h2>
         {error && <p className="error">{error}</p>}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="input-group">
             <label htmlFor="name">Name</label>
             <input
@@ -83,12 +98,19 @@ const Apply = () => {
               required
             />
           </div>
+          <div className="input-group">
+            <label htmlFor="cv">Upload CV (PDF only)</label>
+            <input
+              type="file"
+              id="cv"
+              name="cv"
+              accept=".pdf"
+              onChange={handleFileChange}
+              required
+            />
+          </div>
           <button type="submit" className="apply-btn">Submit Application</button>
         </form>
-
-        <div className="back-link">
-          <p>Want to go back? <a href="/">Go Home</a></p>
-        </div>
       </div>
     </div>
   );

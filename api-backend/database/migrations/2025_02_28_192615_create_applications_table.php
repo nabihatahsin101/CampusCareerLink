@@ -14,12 +14,14 @@ return new class extends Migration
     public function up()
 {
     Schema::create('applications', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->string('email');
-        $table->string('phone');
-        $table->timestamps();
-    });
+    $table->id();
+    $table->string('name');
+    $table->string('email');
+    $table->string('phone');
+    $table->string('cv'); // Store file path
+    $table->timestamps();
+});
+
 }
     /**
      * Reverse the migrations.
