@@ -1,12 +1,27 @@
+/* Profile page container */
 .profile-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: row;  /* Keep the sidebar and content in a row */
   gap: 20px;
   padding: 20px;
   flex-wrap: wrap;
-  min-height: 500px;
+  min-height: 100vh;  /* Ensure the container takes at least full height */
+  padding-bottom: 80px; /* Ensures enough space for footer */
 }
 
+/* Footer styling */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;  /* Position the footer fixed at the bottom */
+  bottom: 0;
+  width: 100%;
+  z-index: 10; /* Ensures it stays above other content */
+}
+
+/* Sidebar styling */
 .sidebar {
   width: 200px;
   background-color: #f4f4f4;
@@ -14,7 +29,7 @@
   border-radius: 8px;
   position: sticky;
   top: 20px;
-  height: 100%;
+  height: calc(100vh - 80px);  /* Prevent sidebar from overflowing past footer */
 }
 
 .sidebar ul {
@@ -39,6 +54,7 @@
   color: #007bff;
 }
 
+/* Profile content area */
 .profile-content {
   flex-grow: 1;
   padding: 20px;
@@ -54,7 +70,7 @@
   font-weight: 600;
   color: #333;
   margin-bottom: 20px;
-  text-transform: uppercase; /* Adds a professional look */
+  text-transform: uppercase;
   letter-spacing: 1px;
 }
 
@@ -74,7 +90,7 @@
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-  font-size: 16px; /* Updated font size for readability */
+  font-size: 16px;
 }
 
 .form-group input, .form-group textarea {
@@ -91,6 +107,7 @@ textarea {
   resize: vertical;
 }
 
+/* Button styling */
 .save-btn, .logout-btn {
   padding: 12px 20px;
   background-color: #007BFF;
@@ -127,6 +144,7 @@ button:focus {
   box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.5);
 }
 
+/* Table styling */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -147,6 +165,7 @@ table td {
   font-size: 14px;
 }
 
+/* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .profile-container {
     flex-direction: column;
@@ -159,9 +178,11 @@ table td {
     height: auto;
     margin-bottom: 20px;
   }
+
   .profile-content {
     margin-left: 0;
   }
+
   .sidebar ul li {
     text-align: center;
   }

@@ -6,31 +6,28 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Post\PostJobController;
 use App\Http\Controllers\Post\JobApplicationController;
 use App\Http\Controllers\UserController;
+
+// Post routes
 Route::post('/createpost', [PostJobController::class, 'create']);
 Route::put('/posts/{id}', [PostJobController::class, 'update']);
 Route::delete('/posts/{id}', [PostJobController::class, 'destroy']);
 Route::get('/posts', [PostJobController::class, 'index']);
 Route::get('/posts/{id}', [PostJobController::class, 'show']);
+
+// User routes
 Route::get('/users', [UserController::class, 'index']);
 Route::delete('/users/{id}', [AuthController::class, 'deleteUser']);
 Route::post('/admin/login', [AuthController::class, 'adminLogin']);
 Route::post('/user/register', [AuthController::class, 'register']);
 Route::post('/user/login', [AuthController::class, 'userLogin']);
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Apply routes
 Route::post('/apply', [JobApplicationController::class, 'store']);
-// ✅ Secure profile route with JWT Middleware
-Route::middleware(['jwt.auth'])->group(function () {
-    Route::get('/profile', function (Request $request) {
-        return response()->json([
-            'message' => 'Protected content',
-            'user_id' => $request->get('user_id')
-        ]);
-    });
-});
-// routes/api.php
+
+// Password change route (protected by session or token)
+Route::middleware(['auth:sanctum'])->post('/user/change-password', [UserController::class, 'changePassword']);
+
+// Research route
 use App\Http\Controllers\ResearchController;
 
 Route::get('/research', [ResearchController::class, 'index']);

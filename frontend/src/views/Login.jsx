@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FcGoogle } from "react-icons/fc";
-import { GoogleLogin } from '@react-oauth/google';  // Import GoogleLogin from react-oauth/google
+import { GoogleLogin } from '@react-oauth/google';
 import "./Login.css";
 
 const Login = () => {
@@ -27,24 +26,18 @@ const Login = () => {
 
       if (response.status === 200) {
         console.log("Login successful:", response.data);
-        localStorage.setItem("user", JSON.stringify(response.data.user)); // Store user data
+        localStorage.setItem("userToken", response.data.token); // Store token
+        localStorage.setItem("userEmail", email); // Store logged-in email
+        console.log("Token:", localStorage.getItem("userToken"));
+        console.log("Email:", localStorage.getItem("userEmail"));
         setError("");
-        navigate("/profile"); // Redirect to profile page after login
+        console.log("Redirecting to profile page...");
+        navigate("/profile"); // Redirect to profile page
       }
     } catch (error) {
+      console.error("Login failed:", error);
       setError("⚠️ Invalid email or password!");
     }
-  };
-
-  const handleGoogleLoginSuccess = (response) => {
-    console.log("Google Login Successful", response);
-    localStorage.setItem("userToken", response.credential); // Store the token or user data from Google
-    navigate("/profile"); // Redirect to profile page
-  };
-
-  const handleGoogleLoginFailure = (error) => {
-    console.error("Google Login Failed", error);
-    setError("⚠️ Google login failed!");
   };
 
   return (
@@ -80,14 +73,6 @@ const Login = () => {
 
         <div className="signup-link">
           <p>Don't have an account? <a href="/signup">Sign Up</a></p>
-        </div>
-
-        {/* Google Login Button */}
-        <div className="google-login">
-          <GoogleLogin 
-            onSuccess={handleGoogleLoginSuccess}
-            onError={handleGoogleLoginFailure}
-          />
         </div>
       </div>
     </div>
