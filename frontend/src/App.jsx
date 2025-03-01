@@ -18,7 +18,7 @@ import Header from "./components/Header";
 import ManageCircular from "./views/ManageCircular"; // Import ManageCircular page
 import EditJobForm from "./views/EditJobForm"; // Import EditJobForm page
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import UserManagement from "./views/UserManagement";
+
 import ViewDetails from "./views/Viewdetails";
 import Research from './views/Research';
 import Apply from "./views/Apply";
@@ -51,9 +51,9 @@ const AppLayout = () => {
           <Route path="/adminCirculars" element={<AdminCircular />} />
           <Route path="/manage-jobs" element={<ManageCircular />} />  
           <Route path="/edit-job/:id" element={<EditJobForm />} /> 
-          <Route path="/admin/userManagement" element={<UserManagement />} />
 
           <Route path="/jobs/:id" element={<ViewDetails/>} />
+
           <Route path="/research" element={<Research />} />
           <Route path="/apply" element={<Apply/>} />
         </Routes>

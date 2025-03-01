@@ -10,5 +10,5 @@ class Application extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'phone'];
+    protected $fillable = ['name', 'email', 'phone','cv'];
 }
