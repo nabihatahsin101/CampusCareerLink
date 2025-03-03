@@ -17,6 +17,7 @@ const Profile = () => {
 
   const navigate = useNavigate();  // Initialize navigate hook
 
+<<<<<<< Updated upstream
   // Fetch the user email from localStorage when the component mounts
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -40,6 +41,8 @@ const Profile = () => {
     }
   }, [navigate]);
 
+=======
+>>>>>>> Stashed changes
   const handleSectionChange = (section) => setSelectedSection(section);
 
   const handleCvChange = (e) => setCvFile(e.target.files[0]);
@@ -98,12 +101,6 @@ const Profile = () => {
             className={selectedSection === 'changePassword' ? 'active' : ''}
           >
             Change Password
-          </li>
-          <li
-            onClick={() => handleSectionChange('logout')}
-            className={selectedSection === 'logout' ? 'active' : ''}
-          >
-            Logout
           </li>
         </ul>
       </div>
@@ -286,6 +283,7 @@ const Profile = () => {
             <button className="save-btn">Change Password</button>
           </div>
         )}
+<<<<<<< Updated upstream
 
         {selectedSection === 'logout' && (
           <div className="section">
@@ -293,6 +291,8 @@ const Profile = () => {
             <button className="logout-btn" onClick={handleLogout}>Logout</button>
           </div>
         )}
+=======
+>>>>>>> Stashed changes
       </div>
     </div>
   );

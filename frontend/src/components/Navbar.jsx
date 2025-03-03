@@ -64,9 +64,11 @@ const Navbar = () => {
         <li>
           <Link to="/circular" onClick={handleMenuItemClick}>Circular</Link>
         </li>
-        <li>
-          <Link to="/profile" onClick={handleMenuItemClick}>Profile</Link>
-        </li>
+        {isAuthenticated && (
+          <li>
+            <Link to="/profile" onClick={handleMenuItemClick}>Profile</Link>
+          </li>
+        )}
         <li>
           <Link to="/admin" onClick={handleMenuItemClick}>Admin Login</Link>
         </li>
