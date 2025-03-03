@@ -15,7 +15,6 @@ const Profile = () => {
   const [educationalInfo, setEducationalInfo] = useState([]);
   const navigate = useNavigate();  // Initialize navigate hook
 
-
   const handleSectionChange = (section) => setSelectedSection(section);
 
   const handleCvChange = (e) => setCvFile(e.target.files[0]);
@@ -56,12 +55,6 @@ const Profile = () => {
             className={selectedSection === 'changePassword' ? 'active' : ''}
           >
             Change Password
-          </li>
-          <li
-            onClick={() => handleSectionChange('logout')}
-            className={selectedSection === 'logout' ? 'active' : ''}
-          >
-            Logout
           </li>
         </ul>
       </div>
@@ -242,14 +235,9 @@ const Profile = () => {
             <button className="save-btn">Change Password</button>
           </div>
         )}
-        {selectedSection === 'logout' && (
-          <div className="section">
-            <h3>Logout</h3>
-            <button className="logout-btn" onClick={handleLogout}>Logout</button>
-          </div>
-        )}
       </div>
     </div>
   );
 };
+
 export default Profile;
