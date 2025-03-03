@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FcGoogle } from "react-icons/fc";
 import { GoogleLogin } from '@react-oauth/google';  // Import GoogleLogin from react-oauth/google
 import "./Login.css";
 
@@ -11,15 +10,25 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // Redirect to profile if already authenticated
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+    if (isAuthenticated) {
+      navigate("/profile"); // Redirect if already logged in
+    }
+  }, [navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Ensure the user enters a valid Gmail address
     if (!email.includes("@gmail.com")) {
       setError("⚠️ Please use a valid Gmail account!");
       return;
     }
 
     try {
+      // Make an API request to login the user
       const response = await axios.post("http://127.0.0.1:8000/api/user/login", {
         email,
         password,
@@ -27,9 +36,16 @@ const Login = () => {
 
       if (response.status === 200) {
         console.log("Login successful:", response.data);
-        localStorage.setItem("user", JSON.stringify(response.data.user)); // Store user data
+
+        // Store user data and authentication status in localStorage
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("isAuthenticated", "true");
+        localStorage.setItem("userRole", response.data.user.role);
+        localStorage.setItem("userName", response.data.user.fullname); // Store user full name
+
         setError("");
-        navigate("/profile"); // Redirect to profile page after login
+        alert(response.data.message);
+        navigate("/profile"); // Redirect after successful login
       }
     } catch (error) {
       setError("⚠️ Invalid email or password!");
@@ -38,8 +54,14 @@ const Login = () => {
 
   const handleGoogleLoginSuccess = (response) => {
     console.log("Google Login Successful", response);
-    localStorage.setItem("userToken", response.credential); // Store the token or user data from Google
-    navigate("/profile"); // Redirect to profile page
+
+    // Store the user data from Google login
+    localStorage.setItem("userToken", response.credential);
+    localStorage.setItem("isAuthenticated", "true");
+    localStorage.setItem("userName", response?.profileObj?.name); // Store user's full name from Google
+
+    alert("Google login successful");
+    navigate("/profile"); // Redirect to profile after Google login
   };
 
   const handleGoogleLoginFailure = (error) => {
