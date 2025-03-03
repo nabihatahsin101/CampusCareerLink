@@ -4,19 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddAttachmentsToPostJobsTable extends Migration
-{
-    public function up()
-    {
+return new class extends Migration {
+    public function up() {
         Schema::table('post_jobs', function (Blueprint $table) {
-            $table->string('attachments')->nullable(); // Add attachments column
+            if (!Schema::hasColumn('post_jobs', 'attachments')) {
+                $table->string('attachments')->nullable();
+            }
         });
     }
 
-    public function down()
-    {
+    public function down() {
         Schema::table('post_jobs', function (Blueprint $table) {
-            $table->dropColumn('attachments'); // Remove attachments column
+            $table->dropColumn('attachments');
         });
     }
-}
+};

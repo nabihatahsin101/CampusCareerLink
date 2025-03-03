@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import './Profile.css';
 
@@ -13,39 +13,14 @@ const Profile = () => {
   const [address, setAddress] = useState('');
   const [cvFile, setCvFile] = useState(null);
   const [educationalInfo, setEducationalInfo] = useState([]);
-  const [email, setEmail] = useState('');
-
   const navigate = useNavigate();  // Initialize navigate hook
-
-  // Fetch the user email from localStorage when the component mounts
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user) {
-      setEmail(user.email);  // Set the email from the logged-in user data
-      // Load profile data from localStorage using the email
-      const userProfile = JSON.parse(localStorage.getItem(user.email));
-      if (userProfile) {
-        setNameEnglish(userProfile.nameEnglish);
-        setNameBangla(userProfile.nameBangla);
-        setFatherName(userProfile.fatherName);
-        setMotherName(userProfile.motherName);
-        setMobileNumber(userProfile.mobileNumber);
-        setDob(userProfile.dob);
-        setAddress(userProfile.address);
-        setEducationalInfo(userProfile.educationalInfo);
-        setCvFile(userProfile.cvFile);
-      }
-    } else {
-      navigate('/login');  // If no user data, redirect to login page
-    }
-  }, [navigate]);
 
   const handleSectionChange = (section) => setSelectedSection(section);
 
   const handleCvChange = (e) => setCvFile(e.target.files[0]);
 
   const handleLogout = () => {
-    localStorage.removeItem('user'); // Remove user data on logout
+    localStorage.removeItem('userToken'); // Remove token on logout
     navigate('/login');  // Redirect to login page after logout
   };
 
@@ -57,24 +32,6 @@ const Profile = () => {
     const updatedEducationalInfo = [...educationalInfo];
     updatedEducationalInfo[index][field] = value;
     setEducationalInfo(updatedEducationalInfo);
-  };
-
-  // Save the profile data to localStorage under the user's email when they click save
-  const handleSaveProfile = () => {
-    const userProfile = {
-      nameEnglish,
-      nameBangla,
-      fatherName,
-      motherName,
-      mobileNumber,
-      dob,
-      address,
-      educationalInfo,
-      cvFile,
-    };
-
-    localStorage.setItem(email, JSON.stringify(userProfile)); // Save profile data using the email as the key
-    alert('Profile saved successfully!');
   };
 
   return (
@@ -99,18 +56,10 @@ const Profile = () => {
           >
             Change Password
           </li>
-          <li
-            onClick={() => handleSectionChange('logout')}
-            className={selectedSection === 'logout' ? 'active' : ''}
-          >
-            Logout
-          </li>
         </ul>
       </div>
 
       <div className="profile-content">
-        <h2>Welcome, {email}</h2>  {/* Display the user's email */}
-        
         {selectedSection === 'appliedJobs' && (
           <div className="section">
             <h3>My Applications</h3>
@@ -264,7 +213,7 @@ const Profile = () => {
                 {cvFile && <p>{cvFile.name}</p>}
               </div>
             </div>
-            <button className="save-btn" onClick={handleSaveProfile}>Save</button>
+            <button className="save-btn">Save</button>
           </div>
         )}
 
@@ -284,13 +233,6 @@ const Profile = () => {
               <input type="password" />
             </div>
             <button className="save-btn">Change Password</button>
-          </div>
-        )}
-
-        {selectedSection === 'logout' && (
-          <div className="section">
-            <h3>Logout</h3>
-            <button className="logout-btn" onClick={handleLogout}>Logout</button>
           </div>
         )}
       </div>
