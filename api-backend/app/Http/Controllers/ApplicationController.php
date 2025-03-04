@@ -11,7 +11,10 @@ class ApplicationController extends Controller {
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
-            'cv' => 'required|mimes:pdf|max:2048', // Only accept PDF, max 2MB
+            'cv' => 'required|mimes:pdf|max:2048', 
+            // Only accept PDF, max 2MB
+            'job_id' => 'required|integer',
+        'job_title' => 'required|string',
         ]);
 
         if ($request->hasFile('cv')) {
@@ -27,6 +30,8 @@ class ApplicationController extends Controller {
             'email' => $request->email,
             'phone' => $request->phone,
             'cv' => $cvPath, // Save file path in the database
+            'job_id' => $request->job_id,
+            'job_title' => $request->job_title,
         ]);
 
         return response()->json([
