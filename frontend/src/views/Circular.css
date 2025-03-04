@@ -1,10 +1,9 @@
 .circular-container {
-  padding: 40px;
+
   background: white; /* White background */
   color: #004225; /* Green text */
   text-align: center;
   position: relative;
-   margin-top: 80px;
 }
 
 .circular-container h2 {
