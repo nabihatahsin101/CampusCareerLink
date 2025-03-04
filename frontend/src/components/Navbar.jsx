@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import './Navbar.css';
+import "./Navbar.css";
 import "../logo.css";
-
 import logo from "../assets/images/logo.png";
 
 const Navbar = () => {
@@ -59,24 +58,36 @@ const Navbar = () => {
 
       <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
         <li>
-          <Link to="/" onClick={handleMenuItemClick}>Home</Link>
+          <Link to="/" onClick={handleMenuItemClick}>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/circular" onClick={handleMenuItemClick}>Circular</Link>
+          <Link to="/circular" onClick={handleMenuItemClick}>
+            Circular
+          </Link>
         </li>
         {isAuthenticated && (
           <li>
-            <Link to="/profile" onClick={handleMenuItemClick}>Profile</Link>
+            <Link to="/profile" onClick={handleMenuItemClick}>
+              Profile
+            </Link>
           </li>
         )}
         <li>
-          <Link to="/admin" onClick={handleMenuItemClick}>Admin Login</Link>
+          <Link to="/admin" onClick={handleMenuItemClick}>
+            Admin Login
+          </Link>
         </li>
         <li>
-          <Link to="/guideline" onClick={handleMenuItemClick}>Guideline</Link>
+          <Link to="/guideline" onClick={handleMenuItemClick}>
+            Guideline
+          </Link>
         </li>
         <li>
-          <Link to="/contact" onClick={handleMenuItemClick}>Contact</Link>
+          <Link to="/contact" onClick={handleMenuItemClick}>
+            Contact
+          </Link>
         </li>
       </ul>
 
@@ -84,7 +95,10 @@ const Navbar = () => {
         {isAuthenticated ? (
           <div className="profile-section">
             <Link to="/profile" className="profile-icon">
-              👤 {userName} {/* Display username here */}
+              <span role="img" aria-label="User Icon">
+                👤
+              </span>{" "}
+              {userName} {/* Display username here */}
             </Link>
             <button onClick={handleLogout} className="logout-button">
               Logout
