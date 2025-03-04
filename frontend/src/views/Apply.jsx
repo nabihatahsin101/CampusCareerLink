@@ -1,9 +1,14 @@
+// Apply.jsx
+
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./Apply.css";
 
 const Apply = () => {
+  const location = useLocation();
+  const { jobId, jobTitle } = location.state || {}; // Retrieve job ID and title from location state
+
   const [formData, setFormData] = useState({
     email: "",
     phone: "",
@@ -21,7 +26,7 @@ const Apply = () => {
   };
 
   const handleFileChange = (e) => {
-    setCv(e.target.files[0]);  // Store the selected file
+    setCv(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
@@ -36,6 +41,8 @@ const Apply = () => {
     formDataToSend.append("name", formData.name);
     formDataToSend.append("email", formData.email);
     formDataToSend.append("phone", formData.phone);
+    formDataToSend.append("job_id", jobId); // Add job ID
+    formDataToSend.append("job_title", jobTitle); // Add job title
     if (cv) {
       formDataToSend.append("cv", cv);
     }
@@ -59,7 +66,7 @@ const Apply = () => {
   return (
     <div className="apply-container">
       <div className="apply-form">
-        <h2>Apply for Job</h2>
+        <h2>Apply for Job: {jobTitle}</h2> {/* Display Job Title */}
         {error && <p className="error">{error}</p>}
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="input-group">

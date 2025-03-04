@@ -62,12 +62,19 @@ const ViewDetails = () => {
         )}
 
         {/* Apply Button */}
-        <button
+      
+
+<button
   className="apply-button"
-  onClick={() => navigate(`/apply`)}
+  onClick={() =>
+    navigate("/apply", {
+      state: { jobId: job.id, jobTitle: job.title }, // Pass job ID and title
+    })
+  }
 >
   Apply Now
 </button>
+
 
       </div>
     </div>
