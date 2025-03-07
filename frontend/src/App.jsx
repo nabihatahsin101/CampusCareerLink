@@ -23,8 +23,12 @@ import ViewDetails from "./views/Viewdetails";
 import Research from './views/Research';
 import Apply from "./views/Apply";
 import UserManagement from './views/UserManagement';
+
 import ChangePass from "./views/Changepass";
 import ApplicationManagement from "./views/ApplicationManagement";
+
+import ChangePassword from "./views/ChangePassword";
+
 
 const clientId = "854801450505-s8587henb9cl084he14ap11pubok812o.apps.googleusercontent.com";
 
@@ -58,8 +62,12 @@ const AppLayout = () => {
           <Route path="/userManagement" element={<UserManagement />} />
           <Route path="/research" element={<Research />} />
           <Route path="/apply" element={<Apply/>} />
+
           <Route path="/applicationManagement" element={<ApplicationManagement />} />
           <Route path="/change" element={<ChangePass/>} />
+
+          <Route path="/go" element={<ChangePassword/>} />
+
         </Routes>
       </div>
 
