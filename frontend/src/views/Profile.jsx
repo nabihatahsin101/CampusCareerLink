@@ -34,6 +34,24 @@ const Profile = () => {
     setEducationalInfo(updatedEducationalInfo);
   };
 
+  const handleSave = () => {
+    const profileData = {
+      nameEnglish,
+      nameBangla,
+      fatherName,
+      motherName,
+      mobileNumber,
+      dob,
+      address,
+      cvFile: cvFile ? cvFile.name : '',
+      educationalInfo
+    };
+    
+    // Save to localStorage or backend
+    localStorage.setItem('profileData', JSON.stringify(profileData));
+    alert('Profile data saved successfully!');
+  };
+
   return (
     <div className="profile-container">
       <div className="sidebar">
@@ -213,7 +231,7 @@ const Profile = () => {
                 {cvFile && <p>{cvFile.name}</p>}
               </div>
             </div>
-            <button className="save-btn">Save</button>
+            <button className="save-btn" onClick={handleSave}>Save</button>
           </div>
         )}
 
