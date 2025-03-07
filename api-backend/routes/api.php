@@ -7,6 +7,7 @@ use App\Http\Controllers\Post\PostJobController;
 use App\Http\Controllers\Post\JobApplicationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ApplicationController;
 Route::post('/createpost', [PostJobController::class, 'create']);
 Route::put('/posts/{id}', [PostJobController::class, 'update']);
 Route::delete('/posts/{id}', [PostJobController::class, 'destroy']);
@@ -17,6 +18,13 @@ Route::delete('/users/{id}', [AuthController::class, 'deleteUser']);
 Route::post('/admin/login', [AuthController::class, 'adminLogin']);
 Route::post('/user/register', [AuthController::class, 'register']);
 Route::post('/user/login', [AuthController::class, 'userLogin']);
+Route::post('/apply', [JobApplicationController::class, 'store']);
+Route::get('/applications', [JobApplicationController::class, 'index']);
+Route::delete('/applications/{id}', [JobApplicationController::class, 'destroy']);
+Route::get('/applications', [ApplicationController::class, 'index']);
+Route::post('/apply', [ApplicationController::class, 'store']);
+Route::delete('/applications/{id}', [ApplicationController::class, 'destroy']);
+
 // Add this route to your api.php
 Route::get('/jobs/count', [DashboardController::class, 'getJobCount']);
 
