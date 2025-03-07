@@ -19,9 +19,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
       className={openSidebarToggle ? 'sidebar sidebar-responsive' : 'sidebar'}
     >
       <div className="sidebar-title">
-        <div className="sidebar-brand">
-          <BsCart3 className="icon_header" /> SHOP
-        </div>
+        
         <span className="icon close_icon" onClick={OpenSidebar}>
           X
         </span>
@@ -29,15 +27,11 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
 
       <ul className="sidebar-list">
         <li className="sidebar-list-item">
-          <a href="">
+          <a href="/adminHome">
             <BsGrid1X2Fill className="icon" /> Dashboard
           </a>
         </li>
-        <li className="sidebar-list-item">
-          <a href="">
-            <BsFillArchiveFill className="icon" /> New Jobs
-          </a>
-        </li>
+      
         <li className="sidebar-list-item">
           <a href="adminCirculars">
             <BsFillGrid3X3GapFill className="icon" /> Circular
@@ -45,7 +39,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         </li>
         <li className="sidebar-list-item">
           <a href="/userManagement">
-            <BsPeopleFill className="icon" /> Users
+            <BsPeopleFill className="icon" /> Manage Users
           </a>
         </li>
         <li className="sidebar-list-item">

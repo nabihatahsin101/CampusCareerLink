@@ -6,10 +6,10 @@ const AdminNavbar = () => {
   return (
     <nav className="admin-navbar">
       <ul className="admin-nav-list">
-        <li><Link to="/adminDashboard">Dashboard</Link></li>
+        <li><Link to="/adminHome">Dashboard</Link></li>
         <li><Link to="/adminCirculars">Circulars</Link></li>
-        <li><Link to="/adminNewjobs">New Jobs</Link></li>
-        <li><Link to="/admin/userManagement">User</Link></li>
+        
+        <li><Link to="/userManagement">Manage User</Link></li>
         <li><Link to="/applicationManagment">Application Managment</Link></li>
         <li><Link to="/admin/settings">Settings</Link></li>
 
