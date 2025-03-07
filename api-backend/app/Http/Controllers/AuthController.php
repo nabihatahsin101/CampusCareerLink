@@ -125,4 +125,9 @@ class AuthController extends Controller
             return response()->json(['message' => 'Failed to delete user', 'error' => $e->getMessage()], 500);
         }
     }
+    public function countUsers()
+    {
+        $count = DB::table('signups')->count();  // Count the number of users in the 'signups' table
+        return response()->json(['count' => $count]);
+    }
 }
