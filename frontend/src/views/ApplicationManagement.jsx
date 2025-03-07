@@ -20,15 +20,23 @@ const ApplicationManagement = () => {
   };
 
   const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this application?")) {
+      return;
+    }
+  
     try {
-      await http.delete(`/applications/${id}`);
-      setApplications(applications.filter((app) => app.id !== id));
-      alert("Application deleted successfully");
+      const response = await http.delete(`/applications/${id}`);
+      
+      if (response.status === 200) {
+        setApplications(applications.filter((app) => app.id !== id));
+        alert("Application deleted successfully");
+      }
     } catch (error) {
       console.error("Error deleting application:", error);
       alert("Failed to delete application");
     }
   };
+  
 
   return (
     <div className="application-management-container">

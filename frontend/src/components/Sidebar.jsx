@@ -43,10 +43,10 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
           </a>
         </li>
         <li className="sidebar-list-item">
-          <a href="">
+          <a href="/applicationManagement"> 
             <BsListCheck className="icon" /> Applications Management
           </a>
-        </li>
+          </li>
         
         <li className="sidebar-list-item">
           <a href="">
