@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Post\PostJobController;
 use App\Http\Controllers\Post\JobApplicationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 Route::post('/createpost', [PostJobController::class, 'create']);
 Route::put('/posts/{id}', [PostJobController::class, 'update']);
 Route::delete('/posts/{id}', [PostJobController::class, 'destroy']);
@@ -16,6 +17,9 @@ Route::delete('/users/{id}', [AuthController::class, 'deleteUser']);
 Route::post('/admin/login', [AuthController::class, 'adminLogin']);
 Route::post('/user/register', [AuthController::class, 'register']);
 Route::post('/user/login', [AuthController::class, 'userLogin']);
+// Add this route to your api.php
+Route::get('/jobs/count', [DashboardController::class, 'getJobCount']);
+
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
