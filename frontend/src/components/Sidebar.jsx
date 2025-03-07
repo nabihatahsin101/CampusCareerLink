@@ -50,7 +50,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         
         <li className="sidebar-list-item">
           <a href="">
-            <BsFillGearFill className="icon" /> Setting
+            <BsFillGearFill className="icon" />LogOut
           </a>
         </li>
       </ul>
