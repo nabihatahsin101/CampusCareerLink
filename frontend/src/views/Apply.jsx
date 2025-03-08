@@ -54,9 +54,9 @@ const Apply = () => {
         },
       });
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         alert("Application submitted successfully!");
-        navigate("/"); // Redirect to home page
+        navigate("/circular"); // Redirect to home page
       }
     } catch (error) {
       setError("⚠️ Error submitting application.");
