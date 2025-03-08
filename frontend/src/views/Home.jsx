@@ -1,8 +1,17 @@
 import React from "react";
-import "./Home.css"; // Assuming Home.css is in the same folder as Home.jsx
-import "../aust.css"; // Update path if aust.css is in the assets folder
-import austLogo from "../assets/images/aust.png"; 
+import { useNavigate } from "react-router-dom";  // Import useNavigate
+import "./Home.css";
+import "../aust.css";
+import aust from '../assets/images/aust.png';
+
 const Home = () => {
+  const navigate = useNavigate();  // Initialize useNavigate
+
+  // This will navigate to the Circular page when "Explore Now" is clicked
+  const handleExploreClick = () => {
+    navigate("/circular");  // Navigate to the Circular page
+  };
+
   return (
     <div className="home">
       <div className="banner">
@@ -10,7 +19,9 @@ const Home = () => {
           <h1>AHSANULLAH UNIVERSITY OF SCIENCE & TECHNOLOGY</h1>
           <p className="job-portal-text">Job Portal</p>
           <p className="university-address">Dhaka-1208, Bangladesh</p>
-          <button className="explore-button">Explore Now</button>
+          <button className="explore-button" onClick={handleExploreClick}>
+            Explore Now
+          </button>
         </div>
       </div>
     </div>

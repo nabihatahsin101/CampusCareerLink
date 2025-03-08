@@ -3,23 +3,54 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\Post\PostJobController;
+use App\Http\Controllers\ResearchController;
 
-Route::post('/login', [AuthController::class, 'login']);
+// 🆓 Public Routes (Accessible Without Authentication)
+Route::post('/apply', [ApplicationController::class, 'store']);
+Route::post('/user/register', [AuthController::class, 'register']);
+Route::post('/user/login', [AuthController::class, 'userLogin']);
+Route::post('/admin/login', [AuthController::class, 'adminLogin']);
 
-Route::post('/register', [AuthController::class, 'register']);
+// Fetch job posts
+Route::get('/posts', [PostJobController::class, 'index']);
+Route::get('/posts/{id}', [PostJobController::class, 'show']);
 
+// Research routes
+Route::get('/research', [ResearchController::class, 'index']);
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+// 🛑 Protected Routes (Require Authentication)
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
+    // Profile Route
+    Route::get('/profile', function (Request $request) {
+        return response()->json([
+            'message' => 'Protected content',
+            'user_id' => $request->get('user_id'),
+        ]);
+    });
+
+    // 🏢 Dashboard
+    Route::get('/jobs/count', [DashboardController::class, 'getJobCount']);
+
+    // 📂 Applications (Admin Access)
+    Route::get('/applications', [ApplicationController::class, 'index']);
+    Route::delete('/applications/{id}', [ApplicationController::class, 'destroy']);
+
+    // 📌 Job Post Management
+    Route::prefix('posts')->group(function () {
+        Route::post('/create', [PostJobController::class, 'create']);
+        Route::put('/{id}', [PostJobController::class, 'update']);
+        Route::delete('/{id}', [PostJobController::class, 'destroy']);
+    });
+
+    // 👥 User Management (Admin Access)
+    Route::get('/users', [UserController::class, 'index']);
+    Route::delete('/users/{id}', [AuthController::class, 'deleteUser']);
 });

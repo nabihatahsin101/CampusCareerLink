@@ -1,35 +1,80 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FcGoogle } from 'react-icons/fc'; // Import Google Icon
-import './Login.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { GoogleLogin } from '@react-oauth/google';  // Import GoogleLogin from react-oauth/google
+import "./Login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  // Redirect to profile if already authenticated
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+    if (isAuthenticated) {
+      navigate("/home"); // Redirect if already logged in
+    }
+  }, [navigate]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email.includes('@aust.edu')) {
-      setError('⚠️ Please use a valid @aust.edu email!');
+    // Ensure the user enters a valid Gmail address
+    if (!email.includes("@gmail.com")) {
+      setError("⚠️ Please use a valid Gmail account!");
       return;
     }
 
-    if (!email || !password) {
-      setError('⚠️ Please fill in all fields!');
-      return;
-    }
+    try {
+      // Make an API request to login the user
+      const response = await axios.post("http://127.0.0.1:8000/api/user/login", {
+        email,
+        password,
+      });
 
-    console.log('Logged in with:', email, password);
-    setError('');
+      if (response.status === 200) {
+        console.log("Login successful:", response.data);
+
+        // Store user data and authentication status in localStorage
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("isAuthenticated", "true");
+        localStorage.setItem("userRole", response.data.user.role);
+        localStorage.setItem("userName", response.data.user.fullname); // Store user full name
+
+        setError("");
+        alert(response.data.message);
+        navigate("/profile-page"); // Redirect after successful login
+      }
+    } catch (error) {
+      setError("⚠️ Invalid email or password!");
+    }
+  };
+
+  const handleGoogleLoginSuccess = (response) => {
+    console.log("Google Login Successful", response);
+    
+    
+    // Store the user data from Google login
+    localStorage.setItem("userToken", response.credential);
+    localStorage.setItem("isAuthenticated", "true");
+    localStorage.setItem("userName", response?.profileObj?.name); // Store user's full name from Google
+
+    
+    alert("Google login successful");
+    navigate("/profile-page"); // Redirect to profile after Google login
+  };
+
+  const handleGoogleLoginFailure = (error) => {
+    console.error("Google Login Failed", error);
+    setError("⚠️ Google login failed!");
   };
 
   return (
     <div className="login-container">
       <div className="login-form">
-        <h2>Welcome Back</h2>
+        <h2>Login to Your Account</h2>
         {error && <p className="error">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="input-group">
@@ -39,7 +84,7 @@ const Login = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder="Enter your Gmail"
               required
             />
           </div>
@@ -56,16 +101,16 @@ const Login = () => {
           </div>
           <button type="submit" className="login-btn">Login</button>
         </form>
+
         <div className="signup-link">
           <p>Don't have an account? <a href="/signup">Sign Up</a></p>
         </div>
-        
-        {/* Google Login Icon */}
+
+        {/* Google Login Button */}
         <div className="google-login">
-          <FcGoogle
-            size={36} // Icon Size
-            className="cursor-pointer hover:scale-110 transition-transform"
-            onClick={() => navigate('/welcome')}
+          <GoogleLogin 
+            onSuccess={handleGoogleLoginSuccess}
+            onError={handleGoogleLoginFailure}
           />
         </div>
       </div>
