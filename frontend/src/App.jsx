@@ -14,7 +14,7 @@ import Welcome from "./views/Welcome";
 import Guideline from "./views/Guideline";
 import AdminHome from "./views/AdminHome"; // Import AdminHome
 import Sidebar from "./components/Sidebar"; // Import Sidebar
-import Header from "./components/Header"; 
+import Header from "./components/Header";
 import ManageCircular from "./views/ManageCircular"; // Import ManageCircular page
 import EditJobForm from "./views/EditJobForm"; // Import EditJobForm page
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -25,6 +25,9 @@ import Apply from "./views/Apply";
 import UserManagement from './views/UserManagement';
 import ChangePass from "./views/Changepass";
 import ApplicationManagement from "./views/ApplicationManagement";
+import AdvocacyPage from "./views/AdvocacyPage"; // Import Advocacy Page
+import InnovationPage from "./views/InnovationPage";
+
 
 const clientId = "854801450505-s8587henb9cl084he14ap11pubok812o.apps.googleusercontent.com";
 
@@ -39,8 +42,6 @@ const AppLayout = () => {
       <Navbar />
       <div className="main-content">
         <Routes>
-        
-        {/* New Profile Page Route */}
           <Route path="/" element={<Home />} />
           <Route path="/circular" element={<Circular />} />
           <Route path="/contact" element={<ContactUs />} />
@@ -56,12 +57,14 @@ const AppLayout = () => {
           <Route path="/manage-jobs" element={<ManageCircular />} />  
           <Route path="/edit-job/:id" element={<EditJobForm />} /> 
           <Route path="/profile-page" element={<ProfilePage />} /> 
-          <Route path="/jobs/:id" element={<ViewDetails/>} />
+          <Route path="/jobs/:id" element={<ViewDetails />} />
           <Route path="/userManagement" element={<UserManagement />} />
           <Route path="/research" element={<Research />} />
-          <Route path="/apply" element={<Apply/>} />
+          <Route path="/apply" element={<Apply />} />
           <Route path="/applicationManagement" element={<ApplicationManagement />} />
-          <Route path="/change" element={<ChangePass/>} />
+          <Route path="/change" element={<ChangePass />} />
+          <Route path="/advocacy" element={<AdvocacyPage />} /> {/* Advocacy Page */}
+          <Route path="/innovation" element={<InnovationPage />} />
         </Routes>
       </div>
 

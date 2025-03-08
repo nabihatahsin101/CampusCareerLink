@@ -67,6 +67,7 @@ const Navbar = () => {
             Circular
           </Link>
         </li>
+        
         {isAuthenticated && (
           <li>
             <Link to="/profile-page" onClick={handleMenuItemClick}>

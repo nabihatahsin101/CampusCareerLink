@@ -199,6 +199,7 @@ footer {
     padding: 15px;
   }
 
+  
   footer {
     margin-top: 20px; /* Ensure footer is spaced properly */
     position: static; /* Change to static for small screens */

@@ -6,23 +6,21 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState('');
   const [profile, setProfile] = useState({});
+
   useEffect(() => {
     const storedEmail = localStorage.getItem('userEmail');
     if (storedEmail) {
       setUserEmail(storedEmail);
-      
-      // Ensure that the value retrieved from localStorage is valid before parsing
-      const storedProfileString = localStorage.getItem(`userProfile_${storedEmail}`);
-      if (storedProfileString) {
+  
+      // Fetch profile using the stored email
+      const storedProfile = localStorage.getItem(`userProfile_${storedEmail}`);
+      if (storedProfile) {
         try {
-          const storedProfile = JSON.parse(storedProfileString);
-          setProfile(storedProfile);
+          setProfile(JSON.parse(storedProfile));
         } catch (error) {
-          console.error("Error parsing profile data:", error);
+          console.error('Error parsing profile data:', error);
           setProfile({});
         }
-      } else {
-        setProfile({});
       }
     } else {
       navigate('/login');
@@ -42,34 +40,12 @@ const ProfilePage = () => {
         <h4>Basic Information</h4>
         <table>
           <tbody>
-            <tr>
-              <td><strong>Name (English):</strong></td>
-              <td>{profile.nameEnglish || 'N/A'}</td>
-            </tr>
-            <tr>
-              <td><strong>Name (Bangla):</strong></td>
-              <td>{profile.nameBangla || 'N/A'}</td>
-            </tr>
-            <tr>
-              <td><strong>Father's Name:</strong></td>
-              <td>{profile.fatherName || 'N/A'}</td>
-            </tr>
-            <tr>
-              <td><strong>Mother's Name:</strong></td>
-              <td>{profile.motherName || 'N/A'}</td>
-            </tr>
-            <tr>
-              <td><strong>Mobile Number:</strong></td>
-              <td>{profile.mobileNumber || 'N/A'}</td>
-            </tr>
-            <tr>
-              <td><strong>Date of Birth:</strong></td>
-              <td>{profile.dob || 'N/A'}</td>
-            </tr>
-            <tr>
-              <td><strong>Mailing Address:</strong></td>
-              <td>{profile.address || 'N/A'}</td>
-            </tr>
+            {['nameEnglish', 'nameBangla', 'fatherName', 'motherName', 'mobileNumber', 'dob', 'address'].map((field) => (
+              <tr key={field}>
+                <td><strong>{field.replace(/([A-Z])/g, ' $1')}:</strong></td>
+                <td>{profile[field] || 'N/A'}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -82,7 +58,6 @@ const ProfilePage = () => {
       <div className="profile-section">
         <h4>Uploaded CV</h4>
         {profile.cvFile ? (
-          // Fixed the path to the CV file
           <p><a href={`/uploads/${profile.cvFile}`} target="_blank" rel="noopener noreferrer">Download CV</a></p>
         ) : (
           <p>No CV uploaded</p>
