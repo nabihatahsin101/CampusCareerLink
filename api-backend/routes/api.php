@@ -8,6 +8,12 @@ use App\Http\Controllers\Post\JobApplicationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ApplicationController;
+
+use App\Http\Controllers\ProfileController;
+
+Route::post('/save-profile', [ProfileController::class, 'saveProfile']);
+
+
 Route::post('/createpost', [PostJobController::class, 'create']);
 Route::put('/posts/{id}', [PostJobController::class, 'update']);
 Route::delete('/posts/{id}', [PostJobController::class, 'destroy']);
