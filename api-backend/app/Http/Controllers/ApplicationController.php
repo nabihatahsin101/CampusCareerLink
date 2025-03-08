@@ -35,38 +35,33 @@ class ApplicationController extends Controller {
         ], 500);
     }
 }
-
-    public function store(Request $request) {
+public function store(Request $request) {
+    try {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
-            'cv' => 'required|mimes:pdf|max:2048', 
-            // Only accept PDF, max 2MB
+            'cv' => 'required|mimes:pdf|max:2048',
             'job_id' => 'required|integer',
-        'job_title' => 'required|string',
+            'job_title' => 'required|string',
         ]);
 
-        if ($request->hasFile('cv')) {
-            $cvPath = $request->file('cv')->store('cvs', 'public'); // Save in storage/app/public/cvs
-            $cvUrl = asset('storage/' . $cvPath); // Generate public URL
-        } else {
-            $cvPath = null;
-            $cvUrl = null;
-        }
+        $cvPath = $request->file('cv')->store('cvs', 'public');
 
         $application = Application::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'cv' => $cvPath, // Save file path in the database
+            'cv' => $cvPath,
             'job_id' => $request->job_id,
             'job_title' => $request->job_title,
         ]);
 
-        return response()->json([
-            'message' => 'Application submitted successfully!',
-            'cv_url' => $cvUrl, // Return the file URL
-        ], 200);
+        return response()->json(['message' => 'Application submitted successfully!'], 201);
+    } catch (\Exception $e) {
+        \Log::error("Application Submission Error: " . $e->getMessage());
+        return response()->json(['error' => 'Failed to submit application', 'message' => $e->getMessage()], 500);
     }
+}
+
 }
