@@ -1,69 +1,104 @@
 import React, { useState, useEffect } from 'react';
-
-import {
-  BsFillArchiveFill,
-  BsFillGrid3X3GapFill,
-  BsPeopleFill,
-  BsFillBellFill,
-} from 'react-icons/bs';
+import axios from 'axios';
 import Sidebar from '../components/Sidebar';
-import './AdminHome.css';
 import AdminNavbar from '../components/AdminNavbar';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css'; // Import the styles
+import ManageCircular from './ManageCircular'; // Import the ManageCircular component
+import './AdminHome.css';
 
 function AdminHome() {
-  // States to hold dynamic data
-  const [totalUsers, setTotalUsers] = useState(0);
-  const [totalJobs, setTotalJobs] = useState(0);
-  const [totalJobSeekers, setTotalJobSeekers] = useState(0);
-  const [totalAlerts, setTotalAlerts] = useState(0);
+  const [users, setUsers] = useState([]);
+  const [date, setDate] = useState(new Date()); // State for the selected date
 
-  // Fetching data from your backend API
+  // Fetching user data from backend API
   useEffect(() => {
-    // Replace with your actual API URLs
-    const fetchDashboardData = async () => {
+    const fetchUsers = async () => {
       try {
-        const jobsResponse = await fetch('/api/jobs/count');
-        const jobsData = await jobsResponse.json();
-        setTotalJobs(jobsData.count); // Setting the total jobs count
+        const response = await axios.get('http://127.0.0.1:8000/api/users');
+        setUsers(response.data);
       } catch (error) {
-        console.error('Error fetching job count:', error);
+        console.error('Error fetching users:', error);
       }
     };
-     
-    fetchDashboardData();
+    fetchUsers();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://127.0.0.1:8000/api/users/${id}`);
+      setUsers(users.filter(user => user.id !== id));
+      alert("User deleted successfully");
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      alert("Failed to delete user");
+    }
+  };
+
+  // Function to handle the calendar date change
+  const onDateChange = newDate => {
+    setDate(newDate);
+  };
+
   return (
-    <div className="admin-home-container">
+    <div className="admin-home-wrapper">
       <AdminNavbar />
       <Sidebar />
 
-      <div className="admin-home-wrapper">
-        <div className="admin-home-title">
-          <h3>Admin Dashboard</h3>
+      <div className="admin-home-container">
+        
+
+        {/* Wrap the user list, circular management, and calendar */}
+        <div className="admin-home-content">
+          {/* User List Table */}
+          <div className="admin-home-user-list">
+            <h4>Users Managment</h4>
+            <table className="user-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.length > 0 ? (
+                  users.map(user => (
+                    <tr key={user.id}>
+                      <td>{user.id}</td>
+                      <td>{user.fullname}</td>
+                      <td>{user.email}</td>
+                      <td>
+                        <button className="delete-btn" onClick={() => handleDelete(user.id)}>
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4">No users found</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Calendar Component (Side-by-side with User Management) */}
+          <div className="admin-home-calendar">
+            <h4>Calendar</h4>
+            <Calendar
+              onChange={onDateChange}  // Handle date change
+              value={date}  // Set the selected date
+            />
+          </div>
         </div>
 
-        <div className="admin-home-cards">
-          <div className="admin-home-card">
-            <h3>Total Users</h3>
-            <BsFillArchiveFill className="admin-home-card-icon" />
-            <h1>{totalUsers}</h1>
-          </div>
-          <div className="admin-home-card">
-            <h3>Total Jobs</h3>
-            <BsFillGrid3X3GapFill className="admin-home-card-icon" />
-            <h1>{totalJobs}</h1>
-          </div>
-          <div className="admin-home-card">
-            <h3>Total JobSeekers</h3>
-            <BsPeopleFill className="admin-home-card-icon" />
-            <h1>{totalJobSeekers}</h1>
-          </div>
-          <div className="admin-home-card">
-            <h3>Total Alerts</h3>
-            <BsFillBellFill className="admin-home-card-icon" />
-            <h1>{totalAlerts}</h1>
-          </div>
+        {/* Manage Circular Section (Under User Management) */}
+        <div className="admin-home-circular-management">
+         
+          <ManageCircular />
         </div>
       </div>
     </div>
