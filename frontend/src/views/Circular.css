@@ -1,24 +1,49 @@
 .circular-container {
-  padding: 40px;
-  background: white; /* Changed background to white */
-  color: #004225; /* Updated text color to match the green theme */
+
+  background: white; /* White background */
+  color: #004225; /* Green text */
   text-align: center;
   position: relative;
 }
 
 .circular-container h2 {
-  font-size: 4rem;
-  margin-bottom: 30px;
+  font-size: 3rem;
+  margin-bottom: 15px;
   text-transform: uppercase;
-  color: #004225; /* Green headline color */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Added text shadow for visibility */
-  z-index: 2; /* Ensures it's on top of other elements */
+  color: #004225;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  z-index: 2;
   position: relative;
+}
+
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.search-input,
+.filter-select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #004225;
+  border-radius: 5px;
+  background: #fff;
+  color: #004225;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus,
+.filter-select:focus {
+  border-color: #008f39;
 }
 
 .circular-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   justify-content: center;
 }
@@ -33,22 +58,22 @@
 }
 
 .circular-card h3 {
-  color: #004225; /* Green color for card title */
+  color: #004225;
   margin-bottom: 10px;
 }
 
 .circular-card p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin: 5px 0;
 }
 
 .circular-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.3);
 }
 
 .view-details {
-  background: #008f39; /* Green button */
+  background: #008f39;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -60,12 +85,12 @@
 }
 
 .view-details:hover {
-  background: #00662b; /* Darker green on hover */
-  transform: translateY(-2px);
+  background: #00662b;
+  transform: scale(1.05);
 }
 
 .view-toggle {
-  background: #218838; /* Green button */
+  background: #218838;
   color: white;
   padding: 12px 25px;
   border: none;
@@ -77,25 +102,44 @@
 }
 
 .view-toggle:hover {
-  background: #1e7e34; /* Darker green on hover */
-  transform: translateY(-2px);
+  background: #1e7e34;
+  transform: scale(1.05);
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .circular-container h2 {
+    font-size: 2.5rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .circular-container {
+    padding: 20px;
+  }
+
   .circular-grid {
     grid-template-columns: 1fr;
+  }
+
+  .filter-container {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
 @media (max-width: 480px) {
   .circular-container h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
+
   .view-details {
     font-size: 0.9rem;
+    padding: 8px 12px;
   }
+
   .view-toggle {
     font-size: 1rem;
+    padding: 10px 20px;
   }
 }
