@@ -6,6 +6,36 @@ use App\Models\Application;
 use Illuminate\Support\Facades\Storage;
 
 class ApplicationController extends Controller {
+        // Fetch all applications (for admin panel)
+        public function index()
+        {
+            $applications = Application::all();
+            return response()->json($applications);
+        }
+        public function destroy($id)
+{
+    try {
+        $application = Application::findOrFail($id);
+
+        // Delete the CV file from storage
+        if ($application->cv) {
+            Storage::disk('public')->delete($application->cv);
+        }
+
+        // Delete the application from the database
+        $application->delete();
+
+        return response()->json([
+            'message' => 'Application deleted successfully'
+        ], 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'Failed to delete application',
+            'error' => $e->getMessage()
+        ], 500);
+    }
+}
+
     public function store(Request $request) {
         $request->validate([
             'name' => 'required|string|max:255',

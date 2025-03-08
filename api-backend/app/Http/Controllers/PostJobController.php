@@ -134,4 +134,21 @@ class PostJobController extends Controller
             return response()->json(['error' => 'Something went wrong', 'message' => $e->getMessage()], 500);
         }
     }
+    /**
+ * Get the total number of job posts (circulars)
+ */
+public function countJobs()
+{
+    try {
+        $count = PostJob::count(); // This will return the total number of posts
+
+        return response()->json([
+            'count' => $count
+        ], 200);
+
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Something went wrong', 'message' => $e->getMessage()], 500);
+    }
+}
+
 }
