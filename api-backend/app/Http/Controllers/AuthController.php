@@ -130,4 +130,14 @@ class AuthController extends Controller
         $count = DB::table('signups')->count();  // Count the number of users in the 'signups' table
         return response()->json(['count' => $count]);
     }
+    public function adminLogout(Request $request)
+{
+    $admin = $request->user();
+    if ($admin) {
+        $request->user()->tokens()->delete(); // Revoke all tokens
+        return response()->json(['message' => 'Admin logged out successfully'], 200);
+    }
+
+    return response()->json(['message' => 'Admin not authenticated'], 401);
+}
 }
