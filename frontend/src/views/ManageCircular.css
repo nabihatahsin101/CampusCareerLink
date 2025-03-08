@@ -2,58 +2,37 @@
     width: 80%;
     margin: 20px auto;
     text-align: center;
-    overflow-x: auto; /* Allows horizontal scrolling if content overflows */
-}
-
-.circular-table {
+  }
+  
+  .circular-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-}
-
-.circular-table th, .circular-table td {
+  }
+  
+  .circular-table th, .circular-table td {
     border: 1px solid #ddd;
-    padding: 12px; /* Increased padding for better readability */
-    text-align: left; /* Align text to the left */
-    font-size: 16px; /* Increase font size */
-    color: #333; /* Darker text for better visibility */
-}
-
-.circular-table th {
+    padding: 10px;
+  }
+  
+  .circular-table th {
     background-color: #f4f4f4;
-    font-weight: bold;
-}
-
-.circular-table td {
-    background-color: #ffffff; /* Ensures white background */
-}
-
-/* Button Styling */
-button {
+  }
+  
+  button {
     padding: 8px 12px;
     margin: 5px;
     border: none;
     cursor: pointer;
-    font-size: 14px; /* Bigger font size for buttons */
-    border-radius: 5px; /* Rounded corners */
-}
-
-.edit-btn {
+  }
+  
+  .edit-btn {
     background-color: #4CAF50;
     color: white;
-    transition: 0.3s ease-in-out;
-}
-
-.edit-btn:hover {
-    background-color: #45a049;
-}
-
-.delete-btn {
+  }
+  
+  .delete-btn {
     background-color: #f44336;
     color: white;
-    transition: 0.3s ease-in-out;
-}
-
-.delete-btn:hover {
-    background-color: #d32f2f;
-}
+  }
+  

@@ -54,7 +54,7 @@ const ManageCircular = () => {
               <td>{job.posted_on}</td>
               <td>{job.deadline}</td>
               <td>
-                <button onClick={() => navigate(`/edit-job/${job.id}`, { state: { job } })} className="edit-btn">Edit</button>
+                <button onClick={() => navigate(`/edit-job/${job.id}`)} className="edit-btn">Edit</button>
                 <button onClick={() => handleDelete(job.id)} className="delete-btn">Delete</button>
               </td>
             </tr>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './Footer.css';
 import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Footer = () => {
   useEffect(() => {
@@ -27,9 +28,9 @@ const Footer = () => {
 
         {/* Research, Advocacy, Innovation - Center */}
         <div className="footer-middle">
-        <a href="/research" className="footer-button">Research</a>
-        <a href="https://www.aust.edu/advocacy" className="footer-button">Advocacy</a>
-          <a href="https://www.aust.edu/innovation" className="footer-button">Innovation</a>
+          <Link to="/research" className="footer-button">Research</Link>  {/* Use Link here */}
+          <Link to="/advocacy" className="footer-button">Advocacy</Link>  {/* Use Link here */}
+          <Link to="/innovation" className="footer-button">Innovation</Link>  {/* Keep only this link for Innovation */}
         </div>
 
         {/* Social Media Links - Right Side */}
@@ -47,4 +48,5 @@ const Footer = () => {
     </footer>
   );
 };
+
 export default Footer;
