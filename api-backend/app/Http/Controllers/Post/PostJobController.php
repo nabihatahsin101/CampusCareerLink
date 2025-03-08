@@ -92,22 +92,27 @@ class PostJobController extends Controller
                 return response()->json(['message' => 'Job not found'], 404);
             }
 
-            // Validate fields only if they are provided
-            $validated = $request->validate([
-                'title' => 'sometimes|string|max:255',
-                'department' => 'sometimes|string|max:255',
-                'grade' => 'sometimes|string|max:255',
-                'posted_on' => 'sometimes|date',
-                'deadline' => 'sometimes|date',
-                'application_mode' => 'sometimes|string|max:255',
+            // Validate fields
+            $validator = Validator::make($request->all(), [
+                'title' => 'sometimes|required|string|max:255',
+                'department' => 'sometimes|required|string|max:255',
+                'grade' => 'sometimes|required|string|max:255',
+                'posted_on' => 'sometimes|required|date',
+                'deadline' => 'sometimes|required|date',
+                'application_mode' => 'sometimes|required|string|max:255',
             ]);
 
-            $job->update($validated);
+            if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors()], 422);
+            }
+
+            // Update job post
+            $job->update($request->all());
 
             return response()->json([
                 'message' => 'Job circular updated successfully!',
                 'job' => $job
-            ], 200);
+            ], 200); // HTTP 200 for successful updates
 
         } catch (\Exception $e) {
             return response()->json(['error' => 'Something went wrong', 'message' => $e->getMessage()], 500);

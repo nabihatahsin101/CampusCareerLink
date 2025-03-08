@@ -52,7 +52,7 @@ const AppLayout = () => {
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/adminCirculars" element={<AdminCircular />} />
           <Route path="/manage-jobs" element={<ManageCircular />} />  
-          <Route path="/edit-job/:id" element={<EditJobForm />} /> 
+          <Route path="/edit-job/:id" element={<EditJobWrapper />} />
 
           <Route path="/jobs/:id" element={<ViewDetails/>} />
           <Route path="/userManagement" element={<UserManagement />} />
@@ -79,4 +79,9 @@ const App = () => {
   );
 };
 
+const EditJobWrapper = () => {
+  const location = useLocation();
+  const job = location.state?.job; // Get job data from state
+  return job ? <EditJobForm job={job} /> : <p>Loading...</p>;
+};
 export default App;
