@@ -14,7 +14,7 @@ const Login = () => {
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
     if (isAuthenticated) {
-      navigate("/profile"); // Redirect if already logged in
+      navigate("/home"); // Redirect if already logged in
     }
   }, [navigate]);
 
@@ -45,7 +45,7 @@ const Login = () => {
 
         setError("");
         alert(response.data.message);
-        navigate("/profile"); // Redirect after successful login
+        navigate("/profile-page"); // Redirect after successful login
       }
     } catch (error) {
       setError("⚠️ Invalid email or password!");
@@ -54,14 +54,16 @@ const Login = () => {
 
   const handleGoogleLoginSuccess = (response) => {
     console.log("Google Login Successful", response);
-
+    
+    
     // Store the user data from Google login
     localStorage.setItem("userToken", response.credential);
     localStorage.setItem("isAuthenticated", "true");
     localStorage.setItem("userName", response?.profileObj?.name); // Store user's full name from Google
 
+    
     alert("Google login successful");
-    navigate("/profile"); // Redirect to profile after Google login
+    navigate("/profile-page"); // Redirect to profile after Google login
   };
 
   const handleGoogleLoginFailure = (error) => {

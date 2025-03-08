@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
-import './Profile.css';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './ProfilePage.css';  // Import the ProfilePage CSS to match styles
 
 const Profile = () => {
-  const [selectedSection, setSelectedSection] = useState('appliedJobs');
+  const navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState('');
   const [nameEnglish, setNameEnglish] = useState('');
   const [nameBangla, setNameBangla] = useState('');
   const [fatherName, setFatherName] = useState('');
@@ -11,249 +12,129 @@ const Profile = () => {
   const [mobileNumber, setMobileNumber] = useState('');
   const [dob, setDob] = useState('');
   const [address, setAddress] = useState('');
+  const [educationalInfo, setEducationalInfo] = useState('');
   const [cvFile, setCvFile] = useState(null);
-  const [educationalInfo, setEducationalInfo] = useState([]);
-  const navigate = useNavigate();  // Initialize navigate hook
+  useEffect(() => {
+    const storedEmail = localStorage.getItem('userEmail');
+    if (storedEmail) {
+      setUserEmail(storedEmail);
+      const storedProfile = localStorage.getItem(`userProfile_${storedEmail}`);
+  
+      // Only parse the profile if storedProfile is not null or undefined
+      if (storedProfile && storedProfile !== 'undefined' && storedProfile !== 'null') {
+        try {
+          const profileData = JSON.parse(storedProfile);
+          setNameEnglish(profileData.nameEnglish || '');
+          setNameBangla(profileData.nameBangla || '');
+          setFatherName(profileData.fatherName || '');
+          setMotherName(profileData.motherName || '');
+          setMobileNumber(profileData.mobileNumber || '');
+          setDob(profileData.dob || '');
+          setAddress(profileData.address || '');
+          setEducationalInfo(profileData.educationalInfo || '');
+          setCvFile(profileData.cvFile || null);
+        } catch (error) {
+          console.error("Error parsing profile data:", error);
+        }
+      } else {
+        console.log("No profile data available or data is invalid");
+      }
+    } else {
+      navigate('/login');
+    }
+  }, [navigate]);
+  
+  
+  
 
-  const handleSectionChange = (section) => setSelectedSection(section);
-
-  const handleCvChange = (e) => setCvFile(e.target.files[0]);
-
-  const handleLogout = () => {
-    localStorage.removeItem('userToken'); // Remove token on logout
-    navigate('/login');  // Redirect to login page after logout
+  const handleCvChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.size > 5 * 1024 * 1024) {
+      alert('File size must be less than 5MB');
+      return;
+    }
+    setCvFile(file);
   };
 
-  const handleAddEducation = () => {
-    setEducationalInfo([...educationalInfo, { examName: '', subjectName: '', instituteName: '', passingYear: '' }]);
-  };
 
-  const handleEducationChange = (index, field, value) => {
-    const updatedEducationalInfo = [...educationalInfo];
-    updatedEducationalInfo[index][field] = value;
-    setEducationalInfo(updatedEducationalInfo);
-  };
-
-  const handleSave = () => {
-    const profileData = {
-      nameEnglish,
-      nameBangla,
-      fatherName,
-      motherName,
-      mobileNumber,
-      dob,
-      address,
-      cvFile: cvFile ? cvFile.name : '',
-      educationalInfo
+    const handleSaveProfile = () => {
+      if (!userEmail) {
+        alert('Please login first!');
+        return;
+      }
+    
+      const userProfile = {
+        nameEnglish,
+        nameBangla,
+        fatherName,
+        motherName,
+        mobileNumber,
+        dob,
+        address,
+        educationalInfo,
+        cvFile: cvFile ? cvFile.name : null,
+      };
+    
+      localStorage.setItem(`userProfile_${userEmail}`, JSON.stringify(userProfile));
+      alert('Profile saved successfully!');
+      
+      // Redirect to ProfilePage after saving
+      navigate('/profile-page');
     };
     
-    // Save to localStorage or backend
-    localStorage.setItem('profileData', JSON.stringify(profileData));
-    alert('Profile data saved successfully!');
-  };
 
   return (
     <div className="profile-container">
-      <div className="sidebar">
-        <ul>
-          <li
-            onClick={() => handleSectionChange('appliedJobs')}
-            className={selectedSection === 'appliedJobs' ? 'active' : ''}
-          >
-            Applied Jobs
-          </li>
-          <li
-            onClick={() => handleSectionChange('applicantInfo')}
-            className={selectedSection === 'applicantInfo' ? 'active' : ''}
-          >
-            Applicant Info
-          </li>
-          <li
-            onClick={() => handleSectionChange('changePassword')}
-            className={selectedSection === 'changePassword' ? 'active' : ''}
-          >
-            Change Password
-          </li>
-        </ul>
+      <h2>Edit Profile</h2>
+
+      <div className="profile-section">
+        <h4>Basic Information</h4>
+        <table>
+          <tbody>
+            <tr>
+              <td><strong>Name (English):</strong></td>
+              <td><input type="text" value={nameEnglish} onChange={(e) => setNameEnglish(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><strong>Name (Bangla):</strong></td>
+              <td><input type="text" value={nameBangla} onChange={(e) => setNameBangla(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><strong>Father's Name:</strong></td>
+              <td><input type="text" value={fatherName} onChange={(e) => setFatherName(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><strong>Mother's Name:</strong></td>
+              <td><input type="text" value={motherName} onChange={(e) => setMotherName(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><strong>Mobile Number:</strong></td>
+              <td><input type="text" value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><strong>Date of Birth:</strong></td>
+              <td><input type="date" value={dob} onChange={(e) => setDob(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><strong>Mailing Address:</strong></td>
+              <td><textarea value={address} onChange={(e) => setAddress(e.target.value)} /></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <div className="profile-content">
-        {selectedSection === 'appliedJobs' && (
-          <div className="section">
-            <h3>My Applications</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Application Submitted at</th>
-                  <th>Circular</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>No Job Found</td>
-                  <td>--</td>
-                  <td>--</td>
-                  <td>--</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        {selectedSection === 'applicantInfo' && (
-          <div className="section">
-            <h3>Update Basic Info</h3>
-            <div className="section-block">
-              <h4>Basic Info</h4>
-              <div className="form-group">
-                <label>Name (in English) *</label>
-                <input
-                  type="text"
-                  value={nameEnglish}
-                  onChange={(e) => setNameEnglish(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Name (in Bangla) *</label>
-                <input
-                  type="text"
-                  value={nameBangla}
-                  onChange={(e) => setNameBangla(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Father Name *</label>
-                <input
-                  type="text"
-                  value={fatherName}
-                  onChange={(e) => setFatherName(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Mother Name *</label>
-                <input
-                  type="text"
-                  value={motherName}
-                  onChange={(e) => setMotherName(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Mobile Number *</label>
-                <input
-                  type="text"
-                  value={mobileNumber}
-                  onChange={(e) => setMobileNumber(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Date of Birth *</label>
-                <input
-                  type="date"
-                  value={dob}
-                  onChange={(e) => setDob(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Mailing Address *</label>
-                <textarea value={address} onChange={(e) => setAddress(e.target.value)} />
-              </div>
-            </div>
-
-            <div className="section-block">
-              <h4>Educational Info</h4>
-              {educationalInfo.length > 0 ? (
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Exam Name</th>
-                      <th>Subject Name</th>
-                      <th>Institute Name</th>
-                      <th>Passing Year</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {educationalInfo.map((education, index) => (
-                      <tr key={index}>
-                        <td>
-                          <input
-                            type="text"
-                            value={education.examName}
-                            onChange={(e) =>
-                              handleEducationChange(index, 'examName', e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            value={education.subjectName}
-                            onChange={(e) =>
-                              handleEducationChange(index, 'subjectName', e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            value={education.instituteName}
-                            onChange={(e) =>
-                              handleEducationChange(index, 'instituteName', e.target.value)
-                            }
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            value={education.passingYear}
-                            onChange={(e) =>
-                              handleEducationChange(index, 'passingYear', e.target.value)
-                            }
-                          />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              ) : (
-                <div>No educational info found. You can add new details.</div>
-              )}
-              <button onClick={handleAddEducation}>Add Education</button>
-            </div>
-
-            <div className="section-block">
-              <h4>CV</h4>
-              <div className="form-group">
-                <label>Upload CV</label>
-                <input type="file" onChange={handleCvChange} />
-                {cvFile && <p>{cvFile.name}</p>}
-              </div>
-            </div>
-            <button className="save-btn" onClick={handleSave}>Save</button>
-          </div>
-        )}
-
-        {selectedSection === 'changePassword' && (
-          <div className="section">
-            <h3>Change Password</h3>
-            <div className="form-group">
-              <label>Current Password</label>
-              <input type="password" />
-            </div>
-            <div className="form-group">
-              <label>New Password</label>
-              <input type="password" />
-            </div>
-            <div className="form-group">
-              <label>Confirm Password</label>
-              <input type="password" />
-            </div>
-            <button className="save-btn">Change Password</button>
-          </div>
-        )}
+      <div className="profile-section">
+        <h4>Educational Information</h4>
+        <textarea value={educationalInfo} onChange={(e) => setEducationalInfo(e.target.value)} />
       </div>
+
+      <div className="profile-section">
+        <h4>Upload CV</h4>
+        <input type="file" onChange={handleCvChange} />
+        {cvFile && <p>Uploaded: {cvFile.name}</p>}
+      </div>
+
+      <button className="edit-profile-btn" onClick={handleSaveProfile}>Save Profile</button>
     </div>
   );
 };

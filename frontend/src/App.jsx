@@ -18,7 +18,7 @@ import Header from "./components/Header";
 import ManageCircular from "./views/ManageCircular"; // Import ManageCircular page
 import EditJobForm from "./views/EditJobForm"; // Import EditJobForm page
 import { GoogleOAuthProvider } from "@react-oauth/google";
-
+import ProfilePage from "./views/ProfilePage";
 import ViewDetails from "./views/Viewdetails";
 import Research from './views/Research';
 import Apply from "./views/Apply";
@@ -43,6 +43,8 @@ const AppLayout = () => {
       <Navbar />
       <div className="main-content">
         <Routes>
+        
+        {/* New Profile Page Route */}
           <Route path="/" element={<Home />} />
           <Route path="/circular" element={<Circular />} />
           <Route path="/contact" element={<ContactUs />} />
@@ -57,7 +59,7 @@ const AppLayout = () => {
           <Route path="/adminCirculars" element={<AdminCircular />} />
           <Route path="/manage-jobs" element={<ManageCircular />} />  
           <Route path="/edit-job/:id" element={<EditJobForm />} /> 
-
+          <Route path="/profile-page" element={<ProfilePage />} /> 
           <Route path="/jobs/:id" element={<ViewDetails/>} />
           <Route path="/userManagement" element={<UserManagement />} />
           <Route path="/research" element={<Research />} />
