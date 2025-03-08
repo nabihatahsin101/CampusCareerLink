@@ -11,7 +11,7 @@ const AdminNavbar = () => {
         
         <li><Link to="/userManagement">Manage User</Link></li>
         <li><Link to="/applicationManagement">Application Management</Link></li>
-        <li><Link to="/admin/settings">Log Out</Link></li>
+       
 
       </ul>
     </nav>

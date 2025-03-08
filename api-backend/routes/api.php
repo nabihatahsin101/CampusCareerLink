@@ -24,7 +24,7 @@ Route::delete('/applications/{id}', [JobApplicationController::class, 'destroy']
 Route::get('/applications', [ApplicationController::class, 'index']);
 Route::post('/apply', [ApplicationController::class, 'store']);
 Route::delete('/applications/{id}', [ApplicationController::class, 'destroy']);
-
+Route::middleware('auth:sanctum')->post('/admin/logout', [AuthController::class, 'adminLogout']);
 // Add this route to your api.php
 Route::get('/jobs/count', [DashboardController::class, 'getJobCount']);
 
