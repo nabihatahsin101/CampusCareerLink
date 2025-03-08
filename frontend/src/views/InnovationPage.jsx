@@ -61,4 +61,5 @@ const InnovationPage = () => {
     </div>
   );
 };
+
 export default InnovationPage;

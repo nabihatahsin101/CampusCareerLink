@@ -20,7 +20,7 @@ const Research = () => {
         Technologies used include TensorFlow, Python, and OpenCV, with an emphasis on explainable AI to ensure trust and reliability in medical decision-making systems.` 
       },
       { 
-        
+      
         projectName: "NLP for Social Media", 
         projectDescription: "A project aimed at analyzing user sentiments on social media platforms.",
         detailedDescription: `This project focuses on analyzing user-generated content on platforms like Twitter, Facebook, and Instagram to understand public sentiment and opinions. 

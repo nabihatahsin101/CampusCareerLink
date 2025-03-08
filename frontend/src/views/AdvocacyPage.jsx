@@ -79,4 +79,5 @@ const AdvocacyPage = () => {
     </div>
   );
 };
+
 export default AdvocacyPage;
