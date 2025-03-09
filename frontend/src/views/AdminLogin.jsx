@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./adminLogin.css";
-
 const AdminLogin = () => {
   const [registerId, setRegisterId] = useState("");
   const [password, setPassword] = useState("");
@@ -29,17 +28,18 @@ const AdminLogin = () => {
       const data = await response.json();
       if (response.ok) {
         console.log("Login successful:", data);
-        navigate('/adminHome');
+        navigate("/adminHome");
       } else {
         setError(data.message || "Invalid credentials...");
       }
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
       setError("⚠️ Failed to connect to the server.");
     }
   };
 
   return (
-    <div className="admin-login-wrapper"> {/* This wraps everything to avoid affecting body */}
+    <div className="admin-login-wrapper">
       <div className="admin-login-container">
         <div className="admin-login-form">
           <h2>Log In</h2>
@@ -65,7 +65,9 @@ const AdminLogin = () => {
                 required
               />
             </div>
-            <button type="submit" className="admin-login-btn">Login</button>
+            <button type="submit" className="admin-login-btn">
+              Login
+            </button>
           </form>
         </div>
       </div>

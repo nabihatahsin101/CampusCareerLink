@@ -1,4 +1,4 @@
-import React from 'react';
+import 'react';
 import './ContactUs.css'; // Your styles for the contact page
 import { FaFacebook, FaLinkedin } from 'react-icons/fa'; // Import Facebook and LinkedIn icons
 

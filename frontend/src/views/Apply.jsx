@@ -1,6 +1,6 @@
 // Apply.jsx
 
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./Apply.css";
@@ -58,6 +58,7 @@ const Apply = () => {
         alert("Application submitted successfully!");
         navigate("/"); // Redirect to home page
       }
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
       setError("⚠️ Error submitting application.");
     }

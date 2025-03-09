@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
@@ -65,6 +65,7 @@ const Signup = () => {
       } else {
         setError(data.error ? Object.values(data.error).join("\n") : "Signup failed");
       }
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
       setError("⚠️ Network error, please try again!");
     }
