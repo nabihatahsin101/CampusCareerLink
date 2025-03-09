@@ -19,11 +19,11 @@ import ManageCircular from "./views/ManageCircular";
 import EditJobForm from "./views/EditJobForm";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import ProfilePage from "./views/ProfilePage";
-import ViewDetails from "./views/ViewDetails"; // Fixed import
+import ViewDetails from "./views/ViewDetails"; // Fixed previously
 import Research from "./views/Research";
 import Apply from "./views/Apply";
 import UserManagement from "./views/UserManagement";
-import ChangePass from "./views/Changepass";
+import ChangePass from "./views/ChangePass"; // Fixed import
 import ApplicationManagement from "./views/ApplicationManagement";
 import AdvocacyPage from "./views/AdvocacyPage";
 import InnovationPage from "./views/InnovationPage";
