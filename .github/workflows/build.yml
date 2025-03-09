@@ -62,28 +62,31 @@ jobs:
       - name: Run Database Migrations
         run: php artisan migrate --force
         working-directory: ./api-backend
-        
-  frontend:
-    name: React Frontend CI
-    runs-on: ubuntu-latest
+frontend:
+  name: React Frontend CI
+  runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
 
-      - name: Install Dependencies
-        run: npm install
-        working-directory: frontend
+    - name: Install Dependencies
+      run: npm install
+      working-directory: frontend
 
-      - name: Run Lint
-        run: npm run lint
-        working-directory: frontend
+    - name: List Files in src/views
+      run: ls -la src/views
+      working-directory: frontend
 
-      - name: Build React App
-        run: npm run build
-        working-directory: frontend
+    - name: Run Lint
+      run: npm run lint
+      working-directory: frontend
+
+    - name: Build React App
+      run: npm run build
+      working-directory: frontend
