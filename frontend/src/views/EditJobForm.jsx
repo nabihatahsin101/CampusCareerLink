@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import "./EditJobForm.css"; // Import CSS styles
 import { useNavigate } from "react-router-dom"; 
-const EditJobForm = ({ job, onUpdate, onCancel }) => {
+// eslint-disable-next-line react/prop-types
+const EditJobForm = ({ job, onUpdate }) => {
     const navigate = useNavigate(); 
     const [formData, setFormData] = useState({
     title: "",
@@ -15,11 +16,17 @@ const EditJobForm = ({ job, onUpdate, onCancel }) => {
   useEffect(() => {
     if (job) {
       setFormData({
+        // eslint-disable-next-line react/prop-types
         title: job.title,
+        // eslint-disable-next-line react/prop-types
         department: job.department,
+        // eslint-disable-next-line react/prop-types
         grade: job.grade,
+        // eslint-disable-next-line react/prop-types
         posted_on: job.posted_on,
+        // eslint-disable-next-line react/prop-types
         deadline: job.deadline,
+        // eslint-disable-next-line react/prop-types
         application_mode: job.application_mode,
       });
     }

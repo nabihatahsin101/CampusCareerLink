@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProfilePage.css';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
-  const [userEmail, setUserEmail] = useState('');
+  const [, setUserEmail] = useState('');
   const [profile, setProfile] = useState({});
 
   useEffect(() => {

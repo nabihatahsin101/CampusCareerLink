@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import Sidebar from '../components/Sidebar';
 import AdminNavbar from '../components/AdminNavbar';
@@ -9,6 +9,8 @@ import './AdminHome.css';
 
 function AdminHome() {
   const [users, setUsers] = useState([]);
+  const [userCount, setUserCount] = useState(0); // Track the total number of users
+  const [applicationCount, setApplicationCount] = useState(0); // Track the number of job applications
   const [date, setDate] = useState(new Date()); // State for the selected date
 
   // Fetching user data from backend API
@@ -22,6 +24,32 @@ function AdminHome() {
       }
     };
     fetchUsers();
+  }, []);
+
+  // Fetching total number of users
+  useEffect(() => {
+    const fetchUserCount = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/user-count');
+        setUserCount(response.data.count);
+      } catch (error) {
+        console.error('Error fetching user count:', error);
+      }
+    };
+    fetchUserCount();
+  }, []);
+
+  // Fetching total number of job applications
+  useEffect(() => {
+    const fetchApplicationCount = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/application-count');
+        setApplicationCount(response.data.count);
+      } catch (error) {
+        console.error('Error fetching application count:', error);
+      }
+    };
+    fetchApplicationCount();
   }, []);
 
   const handleDelete = async (id) => {
@@ -46,13 +74,24 @@ function AdminHome() {
       <Sidebar />
 
       <div className="admin-home-container">
-        
-
-        {/* Wrap the user list, circular management, and calendar */}
+        {/* Admin Home Content */}
         <div className="admin-home-content">
+          
+          {/* Displaying User and Application Counts */}
+          <div className="admin-home-stats">
+            <div className="stats-box">
+              <h4>Total Users</h4>
+              <p>{userCount}</p>
+            </div>
+            <div className="stats-box">
+              <h4>Total Applications</h4>
+              <p>{applicationCount}</p>
+            </div>
+          </div>
+
           {/* User List Table */}
           <div className="admin-home-user-list">
-            <h4>Users Managment</h4>
+            <h4>Users Management</h4>
             <table className="user-table">
               <thead>
                 <tr>
@@ -97,7 +136,6 @@ function AdminHome() {
 
         {/* Manage Circular Section (Under User Management) */}
         <div className="admin-home-circular-management">
-         
           <ManageCircular />
         </div>
       </div>

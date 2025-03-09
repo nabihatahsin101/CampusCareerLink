@@ -1,4 +1,4 @@
-import React from 'react';
+import 'react';
 import './AdvocacyPage.css';
 
 const AdvocacyPage = () => {
@@ -34,7 +34,7 @@ const AdvocacyPage = () => {
           <h2>How You Can Help</h2>
           <ul>
             <li>
-              <strong>Volunteer with Us</strong>: Whether you're interested in community outreach, event coordination, or helping with advocacy campaigns, we welcome volunteers from all walks of life.
+              <strong>Volunteer with Us</strong>: Whether you&apos;re interested in community outreach, event coordination, or helping with advocacy campaigns, we welcome volunteers from all walks of life.
             </li>
             <li>
               <strong>Donate to the Cause</strong>: Your financial support goes directly toward our programs, helping us to provide educational materials, healthcare resources, and scholarships for those in need.
@@ -64,14 +64,14 @@ const AdvocacyPage = () => {
 
         <section className="success">
           <h2>Success Stories</h2>
-          <p><strong>"With the help of this organization, I was able to pursue my education despite financial hardships."</strong></p>
+          <p><strong>&quot;With the help of this organization, I was able to pursue my education despite financial hardships.&quot;</strong></p>
           <p>- A Beneficiary</p>
           <p>
-            "Thanks to Ahsanullah University of Science & Technology, I now have access to clean water and proper sanitation, improving my family’s health and quality of life."
+            &quot;Thanks to Ahsanullah University of Science & Technology, I now have access to clean water and proper sanitation, improving my family’s health and quality of life.&quot;
           </p>
           <p>- A Family from Rural Bangladesh</p>
           <p>
-            "I never thought I’d have a chance to attend university, but thanks to your scholarship program, I'm now studying engineering. I will pay it forward."
+            &quot;I never thought I’d have a chance to attend university, but thanks to your scholarship program, I&apos;m now studying engineering. I will pay it forward.&quot;
           </p>
           <p>- A Scholarship Recipient from the Remote Villages of Bangladesh</p>
         </section>
