@@ -8,6 +8,7 @@ use App\Http\Controllers\Post\JobApplicationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ApplicationController;
+use App\Models\Signup;
 
 use App\Http\Controllers\ProfileController;
 
@@ -28,8 +29,19 @@ Route::get('/applications', [ApplicationController::class, 'index']);
 Route::post('/apply', [ApplicationController::class, 'store']);
 Route::delete('/applications/{id}', [ApplicationController::class, 'destroy']);
 Route::middleware('auth:sanctum')->post('/admin/logout', [AuthController::class, 'adminLogout']);
-// Add this route to your api.php
+
+// Job Count Route (to fetch total number of jobs posted)
 Route::get('/jobs/count', [DashboardController::class, 'getJobCount']);
+
+// Route for fetching total number of users
+Route::get('/user-count', function () {
+    return response()->json(['count' => Signup::count()]);  // Use the Signup model for counting
+});
+
+// Route for fetching total number of job applications
+Route::get('/application-count', function () {
+    return response()->json(['count' => App\Models\Application::count()]);
+});
 
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
