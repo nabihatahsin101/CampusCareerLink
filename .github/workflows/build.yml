@@ -1,3 +1,4 @@
+
 name: CI Pipeline
 
 on:
@@ -18,15 +19,9 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: auth
-          MYSQL_USER: root
-          MYSQL_PASSWORD: ""
         ports:
           - 3306:3306
-        options: >
-          --health-cmd="mysqladmin ping --host=localhost --user=root --password="
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
+        options: --health-cmd="mysqladmin ping --host=localhost --user=root --password=root" --health-interval=10s --health-timeout=5s --health-retries=5
 
     steps:
       - name: Checkout code
@@ -52,13 +47,13 @@ jobs:
           echo "DB_PORT=3306" >> .env
           echo "DB_DATABASE=auth" >> .env
           echo "DB_USERNAME=root" >> .env
-          echo "DB_PASSWORD=" >> .env
+          echo "DB_PASSWORD=root" >> .env
           php artisan key:generate --force
         working-directory: ./api-backend
 
       - name: Verify MySQL Connection
         run: |
-          until mysqladmin ping -h 127.0.0.1 -u root --password=; do
+          until mysqladmin ping -h 127.0.0.1 -u root --password=root; do
             echo "Waiting for MySQL to be ready..."
             sleep 2
           done
@@ -68,7 +63,7 @@ jobs:
       - name: Run Database Migrations
         run: php artisan migrate --force
         working-directory: ./api-backend
-
+        
   frontend:
     name: React Frontend CI
     runs-on: ubuntu-latest
