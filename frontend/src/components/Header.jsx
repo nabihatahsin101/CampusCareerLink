@@ -1,9 +1,10 @@
 
-import React from 'react'
+import 'react';
 import 
  {BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsSearch, BsJustify}
  from 'react-icons/bs'
 
+// eslint-disable-next-line react/prop-types
 function Header({OpenSidebar}) {
   return (
     <header className='header'>

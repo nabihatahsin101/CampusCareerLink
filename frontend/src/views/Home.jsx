@@ -1,8 +1,7 @@
-import React from "react";
+import "react";
 import { useNavigate } from "react-router-dom";  // Import useNavigate
 import "./Home.css";
 import "../aust.css";
-import aust from '../assets/images/aust.png';
 
 const Home = () => {
   const navigate = useNavigate();  // Initialize useNavigate

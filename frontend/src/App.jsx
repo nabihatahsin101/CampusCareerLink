@@ -1,4 +1,4 @@
-import React from "react";
+import "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -14,7 +14,7 @@ import Welcome from "./views/Welcome";
 import Guideline from "./views/Guideline";
 import AdminHome from "./views/AdminHome"; // Import AdminHome
 import Sidebar from "./components/Sidebar"; // Import Sidebar
-import Header from "./components/Header";
+import "./components/Header";
 import ManageCircular from "./views/ManageCircular"; // Import ManageCircular page
 import EditJobForm from "./views/EditJobForm"; // Import EditJobForm page
 import { GoogleOAuthProvider } from "@react-oauth/google";

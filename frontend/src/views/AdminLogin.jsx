@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./adminLogin.css";
 
@@ -33,6 +33,7 @@ const AdminLogin = () => {
       } else {
         setError(data.message || "Invalid credentials...");
       }
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
       setError("⚠️ Failed to connect to the server.");
     }

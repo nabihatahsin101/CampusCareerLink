@@ -37,6 +37,7 @@ const ChangePass = () => {
         alert(data.message || "Failed to change password");
       }
       
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
       alert("Error changing password.");
     }

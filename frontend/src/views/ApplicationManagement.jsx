@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import Api from "../components/Api";
 import "./ApplicationManagement.css";
 
@@ -8,6 +8,7 @@ const ApplicationManagement = () => {
 
   useEffect(() => {
     fetchApplications();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchApplications = async () => {
