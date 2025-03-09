@@ -1,4 +1,4 @@
-import React from 'react';
+import 'react';
 import './InnovationPage.css'; // Add your styles here
 
 const InnovationPage = () => {
@@ -46,7 +46,7 @@ const InnovationPage = () => {
       <div className="innovation-project">
         <h3>Renewable Energy Projects</h3>
         <p>
-          AUST's renewable energy projects aim to tackle climate change by providing sustainable energy sources. Our solar energy
+          AUST&apos;s renewable energy projects aim to tackle climate change by providing sustainable energy sources. Our solar energy
           solutions are being implemented in rural schools, and we have already installed solar panels in over 50 schools, providing
           clean energy to thousands of students. These systems not only provide reliable electricity but also reduce dependency on
           fossil fuels, cutting down carbon emissions significantly.

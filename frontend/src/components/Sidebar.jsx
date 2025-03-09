@@ -1,18 +1,15 @@
-import React from 'react';
+import 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
-  BsCart3,
   BsGrid1X2Fill,
-  BsFillArchiveFill,
   BsFillGrid3X3GapFill,
   BsPeopleFill,
   BsListCheck,
-  BsMenuButtonWideFill,
-  BsFillGearFill,
 } from 'react-icons/bs';
 import './Sidebar.css';
 
+// eslint-disable-next-line react/prop-types
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
   const navigate = useNavigate();
 
