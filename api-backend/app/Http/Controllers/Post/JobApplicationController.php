@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Application;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class JobApplicationController extends Controller
@@ -18,7 +17,8 @@ class JobApplicationController extends Controller
             'email' => 'required|email',
             'phone' => 'required|string|max:20',
             'cv' => 'required|mimes:pdf|max:2048', // Max file size 2MB
-           
+            'job_id' => 'required|integer',
+            'job_title' => 'required|string',
         ]);
 
         // Store CV file
@@ -30,11 +30,9 @@ class JobApplicationController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'cv' => $cvPath,
-            
+            'job_id' => $request->job_id,
+            'job_title' => $request->job_title,
         ]);
-
-        // Send verification email
-      
 
         // Return response
         return response()->json(['message' => 'Application submitted successfully!']);
