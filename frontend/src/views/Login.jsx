@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GoogleLogin } from '@react-oauth/google';  // Import GoogleLogin from react-oauth/google
@@ -49,6 +49,7 @@ const Login = () => {
         alert(response.data.message);
         navigate("/profile-page");
       }
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
       setError("⚠️ Invalid email or password!");
     }
@@ -108,7 +109,7 @@ const Login = () => {
         </form>
 
         <div className="signup-link">
-          <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+          <p>Don&apos;t have an account? <a href="/signup">Sign Up</a></p>
         </div>
 
         {/* Google Login Button */}

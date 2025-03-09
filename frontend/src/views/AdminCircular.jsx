@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminCircular.css";
 import Api from "../components/Api";
 import AdminNavbar from "../components/AdminNavbar";
-import axios from "axios";
 
 const AdminCircular = () => {
   const { http } = Api(); // Axios instance
