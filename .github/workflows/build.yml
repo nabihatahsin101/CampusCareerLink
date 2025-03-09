@@ -18,9 +18,15 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: auth
+          MYSQL_USER: root
+          MYSQL_PASSWORD: ""
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping --host=localhost --user=root --password=root" --health-interval=10s --health-timeout=5s --health-retries=5
+        options: >
+          --health-cmd="mysqladmin ping --host=localhost --user=root --password="
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
 
     steps:
       - name: Checkout code
@@ -46,13 +52,13 @@ jobs:
           echo "DB_PORT=3306" >> .env
           echo "DB_DATABASE=auth" >> .env
           echo "DB_USERNAME=root" >> .env
-          echo "DB_PASSWORD=root" >> .env
+          echo "DB_PASSWORD=" >> .env
           php artisan key:generate --force
         working-directory: ./api-backend
 
       - name: Verify MySQL Connection
         run: |
-          until mysqladmin ping -h 127.0.0.1 -u root --password=root; do
+          until mysqladmin ping -h 127.0.0.1 -u root --password=; do
             echo "Waiting for MySQL to be ready..."
             sleep 2
           done
@@ -62,31 +68,28 @@ jobs:
       - name: Run Database Migrations
         run: php artisan migrate --force
         working-directory: ./api-backend
-frontend:
-  name: React Frontend CI
-  runs-on: ubuntu-latest
 
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+  frontend:
+    name: React Frontend CI
+    runs-on: ubuntu-latest
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Install Dependencies
-      run: npm install
-      working-directory: frontend
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-    - name: List Files in src/views
-      run: ls -la src/views
-      working-directory: frontend
+      - name: Install Dependencies
+        run: npm install
+        working-directory: frontend
 
-    - name: Run Lint
-      run: npm run lint
-      working-directory: frontend
+      - name: Run Lint
+        run: npm run lint
+        working-directory: frontend
 
-    - name: Build React App
-      run: npm run build
-      working-directory: frontend
+      - name: Build React App
+        run: npm run build
+        working-directory: frontend
