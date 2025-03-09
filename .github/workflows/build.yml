@@ -80,7 +80,13 @@ jobs:
       - name: Install Dependencies
         run: npm install
         working-directory: frontend
+      - name: List Files in src/views
+        run: ls -la src/views
+        working-directory: frontend
 
+      -  name: Show AdminLogin.jsx Content
+         run: cat src/views/AdminLogin.jsx
+         working-directory: frontend
       - name: Run Lint
         run: npm run lint
         working-directory: frontend
