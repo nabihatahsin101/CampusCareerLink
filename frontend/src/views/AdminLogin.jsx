@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./adminLogin.css";
+import "./AdminLogin.css";
 const AdminLogin = () => {
   const [registerId, setRegisterId] = useState("");
   const [password, setPassword] = useState("");
@@ -46,12 +46,12 @@ const AdminLogin = () => {
           {error && <p className="error">{error}</p>}
           <form onSubmit={handleSubmit}>
             <div className="input-group">
-              <label>Register ID</label>
+              <label>Register ID:</label>
               <input
                 type="text"
                 value={registerId}
                 onChange={(e) => setRegisterId(e.target.value)}
-                placeholder="Enter your Register ID"
+                placeholder="Enter your Register ID :"
                 required
               />
             </div>

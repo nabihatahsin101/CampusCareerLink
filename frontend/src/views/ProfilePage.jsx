@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProfilePage.css';
 
@@ -11,7 +11,7 @@ const ProfilePage = () => {
     const storedEmail = localStorage.getItem('userEmail');
     if (storedEmail) {
       setUserEmail(storedEmail);
-  
+
       // Fetch profile using the stored email
       const storedProfile = localStorage.getItem(`userProfile_${storedEmail}`);
       if (storedProfile) {
@@ -26,7 +26,7 @@ const ProfilePage = () => {
       navigate('/login');
     }
   }, [navigate]);
-  
+
 
   const handleEditProfile = () => {
     navigate('/profile');
@@ -40,7 +40,7 @@ const ProfilePage = () => {
         <h4>Basic Information</h4>
         <table>
           <tbody>
-            {['nameEnglish', 'nameBangla', 'fatherName', 'motherName', 'mobileNumber', 'dob', 'address'].map((field) => (
+            {['NameEnglish', 'NameBangla', 'FatherName', 'MotherName', 'MobileNumber', 'DateOfBirth', 'Address'].map((field) => (
               <tr key={field}>
                 <td><strong>{field.replace(/([A-Z])/g, ' $1')}:</strong></td>
                 <td>{profile[field] || 'N/A'}</td>

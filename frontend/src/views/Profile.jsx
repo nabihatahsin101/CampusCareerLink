@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProfilePage.css';
 
@@ -6,15 +6,15 @@ const Profile = () => {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState('');
   const [profile, setProfile] = useState({
-    nameEnglish: '',
-    nameBangla: '',
-    fatherName: '',
-    motherName: '',
-    mobileNumber: '',
-    dob: '',
-    address: '',
-    educationalInfo: '',
-    cvFile: null,
+    NameEnglish: '',
+    NameBangla: '',
+    FatherName: '',
+    MotherName: '',
+    MobileNumber: '',
+    DateOfBirth: '',
+    Address: '',
+    EducationalInfo: '',
+    CVFile: null,
   });
 
   useEffect(() => {
@@ -53,13 +53,13 @@ const Profile = () => {
       alert('Please login first!');
       return;
     }
-  
+
     // Save the profile data with the logged-in user's email
     localStorage.setItem(`userProfile_${userEmail}`, JSON.stringify(profile));
     alert('Profile saved successfully!');
     navigate('/profile-page');
   };
-  
+
   return (
     <div className="profile-container">
       <h2>Edit Profile</h2>
@@ -68,7 +68,7 @@ const Profile = () => {
         <h4>Basic Information</h4>
         <table>
           <tbody>
-            {['nameEnglish', 'nameBangla', 'fatherName', 'motherName', 'mobileNumber'].map((field) => (
+            {['NameEnglish', 'NameBangla', 'FatherName', 'MotherName', 'MobileNumber'].map((field) => (
               <tr key={field}>
                 <td><strong>{field.replace(/([A-Z])/g, ' $1')}:</strong></td>
                 <td><input type="text" name={field} value={profile[field]} onChange={handleInputChange} /></td>
@@ -76,11 +76,11 @@ const Profile = () => {
             ))}
             <tr>
               <td><strong>Date of Birth:</strong></td>
-              <td><input type="date" name="dob" value={profile.dob} onChange={handleInputChange} /></td>
+              <td><input type="date" name="DateOfBirth" value={profile.dob} onChange={handleInputChange} /></td>
             </tr>
             <tr>
               <td><strong>Mailing Address:</strong></td>
-              <td><textarea name="address" value={profile.address} onChange={handleInputChange} /></td>
+              <td><textarea name="Address" value={profile.address} onChange={handleInputChange} /></td>
             </tr>
           </tbody>
         </table>
