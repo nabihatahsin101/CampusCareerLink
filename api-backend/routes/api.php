@@ -29,7 +29,7 @@ Route::get('/applications', [ApplicationController::class, 'index']);
 Route::post('/apply', [ApplicationController::class, 'store']);
 Route::delete('/applications/{id}', [ApplicationController::class, 'destroy']);
 Route::middleware('auth:sanctum')->post('/admin/logout', [AuthController::class, 'adminLogout']);
-
+Route::post('/applications/send-mail', [ApplicationController::class, 'sendMail']);
 // Job Count Route (to fetch total number of jobs posted)
 Route::get('/jobs/count', [DashboardController::class, 'getJobCount']);
 

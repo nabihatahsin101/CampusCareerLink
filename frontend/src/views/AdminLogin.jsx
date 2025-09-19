@@ -51,7 +51,7 @@ const AdminLogin = () => {
                 type="text"
                 value={registerId}
                 onChange={(e) => setRegisterId(e.target.value)}
-                placeholder="Enter your Register ID"
+                placeholder="Enter your Register ID :"
                 required
               />
             </div>
