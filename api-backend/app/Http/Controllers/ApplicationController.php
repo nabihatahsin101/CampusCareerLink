@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Application;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\JobSelectedMail;
 class ApplicationController extends Controller
 {
     // Fetch all applications (for admin panel)
@@ -74,4 +75,20 @@ class ApplicationController extends Controller
             'cv_url' => $cvUrl, // Return the file URL
         ], 200);
     }
+    public function sendMail(Request $request)
+{
+    $request->validate([
+        'ids' => 'required|array'
+    ]);
+
+    $applications = Application::whereIn('id', $request->ids)->get();
+
+    foreach ($applications as $app) {
+        Mail::to($app->email)->send(new JobSelectedMail($app));
+    }
+
+    return response()->json([
+        'message' => 'Emails sent successfully'
+    ], 200);
+}
 }
