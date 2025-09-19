@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PostJob;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Signup;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewJobPostedMail;
 
 class PostJobController extends Controller
 {
@@ -51,9 +54,13 @@ class PostJobController extends Controller
 
             // Save job post
             $job = PostJob::create($request->all());
-
+             // Send email to all users
+            $users = Signup::all();
+            foreach ($users as $user) {
+             Mail::to($user->email)->queue(new NewJobPostedMail($job)); // use queue for better performance
+             }
             return response()->json([
-                'message' => 'Post added successfully!',
+                'message' => 'Post added successfully and users notified!',
                 'job' => $job
             ], 201);
 
