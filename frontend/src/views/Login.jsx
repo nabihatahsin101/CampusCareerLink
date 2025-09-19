@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GoogleLogin } from '@react-oauth/google';  // Import GoogleLogin from react-oauth/google
@@ -23,21 +23,23 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    if (!email.includes("@gmail.com")) {
-      setError("⚠️ Please use a valid Gmail account!");
+    const allowedDomains = ["gmail.com", "aust.edu"];
+    const emailDomain = email.split("@")[1];
+
+    if (!allowedDomains.includes(emailDomain)) {
+      setError("⚠️ Please use a valid email (only Gmail or AUST allowed)!");
       return;
     }
-  
+
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/user/login", {
         email,
         password,
       });
-  
+
       if (response.status === 200) {
         console.log("Login successful:", response.data);
-  
+
         // Store user data and authentication status in localStorage
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("isAuthenticated", "true");
@@ -49,7 +51,7 @@ const Login = () => {
         alert(response.data.message);
         navigate("/profile-page");
       }
-    // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line no-unused-vars
     } catch (error) {
       setError("⚠️ Invalid email or password!");
     }
@@ -57,7 +59,7 @@ const Login = () => {
 
   const handleGoogleLoginSuccess = (response) => {
     console.log("Google Login Successful", response);
-    
+
     // Store the user data from Google login
     localStorage.setItem("userToken", response.credential);
     localStorage.setItem("isAuthenticated", "true");
@@ -78,7 +80,7 @@ const Login = () => {
       <div className="login-form">
         <h2>Login to Your Account</h2>
         {error && <p className="error">{error}</p>}
-        
+
         {/* Display user's name if logged in */}
         {userName && <h3>Welcome, {userName}!</h3>}
 
@@ -114,7 +116,7 @@ const Login = () => {
 
         {/* Google Login Button */}
         <div className="google-login">
-          <GoogleLogin 
+          <GoogleLogin
             onSuccess={handleGoogleLoginSuccess}
             onError={handleGoogleLoginFailure}
           />
