@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
@@ -13,31 +13,36 @@ const Signup = () => {
   });
 
   const [error, setError] = useState("");
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const { fullName, email, password, confirmPassword } = formData;
-  
+
     if (!fullName || !email || !password || !confirmPassword) {
       setError("⚠️ Please fill in all fields!");
       return;
     }
-  
-    if (!email.includes("@gmail.com")) {
-      setError("⚠️ Please use a valid email!");
+
+    // ✅ Allow gmail.com OR aust.edu (you can add more domains in the regex)
+    const allowedDomains = ["gmail.com", "aust.edu", "yahoo.com", "outlook.com"];
+
+    const emailDomain = email.split("@")[1];
+
+    if (!allowedDomains.includes(emailDomain)) {
+      setError("⚠️ Please use a valid email (only Gmail or AUST allowed)!");
       return;
     }
-  
+
     if (password !== confirmPassword) {
       setError("⚠️ Passwords do not match!");
       return;
     }
-  
+
     try {
       const response = await fetch("http://127.0.0.1:8000/api/user/register", {
         method: "POST",
@@ -51,9 +56,9 @@ const Signup = () => {
           password_confirmation: confirmPassword, // Required for Laravel's 'confirmed' rule
         }),
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
         alert("Signup successful! Please log in.");
 
@@ -65,12 +70,12 @@ const Signup = () => {
       } else {
         setError(data.error ? Object.values(data.error).join("\n") : "Signup failed");
       }
-    // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line no-unused-vars
     } catch (error) {
       setError("⚠️ Network error, please try again!");
     }
   };
-  
+
 
   return (
     <div className="signup-container">
