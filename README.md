@@ -87,3 +87,71 @@ Easy-to-use registration and login pages for both job seekers and employers.
    - Browse job listings (job seekers).
    - Post and manage job listings (employers).
    -Track application status (job seekers).
+
+
+## Setup Instructions
+
+### Prerequisites
+Before setting up the project, ensure you have the following installed:
+- **PHP** (8.0.3 recommended)
+- **Composer** (2.8.4 recommended)
+- **XAAMP**(version 8 recommended) 
+- **Node.js** (16.x or later)
+- **NPM** (latest version)
+- **Laravel** (latest version)
+- **MySQL** or any preferred database
+
+### Backend Setup (Laravel)
+1. Navigate to the backend directory:
+   ```sh
+   cd api-backend
+   ```
+2. Install dependencies:
+   ```sh
+   composer install
+   ```
+3. Configure the environment:
+   - Copy the `.env.example` file and rename it to `.env`:
+     ```sh
+     cp .env.example .env
+     ```
+   - Update database credentials in the `.env` file.
+
+5. Run database migrations:
+   ```sh
+   php artisan migrate
+   ```
+6. Start the backend server:
+   ```sh
+   php artisan serve
+   ```
+   - This will provide a link (e.g., `http://127.0.0.1:8000`) to access the backend.
+
+### Frontend Setup (React + Vite)
+1. Navigate to the frontend directory:
+   ```sh
+   cd frontend
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the frontend development server:
+   ```sh
+   npm run dev
+   ```
+   - This will provide a link (e.g., `http://localhost:5173`) to access the frontend.
+
+### Running the Project
+To run the full project:
+1. Start the backend using:
+   ```sh
+   php artisan serve
+   ```
+2. Start the frontend using:
+   ```sh
+   npm run dev
+   ```
+3. Access the platform through the frontend link provided by Vite.
+
+Now, you can visit the frontend link in your browser to use the application.

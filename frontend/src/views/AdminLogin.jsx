@@ -46,7 +46,7 @@ const AdminLogin = () => {
           {error && <p className="error">{error}</p>}
           <form onSubmit={handleSubmit}>
             <div className="input-group">
-              <label>Register ID</label>
+              <label>Register ID:</label>
               <input
                 type="text"
                 value={registerId}
